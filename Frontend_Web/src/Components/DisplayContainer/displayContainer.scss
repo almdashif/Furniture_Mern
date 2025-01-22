@@ -1,0 +1,250 @@
+@use './../../CommonStyles/responsiveCss.scss' as mixins;
+
+#DisplayContainer {
+    background-color: var(--bgLightColor);
+    padding: 3rem 1rem;
+
+    .mainContainer {
+        width: 100%;
+        max-width: 1300px;
+        background-color: var(--bgLightGreenColor);
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        border-radius: 1rem;
+        align-items: center;
+        gap: 5rem;
+
+        @include mixins.respond(small) {
+            gap: 1rem;
+        }
+
+        .leftContainer {
+            flex: 5;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 4rem;
+
+            @include mixins.respond(small) {
+                padding: 2rem;
+            }
+
+            // margin: 2rem 0 0 0;
+
+            h3 {
+                font-size: 2.4rem;
+
+                @include mixins.respond(small) {
+                    font-size: 1.6rem;
+                }
+            }
+
+            p {
+                font-size: .8rem;
+            }
+
+            .contactExpert {
+                display: flex;
+                align-items: center;
+                gap: .5rem;
+                background-color: var(--bgDisplayBtnCoverColor);
+                padding: .3rem .8rem;
+                border-radius: 1rem;
+
+                .imagesContainer {
+                    display: flex;
+                    gap: .1rem;
+
+                    img {
+                        width: 20px;
+                        height: 20px;
+                        object-fit: cover;
+                        aspect-ratio: 1 / 1;
+                        object-position: top;
+                        border-radius: 50%;
+                        border: 1px solid var(--whiteColor);
+                    }
+
+                }
+
+                span {
+                    font-size: .6rem;
+                }
+            }
+
+            .shopNowBtn {
+                background-color: var(--bgEnglishBlueColor);
+                color: var(--whiteColor);
+                padding: .5rem 2rem;
+                border-radius: 1rem;
+                font-size: .7rem;
+            }
+        }
+
+        .rightContainer {
+            flex: 7;
+            padding: 4rem;
+
+            @include mixins.respond(small) {
+                padding: 2rem;
+            }
+
+            .gridContainer {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 2fr 1fr;
+                gap: 1rem;
+
+
+                @include mixins.respond(small) {
+                    grid-template-columns: 1fr;
+                    grid-template-rows: repeat(3, 200px);
+                }
+
+                .card {
+                    padding: 1rem 1rem;
+                    border-radius: 1rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+
+                    .forwardBtn {
+                        background-color: var(--whiteColor);
+                        border-radius: 1rem;
+                        padding: .4rem 1.5rem;
+                        display: inline-flex;
+                        width: max-content;
+
+                        svg {
+                            color: var(--bgLightEnglishBlueColor);
+                            font-size: .9rem;
+                        }
+
+
+
+                    }
+
+                    a {
+                        background-color: var(--bgLightEnglishBlueColor);
+                        border-radius: 1rem;
+                        padding: .4rem 1.5rem;
+                        color: var(--whiteColor);
+                        font-size: .7rem;
+                        z-index: 999;
+
+                    }
+
+                    .itemDetails {
+                        background-color: var(--whiteColor);
+                        width: max-content;
+                        padding: .5rem 1rem;
+                        border-radius: 1rem;
+                        z-index: 999;
+
+                        h6 {
+                            font-size: 1rem;
+                            font-weight: 600;
+                            color: var(--a-text-color);
+                        }
+
+                        p {
+                            font-size: .8rem;
+                            // font-weight: 600;
+                            color: var(--light-blackColor);
+                        }
+                    }
+
+                    .cardDetails {
+                        background-color: transparent;
+                    }
+
+                }
+
+
+                .card1 {
+                    grid-column: span 1;
+                    grid-row: span 2;
+                    position: relative;
+                    overflow: hidden;
+
+                    .imageContainer {
+                        position: absolute;
+                        top:0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            background-position: top;
+                            background-size: cover;
+                         
+                        }
+                    }
+
+                }
+
+                .card2 {
+                    grid-column: span 1;
+                    grid-row: span 1;
+                    position: relative;
+                    overflow: hidden;
+
+                    .imageContainer {
+                        position: absolute;
+                        top:0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        // mix-blend-mode: color-burn;
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            background-position: center;
+                            background-size: cover;
+                         
+                        }
+                    }
+
+                }
+
+                .card3 {
+                    grid-column: span 1;
+                    grid-row: span 1;
+                    background-color: var(--bgEnglishBlueColor);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: center;
+                    text-align: center;
+                    gap: 1rem;
+                 
+
+                    .itemDetails {
+                        h6 {
+                            font-size: 1rem;
+                            font-weight: 600;
+                            color: var(--whiteColor);
+
+                        }
+
+                        p {
+                            font-size: .6rem;
+                            color: var(--whiteColor);
+                        }
+
+                    }
+                }
+            }
+
+
+
+
+        }
+    }
+}

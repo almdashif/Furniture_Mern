@@ -1,0 +1,84 @@
+@use './../../CommonStyles/responsiveCss.scss' as mixins;
+
+#filter {
+    padding: .6rem 1rem;
+    // position: sticky;
+    // top: 0;
+    // left: 0;
+    background-color: var(--whiteColor);
+    z-index: 999;
+
+    @include mixins.respond(small) {
+        padding: 0;
+    }
+
+    .mainContainer {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+
+        @include mixins.respond(small) {
+            display: none;
+        }
+
+        .leftContainer ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+
+            li a {
+                display: inline-flex;
+                align-items: center;
+                gap: .3rem;
+
+                svg {
+                    width: .8rem;
+                    height: .8rem;
+                    display: flex;
+                    justify-content: center;
+                }
+
+                span {
+                    font-size: .7rem;
+                }
+            }
+        }
+
+
+        .rightContainer ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+
+            li {
+                display: flex;
+                align-items: center;
+                gap: .5rem;
+
+                a {
+                    background-color: var(--bgLightColor);
+                    border: 1px solid var(--borderColor);
+                    padding: .5rem;
+                    border-radius: 50%;
+                    display: inline-flex;
+                }
+
+                svg {
+                    width: .8rem;
+                    height: .8rem;
+                    display: flex;
+                    justify-content: center;
+                }
+
+                .richText h5,
+                p {
+                    font-size: .6rem;
+                }
+            }
+        }
+    }
+}

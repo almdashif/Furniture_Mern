@@ -1,0 +1,152 @@
+#Footer {
+    padding: 2rem 1rem;
+
+}
+
+#Footer .footerContainer {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+#Footer .footerContainer .leftContainer {
+    /* background-color: bisque; */
+    width: 40%;
+}
+
+#Footer .footerContainer .leftContainer h2 {
+    font-size: 2rem;
+    display: inline-block;
+    transform: scale(2, 1);
+    padding-left: 2rem;
+    font-weight: 800;
+}
+
+#Footer .footerContainer .leftContainer p {
+    width: 80%;
+    max-width: 500px;
+    font-size: .8rem;
+    color: #757575;
+    font-weight: 500;
+
+}
+
+#Footer .footerContainer .leftContainer .emailContainer {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: 1rem 0 0 0;
+}
+
+#Footer .footerContainer .leftContainer .emailContainer input {
+    border: 1px solid #757575;
+    padding: 6px 10px;
+    border-radius: 2rem;
+    width: 80%;
+    max-width: 250px;
+    font-size: .7rem;
+    color: #757575;
+}
+
+#Footer .footerContainer .leftContainer .emailContainer a {
+    display: inline-block;
+    background-color: black;
+    color: #fff;
+    padding: 6px 1.5rem;
+    border: 1px solid #000;
+    border-radius: 2rem;
+    font-size: .7rem;
+}
+
+#Footer .footerContainer .rightContainer {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+    /* background-color: aqua; */
+}
+
+#Footer .footerContainer .rightContainer ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0 2rem 0 0;
+}
+
+#Footer .footerContainer .rightContainer ul h5 {
+    padding-bottom: .5rem;
+    font-size: .9rem;
+}
+
+#Footer .footerContainer .rightContainer ul li a {
+    font-size: .8rem;
+    color: var(--a-text-color);
+    transition: all .3s ease;
+}
+
+#Footer .footerContainer .rightContainer ul li a:hover {
+    color: #000;
+    font-weight: 500;
+}
+
+#RightsandCopy .RightsandCopyContainer {
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+
+}
+#RightsandCopy .RightsandCopyContainer p{
+    font-size: .8rem;
+}
+#RightsandCopy .RightsandCopyContainer .conditions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+#RightsandCopy .RightsandCopyContainer .conditions a:hover {
+    color: #ffeeee;
+}
+
+
+#RightsandCopy .RightsandCopyContainer .conditions a {
+    color: #fff;
+    font-size: .7rem;
+    transition: all .3s ease;
+}
+
+@media screen and (max-width:600px) {
+    #Footer .footerContainer .leftContainer {
+        width: 90%;
+    }
+
+    #Footer .footerContainer .rightContainer {
+        gap: 2rem;
+    }
+    #RightsandCopy .RightsandCopyContainer .conditions {
+        gap: .5rem;
+    }
+    #RightsandCopy .RightsandCopyContainer p{
+        font-size: .6rem;
+    }
+    #RightsandCopy .RightsandCopyContainer .conditions a {
+        font-size: .6rem;
+    }
+}
+
+@media screen and (max-width:780px) and (min-width:600px) {
+    #Footer .footerContainer .leftContainer {
+        width: 75%;
+
+    }
+
+    #Footer .footerContainer .rightContainer {
+        gap: 2rem;
+    }
+}

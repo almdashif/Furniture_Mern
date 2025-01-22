@@ -1,0 +1,146 @@
+@use './../../CommonStyles/responsiveCss.scss' as mixins;
+
+#Navbar {
+    padding: .6rem 1rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: var(--whiteColor);
+    z-index: 9999999;
+
+    .navContainer {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+
+        .mainSearchContainer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+
+            .contactContainer {
+                display: flex;
+                align-items: center;
+                gap: .3rem;
+
+
+                .logoContainer {
+                    width: 2rem;
+                    height: 2rem;
+                    display: flex;
+                    justify-content: center;
+
+                }
+
+                span {
+                    font-size: 1rem;
+                    font-weight: 500;
+                }
+            }
+
+            .searchContainer {
+                width: 200px;
+                max-width: 400px;
+                padding: 0.1rem .8rem;
+                border-radius: 1rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border: 1px solid var(--borderColor);
+                align-items: center;
+
+                @include mixins.respond(small) {
+                    display: none;
+                }
+
+                input {
+                    width: 90%;
+                    max-width: 400px;
+                    font-size: .7rem;
+                    color: var(--a-Bgtext-color);
+                }
+
+                input::placeholder {
+                    font-size: .7rem;
+                    color: var(--a-Bgtext-color);
+                }
+
+                a {
+                    display: inline-flex;
+
+                    svg {
+                        font-size: .7rem;
+                    }
+                }
+            }
+        }
+
+        .listContainer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+
+
+            .leftContainer ul {
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+
+                @include mixins.respond(small) {
+                    display: none;
+                }
+
+                li a {
+                    color: var(--light-blackColor);
+                    font-size: .7rem;
+                }
+
+
+            }
+
+            .rightContainer ul {
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+
+                @include mixins.respond(small) {
+                    gap: .4rem;
+                }
+
+                li {
+                    display: inline-flex;
+
+
+                    .smallDev {
+                        svg {
+                            @include mixins.respond(small) {
+                                font-size: 1rem;
+                            }
+                        }
+                    }
+
+                    .navIcons {
+                        @include mixins.respond(small) {
+                            display: none;
+                        }
+                    }
+
+                    a {
+                        display: inline-flex;
+
+                        svg {
+                            color: var(--light-blackColor);
+                            font-size: .8rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

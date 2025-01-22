@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  --a-text-color: #363636;
+  --a-lightText-color: #3f3f3f;
+  --a-hover-text-color: #e4e4e4;
+  --a-Bgtext-color: #c0bfbf;
+  --a-Bghover-text-color: #363636;
+  --a-fontSize: .8rem;
+  --ash-WhiteColor: #96a1a0;
+  --light-blackColor: #535353;
+  --whiteColor: #ffffff;
+  --topBarColor: #152520;
+  --borderColor: #cbcbcb;
+  --bgLightGreenColor: #eef4f5;
+  --bgLightBlueColor: #c6dfe0;
+  --bgEnglishBlueColor: #274c50;
+  --bgLightEnglishBlueColor: #446a6d;
+  --bgDisplayBtnCoverColor: #e2edef;
+  --lightBorderColor:#eeeeee;
+
+  --bgLightColor:#fbfcfc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+::-moz-scrollbar {
+  display: none;
+}
+
+::-ms-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+*,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+a {
+  color: var(--a-text-color);
+  font-size: var(--a-fontSize);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+li {
+  list-style: none;
+}
+
+input {
+  border: none;
+  background-color: inherit;
+}
+
+a:hover {
+  color: var(--a-Bgtext-color);
+  font-size: var(--a-fontSize);
+}
