@@ -1,0 +1,215 @@
+@use './../../CommonStyles/responsiveCss.scss' as mixins;
+
+#Footer {
+    padding: 2rem 1rem;
+    background-color: var(--bgLightGreenColor);
+
+
+
+    .footerContainer {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+
+
+        .rightContainer {
+            display: flex;
+            align-items: flex-start;
+            gap: 3rem;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            /* background-color: aqua; */
+
+
+            @include mixins.respond(small) {
+                gap: 2rem;
+
+            }
+
+
+            ul {
+                display: flex;
+                flex-direction: column;
+                padding: 0 2rem 0 0;
+
+                @include mixins.respond(small) {
+                    text-align: center;
+
+                }
+
+                h5 {
+                    padding-bottom: .5rem;
+                    font-size: .9rem;
+                }
+
+                li a {
+                    font-size: .8rem;
+                    color: var(--a-text-color);
+                    transition: all .3s ease;
+
+
+                    &:hover {
+                        color: #000;
+                        font-weight: 500;
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+
+
+#RightsandCopy {
+    padding: 2rem 1rem;
+
+    background-color: var(--bgLightGreenColor);
+
+    .RightsandCopyContainer {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+
+        // gap: 2rem;
+        @include mixins.respond(small) {
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        p {
+            font-size: .8rem;
+            color: var(--a-lightText-color);
+
+            @include mixins.respond(small) {
+                width: 100%;
+                text-align: center;
+
+            }
+        }
+
+        .socials {
+
+            @include mixins.respond(small) {
+                margin: -.3rem auto;
+            }
+
+            ul {
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+
+                li {
+                    a {
+                        font-size: 1rem;
+                        color: var(--a-lightText-color);
+                        transition: all .3s ease;
+
+                        &:hover {
+                            color: #000;
+                            font-weight: 500;
+                        }
+                    }
+                }
+            }
+        }
+
+        .conditions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+
+            a {
+                font-size: .8rem;
+                color: var(--a-lightText-color);
+                transition: all .3s ease;
+
+                &:hover {
+                    color: #000;
+                    font-weight: 500;
+                }
+            }
+
+            @include mixins.respond(small) {
+                margin: 0 auto;
+            }
+        }
+    }
+}
+
+#StickyFooter {
+    padding: 2rem 1rem;
+    background-color: var(--topBarColor);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999999;
+    display: none;
+
+    @include mixins.respond(small) {
+        padding: .5rem 1rem;
+        display: block;
+
+    }
+
+    .StickyFooterContainer {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+
+
+
+        // gap: 2rem;
+        @include mixins.respond(small) {
+            gap: 1rem;
+
+        }
+
+        .imgContainer {
+            background-color: var(--whiteColor);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                padding: 0.3rem;
+                height: auto;
+                width: 1.5rem;
+                object-fit: contain;
+                object-position: center;
+
+            }
+        }
+
+        .btnContainer {
+            display: flex;
+            gap: .5rem;
+            align-items: center;
+            color: var(--whiteColor);
+            background-color: var(--bgLightEnglishBlueColor);
+            padding: .5rem 1.2rem;
+            border-radius: 1rem;
+
+            svg {
+                font-size: .6rem;
+            }
+
+            a {
+                color: var(--whiteColor);
+                font-size: .6rem;
+            }
+
+        }
+
+
+    }
+}

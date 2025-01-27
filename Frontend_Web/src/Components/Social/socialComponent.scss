@@ -1,0 +1,90 @@
+@use './../../CommonStyles/responsiveCss.scss' as mixins;
+
+#SocialComponent {
+    padding: 2rem 2rem 1rem;
+    // position: sticky;
+    // top: 0;
+    // left: 0;
+    background-color: var(--bgLightGreenColor);
+    z-index: 999;
+
+
+    .mainContainer {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+
+        .leftContainer {
+            @include mixins.respond(small) {
+                text-align: center;
+                margin: 0 auto;
+
+            }
+
+            .richText {
+
+                h5 {
+                    font-size: .9rem;
+                    font-weight: 500;
+                }
+
+                p {
+                    font-size: .7rem;
+                    font-weight: 400;
+                }
+            }
+        }
+
+
+
+        .rightContainer ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+
+            @include mixins.respond(small) {
+                justify-content: space-between;
+
+            }
+
+            li {
+                display: flex;
+                align-items: center;
+                gap: .5rem;
+
+                a {
+                    border: 1px solid var(--borderColor);
+                    padding: .3rem;
+                    border-radius: 50%;
+                    display: inline-flex;
+
+                    svg {
+                        width: .7rem;
+                        height: .7rem;
+                        display: flex;
+                        justify-content: center;
+                    }
+                }
+
+
+                .richText {
+
+                    h5 {
+                        font-size: .7rem;
+                        font-weight: 500;
+                    }
+
+                    p {
+                        font-size: .6rem;
+                        font-weight: 400;
+                    }
+                }
+            }
+        }
+    }
+}

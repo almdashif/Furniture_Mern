@@ -22,7 +22,7 @@ const TopSeller = () => {
                             <div className="item" key={index}>
 
                                 <div className="imageContainer">
-                                    <img src="https://media.designcafe.com/wp-content/uploads/2020/03/21012605/luxury-living-room-design-false-ceiling-lights.jpg" alt="" />
+                                    <img src="https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/product-32-300x300.webp" alt="" />
                                     <div className="filtersContainer">
                                         <a href=""><CiHeart /></a>
                                         <a href=""><ImLoop /></a>

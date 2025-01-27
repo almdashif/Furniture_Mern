@@ -62,6 +62,9 @@
                 border-radius: .2rem;
                 overflow: hidden;
                 background-color: var(--whiteColor);
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
 
                 .imageContainer {
                     position: relative;

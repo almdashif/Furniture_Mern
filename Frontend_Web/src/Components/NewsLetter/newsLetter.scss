@@ -1,0 +1,146 @@
+@use './../../CommonStyles/responsiveCss.scss' as mixins;
+
+#NewsLetter {
+    padding: 2rem;
+    background-color: var(--topBarColor);
+
+    @include mixins.respond(small) {
+        padding: 1rem;
+
+    }
+
+    .mainContainer {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+        flex-wrap: wrap;
+        align-items: center;
+
+
+        @include mixins.respond(small) {
+            padding: 1rem 0;
+            gap: 1.5rem;
+
+        }
+
+        .leftContainer {
+
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+
+            @include mixins.respond(small) {
+                gap: 1rem;
+    
+            }
+
+            img {
+                height: auto;
+                width: 3rem;
+                object-fit: contain;
+                object-position: center;
+
+                @include mixins.respond(small) {
+                    width: 2rem;
+        
+                }
+    
+
+            }
+
+            .updatesContainer {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                h6 {
+                    font-size: 1rem;
+                    font-weight: 500;
+                    color: var(--whiteColor);
+
+                    @include mixins.respond(small) {
+                        font-size: .8rem;
+
+                    }
+                }
+
+                p {
+                    font-size: .7rem;
+                    color: var(--whiteColor);
+
+                    @include mixins.respond(small) {
+                        font-size: .7rem;
+
+                    }
+                }
+            }
+        }
+
+        .rightContainer {
+            flex: 1;
+            max-width: 400px;
+
+            .feildsContainer {
+                display: flex;
+                align-items: center;
+                border: 1px solid var(--a-lightText-color);
+                border-radius: 3rem;
+
+                width: 100%;
+                padding: .2rem;
+                overflow: hidden;
+
+                @include mixins.respond(small) {
+                    flex-direction: column;
+                    padding: 0;
+
+                    border-radius: 1rem;
+
+                }
+
+                input {
+                    flex: 1;
+                    padding: .5rem;
+                    border: none;
+                    font-size: .7rem;
+                    outline: none;
+                    width: 100%;
+                    color: var(--whiteColor);
+
+                    @include mixins.respond(small) {
+                        padding: 1rem;
+                    }
+                }
+
+                a {
+                    padding: .5rem 1.2rem;
+                    font-size: .7rem;
+                    border: none;
+                    border-radius: 3rem;
+                    background-color: var(--bgLightEnglishBlueColor);
+                    color: var(--whiteColor);
+                    cursor: pointer;
+                    text-align: center;
+
+                    @include mixins.respond(small) {
+                        width: 100%;
+                        border-radius: 0;
+
+                    }
+                }
+            }
+
+
+        }
+
+
+    }
+
+
+}

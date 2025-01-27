@@ -1,12 +1,17 @@
 @use './../../CommonStyles/responsiveCss.scss' as mixins;
 
 #Navbar {
-    padding: .6rem 1rem;
+    padding: 2rem 1rem;
     position: sticky;
     top: 0;
     left: 0;
     background-color: var(--whiteColor);
     z-index: 9999999;
+
+
+    @include mixins.respond(small) {
+        padding: 1rem 1rem;
+    }
 
     .navContainer {
         width: 100%;
@@ -21,33 +26,42 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 1rem;
+            gap: 1.5rem;
 
             .contactContainer {
                 display: flex;
                 align-items: center;
-                gap: .3rem;
+                gap: .5rem;
 
 
                 .logoContainer {
                     width: 2rem;
-                    height: 2rem;
                     display: flex;
                     justify-content: center;
+
+
+                    @include mixins.respond(small) {
+                        width: 1.5rem;
+                    }
+
 
                 }
 
                 span {
-                    font-size: 1rem;
+                    font-size: 1.2rem;
                     font-weight: 500;
+
+                    @include mixins.respond(small) {
+                        font-size: 1rem;
+                    }
                 }
             }
 
             .searchContainer {
-                width: 200px;
+                width: 300px;
                 max-width: 400px;
-                padding: 0.1rem .8rem;
-                border-radius: 1rem;
+                padding: 0.4rem 1rem;
+                border-radius: 2rem;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -61,12 +75,12 @@
                 input {
                     width: 90%;
                     max-width: 400px;
-                    font-size: .7rem;
+                    font-size: .9rem;
                     color: var(--a-Bgtext-color);
                 }
 
                 input::placeholder {
-                    font-size: .7rem;
+                    font-size: .9rem;
                     color: var(--a-Bgtext-color);
                 }
 
@@ -74,7 +88,7 @@
                     display: inline-flex;
 
                     svg {
-                        font-size: .7rem;
+                        font-size: .9rem;
                     }
                 }
             }
@@ -98,7 +112,7 @@
 
                 li a {
                     color: var(--light-blackColor);
-                    font-size: .7rem;
+                    font-size: .9rem;
                 }
 
 
@@ -122,6 +136,7 @@
                             @include mixins.respond(small) {
                                 font-size: 1rem;
                             }
+
                         }
                     }
 
@@ -136,7 +151,7 @@
 
                         svg {
                             color: var(--light-blackColor);
-                            font-size: .8rem;
+                            font-size: .9rem;
                         }
                     }
                 }

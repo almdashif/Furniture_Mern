@@ -1,0 +1,147 @@
+@use './../../CommonStyles/responsiveCss.scss' as mixins;
+
+#LuxuryDemo {
+    padding: 2rem 2rem 1rem;
+
+    background-color: var(--bgLightColor);
+
+    @include mixins.respond(small) {
+        padding: 1rem;
+
+    }
+
+    .mainContainer {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        border-radius: 1rem;
+        align-items: center;
+        gap: 5rem;
+        padding: 2rem;
+
+        @include mixins.respond(small) {
+            padding: 0;
+
+        }
+
+
+        @include mixins.respond(small) {
+            gap: 3rem;
+            flex-direction: column;
+
+        }
+
+        .leftContainer {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+
+            @include mixins.respond(small) {
+                flex: none;
+                padding: 2rem;
+
+            }
+
+
+
+            // margin: 2rem 0 0 0;
+
+            h3 {
+                font-size: 2rem;
+                font-weight: 600;
+
+                @include mixins.respond(small) {
+                    font-size: 1.3rem;
+                    text-align: center;
+
+                }
+            }
+
+            p {
+                font-size: .8rem;
+                color: var(--a-lightText-color);
+                padding-bottom: 1rem;
+
+                @include mixins.respond(small) {
+                    text-align: center;
+
+                }
+            }
+
+
+
+            .shopNowBtn {
+                background-color: var(--bgEnglishBlueColor);
+                color: var(--whiteColor);
+                padding: 1rem 2rem;
+                border-radius: 2rem;
+                font-size: .7rem;
+
+                @include mixins.respond(small) {
+                    align-self: center;
+
+                }
+            }
+        }
+
+        .rightContainer {
+            flex: 3;
+            width: 100%;
+            height: 100%;
+            @include mixins.respond(small) {
+                flex: none;
+
+            }
+
+            .imageContainer {
+                position: relative;
+                overflow: hidden;
+                border-radius: 1rem;
+
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    object-position: center;
+                    background-color: #000000;
+                    /* Black as a fallback */
+
+                }
+
+                .clipPath {
+                    position: absolute;
+                    background-color: rgb(0, 0, 0);
+                    mix-blend-mode: screen;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-evenly;
+
+                    .clipPath1 {
+                        height: 100%;
+                        width: 15%;
+                        border-radius: 1rem;
+                    }
+
+                    .clipPath2 {
+                        height: 100%;
+                        width: 5%;
+                        background-color: var(--bgLightColor);
+                    }
+                }
+            }
+
+
+
+        }
+    }
+}

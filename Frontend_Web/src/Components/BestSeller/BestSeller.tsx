@@ -3,9 +3,20 @@ import '../BestSeller/bestSeller.scss'
 import { CiLocationOn, CiHeart } from "react-icons/ci";
 import { ImLoop } from "react-icons/im";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
+
+
 
 
 const BestSeller = () => {
+    const navigate = useNavigate()
+
+    const handleClick = (index) => {
+        navigate(`/${index}`);
+    };
+
+
+
     return (
         <section id='BestSeller'>
             <div className="mainContainer">
@@ -19,17 +30,17 @@ const BestSeller = () => {
                 <div className="itemsContainer">
                     {Array.from({ length: 7 }).map((_, index) => {
                         return (
-                            <div className="item" key={index}>
+                            <a onClick={() => handleClick(index)} className="item" key={index}>
 
                                 <div className="imageContainer">
-                                    <img src="https://media.designcafe.com/wp-content/uploads/2020/03/21012613/luxury-living-room-designs.jpg" alt="" />
+                                    <img src="https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/product-41-300x300.webp" alt="" />
                                     <div className="filtersContainer">
                                         <a href=""><CiHeart /></a>
                                         <a href=""><ImLoop /></a>
                                         <a href=""><MdOutlineRemoveRedEye /></a>
                                     </div>
                                     {
-                                        (index % 2 == 0 || index ==3) &&
+                                        (index % 2 == 0 || index == 3) &&
                                         <span >Sale</span>
                                     }
 
@@ -48,7 +59,7 @@ const BestSeller = () => {
                                         <a href="#">Add to cart</a>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         )
                     })}
 

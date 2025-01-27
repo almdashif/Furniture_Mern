@@ -17,9 +17,13 @@
   --bgEnglishBlueColor: #274c50;
   --bgLightEnglishBlueColor: #446a6d;
   --bgDisplayBtnCoverColor: #e2edef;
-  --lightBorderColor:#eeeeee;
+  --lightBorderColor: #eeeeee;
+  --bgLightColor: #fbfcfc;
 
-  --bgLightColor:#fbfcfc;
+
+  --bgLightGreen: #9ba89e;
+  --bgLightPeach: #d39e76;
+  --bgLightGray: #a7a29c;
 }
 
 html {
@@ -57,6 +61,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+  user-select: none;
 }
 
 a {

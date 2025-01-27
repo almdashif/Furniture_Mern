@@ -1,0 +1,218 @@
+@use './../../CommonStyles/responsiveCss.scss' as mixins;
+
+#SpecialOffers {
+    background-color: var(--bgLightColor);
+    padding: 1rem;
+
+    .mainContainer {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+
+        border-radius: 2rem;
+        padding: 2rem;
+
+        @include mixins.respond(small) {
+            padding: 1rem;
+        }
+
+        .headingContainer {
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0 4rem 0;
+
+            @include mixins.respond(small) {
+                flex-direction: column;
+                padding: 1rem 0 2rem 0;
+            }
+
+
+            .titleContainer {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+                h5 {
+                    font-size: 1.8rem;
+                    text-align: center;
+                    color: var(--a-text-color);
+                    padding-bottom: 1rem;
+
+                    @include mixins.respond(small) {
+                        padding-bottom: .5rem;
+                        font-size: 1.2rem;
+                    }
+                }
+
+                p {
+                    font-size: 1rem;
+                    color: var(--a-lightText-color);
+               
+                    max-width: 600px;
+                    padding-bottom: 1rem;
+
+                    @include mixins.respond(small) {
+                        display: none;
+                    }
+                }
+            }
+
+            a {
+                font-size: 1rem;
+                color: var(--whiteColor);
+                padding: .5rem 1rem;
+                border-radius: 2rem;
+                background-color: var(--bgEnglishBlueColor);
+                transition: all .3s ease-in-out;
+                display: flex;
+                align-items: center;
+                gap: .5rem;
+
+
+                svg {
+
+                    font-size: 1rem;
+                    color: var(--whiteColor);
+
+                    @include mixins.respond(small) {
+                        font-size: .7rem;
+
+                    }
+                }
+
+                &:hover {
+                    background-color: var(--bgLightEnglishBlueColor);
+                }
+
+                @include mixins.respond(small) {
+                    font-size: .7rem;
+
+                }
+            }
+        }
+
+
+
+        .itemsContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+
+            .item {
+                border-radius: 1rem;
+                overflow: hidden;
+                // background-color: var(--whiteColor);
+                background-color: gray;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-start;
+                gap: 1rem;
+                padding: 1rem;
+
+                img {
+                    flex: 2;
+                    border-radius: 1rem;
+                    overflow: hidden;
+                    object-position: left;
+                    object-fit: fill;
+                    aspect-ratio: 1/1.6;
+                }
+
+                .detailsContainer {
+                    flex: 3;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    gap: .5rem;
+
+                    .headingDetails {
+                   
+                        h5 {
+                            font-size: 1rem;
+                            color: var(--whiteColor);
+                            // padding-bottom: 1rem;
+                            font-weight: 600;
+
+                            @include mixins.respond(small) {
+                                font-size: .9rem;
+                            }
+                        }
+
+                        h6 {
+                            font-size: .9rem;
+                            color: var(--whiteColor);
+                            max-width: 800px;
+                            padding-bottom: 1rem;
+                            font-weight: 600;
+                            text-transform: uppercase;
+
+                            @include mixins.respond(small) {
+                                font-size: .8rem;
+                            }
+                        }
+                    }
+
+
+                    p {
+                        font-size: .8rem;
+                        color: var(--whiteColor);
+                        max-width: 800px;
+                        padding-bottom: 1rem;
+
+                        @include mixins.respond(small) {
+                            font-size: .7rem;
+                        }
+                    }
+
+
+                    a {
+                        font-size: .7rem;
+                        width: max-content;
+                        background-color: var(--whiteColor);
+                        padding: .5rem 1rem;
+                        border-radius: 2rem;
+                        color: var(--bgEnglishBlueColor);
+                        transition: all .3s ease-in-out;
+                        display: flex;
+                        align-items: center;
+                        gap: .5rem;
+
+
+                        &:hover {
+                            color: var(--whiteColor);
+                            background-color: var(--bgEnglishBlueColor);
+                        }
+
+                        @include mixins.respond(small) {
+                            font-size: .6rem;
+
+                        }
+                    }
+
+
+                }
+
+
+            }
+
+
+            .bgLightGreen {
+                background-color: var(--bgLightGreen); // Light Green
+              }
+              
+              .bgLightPeach {
+                background-color: var(--bgLightPeach); // Light Peach
+              }
+              .bgLightGray {
+                background-color: var(--bgLightGray); // Light Green
+              }
+              
+        }
+    }
+}
