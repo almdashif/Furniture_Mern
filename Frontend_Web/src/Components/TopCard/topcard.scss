@@ -1,14 +1,18 @@
 @use './../../CommonStyles/responsiveCss.scss' as mixins;
+
 #topCard {
 
     width: 100%;
     background-color: var(--topBarColor);
 
+    @include mixins.respond(small) {
+        display: none;
+    }
 
     .mainContainer {
         width: 100%;
         max-width: 1300px;
-        padding: .5rem 1rem ;
+        padding: .5rem 1rem;
         margin: 0 auto;
         background-color: var(--topBarColor);
         display: flex;
@@ -18,6 +22,7 @@
         .leftContainer ul {
             display: flex;
             gap: 1rem;
+
             @include mixins.respond(small) {
                 gap: .5rem;
             }
@@ -25,11 +30,13 @@
             li a {
                 color: var(--ash-WhiteColor);
                 font-size: .6rem;
+
                 @include mixins.respond(small) {
                     font-size: .55rem;
                 }
-        
+
             }
+
             li a:hover {
                 color: var(--whiteColor);
             }
@@ -38,6 +45,7 @@
         .rightContainer ul {
             display: flex;
             gap: 1rem;
+
             @include mixins.respond(small) {
                 gap: .5rem;
             }
@@ -46,6 +54,7 @@
                 color: var(--ash-WhiteColor);
                 font-size: .6rem;
             }
+
             li a:hover {
                 color: var(--whiteColor);
             }

@@ -1,0 +1,45 @@
+@use './../../CommonStyles/responsiveCss.scss' as mixins;
+
+#DetailsComponent {
+    padding: 2rem 2rem;
+    background-color: var(--bgLightGreenColor);
+    z-index: 999;
+
+
+    .mainContainer {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            text-align: center;
+            padding: 1rem .2rem;
+
+            svg{
+                font-size: 1.8rem;
+                color: var(--a-lightText-color);
+            }
+
+            h5{
+                font-size: 1rem;
+                color: var(--a-lightText-color);
+                font-weight: 600;
+            }
+
+            p{
+                font-size: .7rem;
+                color: var(--a-lightText-color);
+            }
+
+        }
+
+    }
+}

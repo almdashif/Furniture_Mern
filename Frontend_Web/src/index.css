@@ -19,6 +19,8 @@
   --bgDisplayBtnCoverColor: #e2edef;
   --lightBorderColor: #eeeeee;
   --bgLightColor: #fbfcfc;
+  --redColor: #d32323;
+  --goldColor: #eacf37;
 
 
   --bgLightGreen: #9ba89e;
@@ -51,6 +53,7 @@ body {
   height: 0;
 }
 
+
 ::-webkit-scrollbar-thumb {
   background-color: transparent;
 }
@@ -62,6 +65,7 @@ body {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   user-select: none;
+  outline: none;
 }
 
 a {
@@ -83,4 +87,16 @@ input {
 a:hover {
   color: var(--a-Bgtext-color);
   font-size: var(--a-fontSize);
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
+  /* Transparent tap highlight */
+  text-decoration: none;
+  /* Optional: Remove underline if needed */
+}
+
+/* Optionally apply globally */
+* {
+  -webkit-tap-highlight-color: transparent;
 }

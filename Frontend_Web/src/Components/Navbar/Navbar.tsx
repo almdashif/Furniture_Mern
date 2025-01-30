@@ -6,7 +6,17 @@ import { FiShoppingBag } from "react-icons/fi";
 import { ImLoop } from "react-icons/im";
 import { RxHamburgerMenu } from "react-icons/rx";
 import LogoImage from '../../assets/images/furnitureLogo.jpg'
-const Navbar = () => {
+const Navbar = ({ open, setOpen }) => {
+
+    const handleToggle = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        e.preventDefault();
+        setOpen(!open)
+        if (!open) {
+            document.body.style.overflow = "hidden"; // Disable background scroll
+          } else {
+            document.body.style.overflow = "auto"; // Enable background scroll
+          }
+    }
     return (
         <section id="Navbar">
             <div className="navContainer">
@@ -38,8 +48,8 @@ const Navbar = () => {
                             <li><a href="" className='navIcons'><IoPersonCircleOutline /></a></li>
                             <li><a href="" className=' smallDev'><CiHeart /></a></li>
                             <li><a href="" className='navIcons'><ImLoop /></a></li>
-                            <li><a href="" className='navIcons'><FiShoppingBag /></a></li>
-                            <li><a href="" className=' smallDev'><RxHamburgerMenu /></a></li>
+                            <li><a href="" className='navIcons '><FiShoppingBag /></a></li>
+                            <li><a href="" onClick={handleToggle} className=' smallDev'><RxHamburgerMenu /></a></li>
                         </ul>
 
                     </div>
