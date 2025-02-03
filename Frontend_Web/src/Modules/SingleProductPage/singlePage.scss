@@ -17,12 +17,13 @@
 
         .leftContainer {
             position: relative;
-
+            width: 100%;
 
             .imageContainer {
                 position: relative;
                 border-radius: .5rem;
                 overflow: hidden;
+                width: 100%;
 
                 img {
                     width: 100%;
@@ -305,6 +306,7 @@
         .bottomContainer {
             padding: 1.5rem 0;
             width: 100%;
+
             p {
                 font-size: .9rem;
                 color: var(--a-text-color);
@@ -337,7 +339,7 @@
                     border-collapse: collapse;
                     border: 1px solid var(--lightBorderColor);
                     text-align: left;
-                    padding:1rem;
+                    padding: 1rem;
                     font-size: .8rem;
                     font-weight: 400;
                     color: var(--a-text-color);
@@ -352,7 +354,7 @@
 
             #reviewWrapper {
                 width: 100%;
-                flex:1;
+                flex: 1;
                 display: flex;
                 justify-content: space-between;
                 gap: 1rem;
@@ -363,6 +365,7 @@
                     flex: 1;
                     justify-content: flex-start;
                     align-items: flex-start;
+
                     .reviewContainer {
 
 
@@ -392,6 +395,7 @@
                     flex-direction: column;
                     flex: 1;
                     justify-content: flex-start;
+
                     .submitReviewContainer {
                         h5 {
                             font-size: .9rem;

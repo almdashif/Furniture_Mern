@@ -30,7 +30,7 @@
             ul {
                 display: flex;
                 flex-direction: column;
-                padding: 0 2rem 0 0;
+                width: 45%;
 
                 @include mixins.respond(small) {
                     text-align: center;

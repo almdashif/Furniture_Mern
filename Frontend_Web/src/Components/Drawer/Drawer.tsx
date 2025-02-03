@@ -17,10 +17,12 @@ import { LuSofa } from "react-icons/lu";
 import { BiBed } from "react-icons/bi";
 import { MdOutlineTableBar } from "react-icons/md";
 import { RiArrowDownSLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 const Drawer = ({ open, setOpen }) => {
 
     const [openShopTab, setOpenShopTab] = useState(false)
+    const navigate = useNavigate()
     // Toggle the drawer
     const toggleDrawer = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -37,6 +39,11 @@ const Drawer = ({ open, setOpen }) => {
         setOpenShopTab(!openShopTab);
 
     };
+
+    const navigateToShop = (e: React.MouseEvent) => {
+        toggleDrawer(e);
+        navigate(`/shop`);
+    }
 
     return (
         <div>
@@ -56,9 +63,9 @@ const Drawer = ({ open, setOpen }) => {
                     <div className="pagesContainer">
                         <ul>
                             <li><a href="">Home</a></li>
-                            <li><a href="" onClick={toggleShopTab}><span>Shop <RiArrowDownSLine className={`${openShopTab ? 'rotate' : ""}`}/></span>
+                            <li><a href="" onClick={toggleShopTab}><span>Shop <RiArrowDownSLine className={`${openShopTab ? 'rotate' : ""}`} /></span>
                                 <ul className={`${openShopTab ? 'openShopTab' : ""}`}>
-                                    <li><a href="">Variable Product</a></li>
+                                    <li><a href="" onClick={navigateToShop}>Variable Product</a></li>
                                     <li><a href="">Product Gallery</a></li>
                                     <li><a href="">Advanced Reviews</a></li>
                                     <li><a href="">Custom Tab</a></li>

@@ -72,11 +72,14 @@
                     display: none;
                 }
 
+               
                 input {
                     width: 90%;
                     max-width: 400px;
                     font-size: .9rem;
                     color: var(--a-Bgtext-color);
+
+                    
                 }
 
                 input::placeholder {
@@ -110,6 +113,9 @@
                     display: none;
                 }
 
+
+
+
                 li a {
                     color: var(--light-blackColor);
                     font-size: .9rem;
@@ -132,6 +138,13 @@
 
 
                     .smallDev {
+                        display: none;
+
+
+                        @include mixins.respond(small) {
+                            display: inline-flex;
+                        }
+
                         svg {
                             @include mixins.respond(small) {
                                 font-size: 1rem;
