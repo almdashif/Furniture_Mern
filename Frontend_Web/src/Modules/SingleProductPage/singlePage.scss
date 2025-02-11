@@ -13,11 +13,19 @@
         gap: 1rem;
         flex-wrap: wrap;
         position: relative;
+        height: 70vh;
+        overflow: auto !important;
 
 
         .leftContainer {
             position: relative;
-            width: 100%;
+            width: 45%;
+            // height: 70vh;
+            overflow: auto !important;
+
+            @include mixins.respond(small) {
+                width: 100%;
+            }
 
             .imageContainer {
                 position: relative;
@@ -76,7 +84,13 @@
 
             display: flex;
             flex-direction: column;
+            width: 45%;
+            height: 70vh;
+            overflow: auto !important;
 
+            @include mixins.respond(small) {
+                width: 100%;
+            }
 
             .trackerContainer {
                 display: flex;

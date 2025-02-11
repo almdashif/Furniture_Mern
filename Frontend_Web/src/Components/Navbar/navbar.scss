@@ -101,12 +101,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 1.5rem;
+            gap: 2rem;
 
 
             .leftContainer ul {
                 display: flex;
-                gap: 1rem;
+                gap: 1.2rem;
                 align-items: center;
 
                 @include mixins.respond(small) {
@@ -119,6 +119,7 @@
                 li a {
                     color: var(--light-blackColor);
                     font-size: .9rem;
+                    font-weight: 400;
                 }
 
 
@@ -126,7 +127,7 @@
 
             .rightContainer ul {
                 display: flex;
-                gap: 1rem;
+                gap: 1.2rem;
                 align-items: center;
 
                 @include mixins.respond(small) {

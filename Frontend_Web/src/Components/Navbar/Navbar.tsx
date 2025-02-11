@@ -47,7 +47,7 @@ const Navbar = ({ open, setOpen }) => {
                         <ul>
                             <li><a href="" className='navIcons'><IoPersonCircleOutline /></a></li>
                             <li><a href="" className='navIcons'><CiHeart /></a></li>
-                            <li><a href="" className='navIcons'><ImLoop /></a></li>
+                            {/* <li><a href="" className='navIcons'><ImLoop /></a></li> */}
                             <li><a href="" className='navIcons '><FiShoppingBag /></a></li>
                             <li><a href="" onClick={handleToggle} className=' smallDev'><RxHamburgerMenu /></a></li>
                         </ul>

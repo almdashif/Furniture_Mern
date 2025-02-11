@@ -79,7 +79,7 @@ const SinglePage = () => {
 
             <p className='Offer-price'>${singleData[0]?.currentprice} <span className='actual-price'>${singleData[0]?.oldPrice}</span></p>
 
-            <p className='description'>{singleData[0]?.productDetails}</p>
+            <p className='description'>{singleData[0]?.productDetails + singleData[0]?.productDetails+singleData[0]?.productDetails+singleData[0]?.productDetails + singleData[0]?.productDetails}</p>
 
             <div className="divider"></div>
 

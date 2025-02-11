@@ -30,11 +30,11 @@
             ul {
                 display: flex;
                 flex-direction: column;
-                width: 45%;
+              
 
                 @include mixins.respond(small) {
                     text-align: center;
-
+                    width: 45%;
                 }
 
                 h5 {
