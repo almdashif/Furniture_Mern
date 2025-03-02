@@ -8,13 +8,23 @@ import { MdCompare } from "react-icons/md";
 import { MdPhotoSizeSelectLarge } from "react-icons/md";
 import { CgMathPlus } from "react-icons/cg";
 import { PiStarBold, } from "react-icons/pi";
+import { MdDeleteOutline } from "react-icons/md";
 
 import '../Cart/cart.scss'
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 const CartPage = () => {
+
+      const navigate = useNavigate()
+  
+      const navigateCheckout = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+          e.preventDefault();
+         navigate('/Checkout');
+      }
+  
 
 
   useEffect(() => {
@@ -43,7 +53,7 @@ const CartPage = () => {
                   <div className="product">
                     <div className="productDetails">
                       <div className="productImg">
-                        <img src="../../../src/assets/images/furnitureLogo.jpg" alt="productImg" />
+                        <img src="https://img.freepik.com/free-psd/slipper-chair-isolated-transparent-background_191095-13677.jpg?t=st=1740894955~exp=1740898555~hmac=51d9ef249a11662e76fd8be1f59bc9d4f1861d00772ef9a44859c9706df9ddb0&w=1480" alt="productImg" />
                       </div>
                       <div className="productName">
                         <p>Aliquam Blandit</p>
@@ -62,7 +72,7 @@ const CartPage = () => {
                     </div>
                     <a className="subtotalContainer">
                       <span className="productItemPrice">$320.00</span>
-                      <a href=""><PiStarBold /></a>
+                      <a href=""><MdDeleteOutline /></a>
                     </a>
                   </div>
                 )
@@ -89,9 +99,9 @@ const CartPage = () => {
 
             <div className="freeShippingContainer">
               <p>Add $1,680.00 more to get free shipping!</p>
-              <progress value={30} color='red' />
+              <progress value={30} max={100} color='pink' className='progressBar' />
             </div>
-            <a href="#" className="checkoutBtn">
+            <a href="#" onClick={navigateCheckout} className="checkoutBtn">
               Proceed to checkout
             </a>
           </div>

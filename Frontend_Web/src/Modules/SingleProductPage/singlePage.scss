@@ -1,7 +1,7 @@
 @use './../../CommonStyles/responsiveCss.scss' as mixins;
 
 #SinglePage {
-    padding: 1rem;
+    padding: 1rem 2rem;
 
     .mainContainer {
         width: 100%;
@@ -13,8 +13,9 @@
         gap: 1rem;
         flex-wrap: wrap;
         position: relative;
-        height: 70vh;
+        // height: 70vh;
         overflow: auto !important;
+
 
 
         .leftContainer {
@@ -24,6 +25,10 @@
             overflow: auto !important;
 
             @include mixins.respond(small) {
+                width: 100%;
+            }
+
+            @include mixins.respond(medium) {
                 width: 100%;
             }
 
@@ -85,8 +90,12 @@
             display: flex;
             flex-direction: column;
             width: 45%;
-            height: 70vh;
+            // height: 70vh;
             overflow: auto !important;
+
+            @include mixins.respond(medium) {
+                width: 100%;
+            }
 
             @include mixins.respond(small) {
                 width: 100%;

@@ -12,7 +12,7 @@ import { PiStarBold, PiStarFill } from "react-icons/pi";
 import '../SingleProductPage/singlePage.scss'
 import DetailsComponent from '../../Components/DetailsComponent/DetailsComponent.tsx';
 import { productData } from '../../data/productData.js';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 
@@ -24,6 +24,9 @@ const SinglePage = () => {
   const [viewState, setViewState] = useState(0)
   const [checked, setChecked] = useState(false)
   const [singleData, setSingleData] = useState([])
+
+
+  const navigate = useNavigate()
 
   const { id } = useParams<{ id: string }>();
 
@@ -39,6 +42,12 @@ const SinglePage = () => {
     e.preventDefault();
     setViewState(val)
   }
+
+  
+      const navigateCart = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+          e.preventDefault();
+         navigate('/cart');
+      }
 
   const fetchSingleData = async () => {
     let singleProd = await productData.find(p => p.id === Number(id))
@@ -93,7 +102,7 @@ const SinglePage = () => {
                   <GoPlus />
                 </a>
               </div>
-              <a href="#" className='addtoCartBtn'>Add to Cart</a>
+              <a href="#" onClick={navigateCart} className='addtoCartBtn'>Add to Cart</a>
             </div>
 
 
