@@ -8,6 +8,9 @@
     @include mixins.respond(small) {
         display: none;
     }
+    @include mixins.respond(medium) {
+        display: none;
+    }
 
     .mainContainer {
         width: 100%;

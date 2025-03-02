@@ -31,7 +31,7 @@ const SinglePage = () => {
     fetchSingleData()
     // this.setState()
     // window.position({ top: 0,})
-    // window.scrollTo({ top: 0, left: 0 })
+    window.scrollTo({ top: 0, left: 0 })
   }, [])
 
 

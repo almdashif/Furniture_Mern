@@ -37,6 +37,11 @@
                     width: 45%;
                 }
 
+                @include mixins.respond(medium) {
+                    text-align: center;
+                    width: 45%;
+                }
+
                 h5 {
                     padding-bottom: .5rem;
                     font-size: .9rem;

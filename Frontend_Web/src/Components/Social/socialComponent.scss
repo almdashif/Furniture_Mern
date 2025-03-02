@@ -26,10 +26,19 @@
 
             }
 
+            @include mixins.respond(medium) {
+                text-align: center;
+                margin: 0 auto;
+
+            }
+
             .richText {
+                display: flex;
+                flex-direction: column;
+                gap: .2rem;
 
                 h5 {
-                    font-size: .9rem;
+                    font-size: 1rem;
                     font-weight: 500;
                 }
 
@@ -42,46 +51,52 @@
 
 
 
-        .rightContainer ul {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
+        .rightContainer {
 
-            @include mixins.respond(small) {
-                justify-content: space-between;
 
-            }
-
-            li {
+            ul {
                 display: flex;
-                align-items: center;
-                gap: .5rem;
+                flex-wrap: wrap;
+                gap: 2rem;
 
-                a {
-                    border: 1px solid var(--borderColor);
-                    padding: .3rem;
-                    border-radius: 50%;
-                    display: inline-flex;
 
-                    svg {
-                        width: .7rem;
-                        height: .7rem;
-                        display: flex;
-                        justify-content: center;
-                    }
+                @include mixins.respond(small) {
+                    width: 100%;
+                    justify-content: space-between;
+
                 }
 
+                li {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
 
-                .richText {
+                    a {
+                        border: 1px solid var(--borderColor);
+                        padding: .3rem;
+                        border-radius: 50%;
+                        display: inline-flex;
 
-                    h5 {
-                        font-size: .7rem;
-                        font-weight: 500;
+                        svg {
+                            width: .7rem;
+                            height: .7rem;
+                            display: flex;
+                            justify-content: center;
+                        }
                     }
 
-                    p {
-                        font-size: .6rem;
-                        font-weight: 400;
+
+                    .richText {
+
+                        h5 {
+                            font-size: .7rem;
+                            font-weight: 500;
+                        }
+
+                        p {
+                            font-size: .6rem;
+                            font-weight: 400;
+                        }
                     }
                 }
             }

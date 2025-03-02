@@ -23,7 +23,7 @@ const Navbar = ({ open, setOpen }) => {
                 <div className="mainSearchContainer">
                     <div className="contactContainer">
                         <a className="logoContainer">
-                            <IoBedSharp style={{ width: '100%', height: '100%' }} />
+                            <img src="../../../src/assets/images/furnitureLogo.jpg" alt="logo" style={{ width: '100%', height: '100%' }}/>
                         </a>
                         <span>Furniture</span>
                     </div>

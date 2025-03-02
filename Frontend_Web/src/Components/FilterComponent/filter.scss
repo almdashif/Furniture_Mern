@@ -10,6 +10,10 @@
 
     @include mixins.respond(small) {
         padding: 0;
+        display: none;
+    }
+    @include mixins.respond(medium) {
+        display: none;
     }
 
     .mainContainer {
