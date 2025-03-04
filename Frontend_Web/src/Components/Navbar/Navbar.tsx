@@ -6,6 +6,7 @@ import { FiShoppingBag } from "react-icons/fi";
 import { ImLoop } from "react-icons/im";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useNavigate } from 'react-router-dom';
+import { FaAngleDown } from "react-icons/fa6";
 const Navbar = ({ open, setOpen }) => {
     const navigate = useNavigate()
 
@@ -43,7 +44,17 @@ const Navbar = ({ open, setOpen }) => {
                     <div className="leftContainer">
                         <ul>
                             <li><a href="">Home</a></li>
-                            <li><a href="">Shop</a></li>
+                            <li><a href="">Shop <FaAngleDown /></a>
+                            <div className="subMenu">
+                                <ul>
+                                    <li><a href="">Sofas</a></li>
+                                    <li><a href="">Chairs</a></li>
+                                    <li><a href="">Tables</a></li>
+                                    <li><a href="">Beds</a></li>
+                                    <li><a href="">Cupboards</a></li>
+                                </ul>
+                            </div>
+                            </li>
                             <li><a href="">About Us</a></li>
                             <li><a href="">News</a></li>
                             <li><a href="">Contact Us</a></li>

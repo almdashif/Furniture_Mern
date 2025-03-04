@@ -1,7 +1,7 @@
 @use './../../CommonStyles/responsiveCss.scss' as mixins;
 
 #Navbar {
-    padding: 2rem 2rem;
+    padding: 1.2rem 2rem;
     position: sticky;
     top: 0;
     left: 0;
@@ -21,6 +21,7 @@
         justify-content: space-between;
         align-items: center;
         gap: 2rem;
+        position: relative;
 
         .mainSearchContainer {
             display: flex;
@@ -72,14 +73,14 @@
                     display: none;
                 }
 
-               
+
                 input {
                     width: 90%;
                     max-width: 400px;
                     font-size: .9rem;
                     color: var(--a-Bgtext-color);
 
-                    
+
                 }
 
                 input::placeholder {
@@ -102,13 +103,14 @@
             justify-content: space-between;
             align-items: center;
             gap: 2rem;
-            
+            position: relative;
 
 
             .leftContainer ul {
                 display: flex;
                 gap: 1.2rem;
                 align-items: center;
+                position: relative;
 
                 @include mixins.respond(small) {
                     display: none;
@@ -117,11 +119,73 @@
 
 
 
-                li a {
-                    color: var(--light-blackColor);
-                    font-size: .9rem;
-                    font-weight: 400;
+                li {
+                    position: relative;
+
+
+                    .subMenu {
+                        display: none;
+                        position: absolute;
+                        background-color: var(--topBarColor);
+                        border-radius: .5rem;
+                        top: 15;
+                        left: 0;
+                        // margin: .5rem 0 0 .5rem;
+
+                        ul {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            gap: 0;
+
+                            li {
+                                width: 100%;
+                                border-bottom: 1px dashed var(--light-blackColor);
+                                padding: 1rem 2.5rem;
+                                text-align: center;
+
+                                a {
+                                    color: var(--whiteColor);
+                                    font-size: .9rem;
+                                    font-weight: 400;
+                                }
+
+                                &:last-child {
+                                    border-bottom: none;
+                                }
+                            }
+
+                        }
+                    }
+
+                    a {
+
+                        display: inline-flex;
+                        align-items: center;
+                        gap: .5rem;
+                        color: var(--light-blackColor);
+                        font-size: .9rem;
+                        font-weight: 400;
+                        
+                        svg{
+                            transition: all .3s ease;
+                        }
+
+                     
+                    }
+
+                    &:hover {
+                        .subMenu {
+                            display: block;
+                        }
+                        svg {
+
+                            transform: rotate(180deg);
+                        }
+                    }
                 }
+
+
 
 
             }
