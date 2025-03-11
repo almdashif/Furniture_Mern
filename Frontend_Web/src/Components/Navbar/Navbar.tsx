@@ -1,12 +1,13 @@
 import React from 'react'
 import '../Navbar/navbar.scss'
-import { IoBedSharp, IoSearchOutline, IoPersonCircleOutline } from "react-icons/io5";
+import { IoSearchOutline, IoPersonCircleOutline } from "react-icons/io5";
 import { CiHeart } from "react-icons/ci";
 import { FiShoppingBag } from "react-icons/fi";
-import { ImLoop } from "react-icons/im";
+import { BsDoorOpen } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link, useNavigate } from 'react-router-dom';
-import { FaAngleDown } from "react-icons/fa6";
+import { FaAngleDown, FaRegHeart } from "react-icons/fa6";
+
 const Navbar = ({ open, setOpen }) => {
     const navigate = useNavigate()
 
@@ -30,7 +31,8 @@ const Navbar = ({ open, setOpen }) => {
                 <div className="mainSearchContainer">
                     <div className="contactContainer">
                         <a className="logoContainer">
-                            <img src="../../../src/assets/images/furnitureLogo.jpg" alt="logo" style={{ width: '100%', height: '100%' }} />
+                            {/* <img src="../../../src/assets/images/furnitureLogo.jpg" alt="logo" style={{ width: '100%', height: '100%' }} /> */}
+                            <BsDoorOpen />
                         </a>
                         <span>Furniture</span>
                     </div>
@@ -63,10 +65,15 @@ const Navbar = ({ open, setOpen }) => {
                     <div className="rightContainer">
                         <ul>
                             <li><a href="" className='navIcons'><IoPersonCircleOutline /></a></li>
-                            <li><a href="" className='navIcons'><CiHeart /></a></li>
+                            <li><a href="" className='navIcons'><FaRegHeart /></a></li>
                             {/* <li><a href="" className='navIcons'><ImLoop /></a></li> */}
-                            <li><Link to="/cart" className='navIcons '><FiShoppingBag /></Link></li>
-                            <li><a href="" onClick={handleToggle} className=' smallDev'><RxHamburgerMenu /></a></li>
+                            <li><Link to="/cart" className='navIcons '>
+                                <FiShoppingBag />
+                                <div className="cartCount">
+                                    <span>0</span>
+                                </div>
+                            </Link></li>
+                            <li><a href="" onClick={handleToggle} className='navIcons smallDev'><RxHamburgerMenu /></a></li>
                         </ul>
 
                     </div>
