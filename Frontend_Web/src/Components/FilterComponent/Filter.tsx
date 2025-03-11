@@ -1,13 +1,11 @@
 import React from 'react'
 import '../FilterComponent/filter.scss'
-import { FaChair } from "react-icons/fa";
-import { PiArmchairFill } from "react-icons/pi";
+import { MdOutlineDoorSliding ,MdOutlineBed} from "react-icons/md";
+import { LuSofa } from "react-icons/lu";
 import { IoBedSharp, IoCall, IoSearchOutline, IoPersonCircleOutline } from "react-icons/io5";
 import { CiLocationOn, CiHeart } from "react-icons/ci";
-import { IoIosArrowDown } from "react-icons/io";
-import { FiShoppingBag } from "react-icons/fi";
-import { ImLoop } from "react-icons/im";
-import { MdCompareArrows } from "react-icons/md";
+import { GiWoodenChair } from "react-icons/gi";
+import { PiArmchair } from "react-icons/pi";
 const Filter = () => {
     return (
         <section id="filter">
@@ -18,11 +16,11 @@ const Filter = () => {
             <div className="mainContainer">
                 <div className="leftContainer">
                     <ul>
-                        <li><a href="#"><FaChair /><span>Chairs</span></a></li>
-                        <li><a href="#"><IoBedSharp /><span>Storage</span></a></li>
-                        <li><a href="#"><PiArmchairFill /><span>Armchairs</span></a></li>
-                        <li><a href="#"><IoBedSharp /><span>Sofas</span></a></li>
-                        <li><a href="#"><IoBedSharp /><span>Beds</span></a></li>
+                        <li><a href="#"><GiWoodenChair /><span>Chairs</span></a></li>
+                        <li><a href="#"><MdOutlineDoorSliding /><span>Storage</span></a></li>
+                        <li><a href="#"><PiArmchair /><span>Armchairs</span></a></li>
+                        <li><a href="#"><LuSofa /><span>Sofas</span></a></li>
+                        <li><a href="#"><MdOutlineBed /><span>Beds</span></a></li>
                         <li><a href="#"><IoBedSharp /><span>Tables</span></a></li>
                         <li><a href="#"><IoBedSharp /><span>Decor</span></a></li>
                     </ul>
