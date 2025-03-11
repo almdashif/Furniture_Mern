@@ -85,6 +85,25 @@ const ShopProducts = () => {
                                 <label>Price: <span>${minPrice} - ${maxPrice}</span></label>
                             </div>
 
+                            <div className="filterByCategory">
+                                <p>Filter by category</p>
+                                <div className="categoryParentContainer">
+                                    {Array.from({ length: 5 }).map((el, index) => {
+                                        return (
+                                            <div className='categorySubParentContainer'>
+                                                <div className="categoryContainer">
+                                                    <input type="checkbox" name="category" className='category' id="category" />
+                                                    <p>Bed</p>
+                                                </div>
+                                                <div className="count">
+                                                    <p>2</p>
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            </div>
+
                             <div className="filterByColor">
                                 <p>Filter by color</p>
                                 <div className="colorContainerParent">
