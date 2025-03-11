@@ -14,6 +14,10 @@
         display: none;
     }
 
+    @include mixins.respond(large) {
+        display: none;
+    }
+
     .mainContainer {
         width: 100%;
         max-width: 1200px;
@@ -23,9 +27,7 @@
         align-items: center;
         gap: 2rem;
 
-        @include mixins.respond(small) {
-            display: none;
-        }
+      
 
         .leftContainer ul {
             display: flex;
