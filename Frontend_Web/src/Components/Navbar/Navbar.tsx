@@ -8,7 +8,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { Link, useNavigate } from 'react-router-dom';
 import { FaAngleDown, FaRegHeart } from "react-icons/fa6";
 
-const Navbar = ({ open, setOpen }) => {
+const Navbar = ({ open, setOpen, isProfileOpen, setIsProfileOpen }) => {
     const navigate = useNavigate()
 
     const navigateCart = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -25,6 +25,17 @@ const Navbar = ({ open, setOpen }) => {
             document.body.style.overflow = "auto"; // Enable background scroll
         }
     }
+
+    const handleProfileToggle = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        e.preventDefault();
+        setIsProfileOpen(!isProfileOpen)
+        if (!isProfileOpen) {
+            document.body.style.overflow = "hidden"; // Disable background scroll
+        } else {
+            document.body.style.overflow = "auto"; // Enable background scroll
+        }
+    }
+
     return (
         <section id="Navbar">
             <div className="navContainer">
@@ -64,7 +75,7 @@ const Navbar = ({ open, setOpen }) => {
                     </div>
                     <div className="rightContainer">
                         <ul>
-                            <li><a href="" className='navIcons'><IoPersonCircleOutline /></a></li>
+                            <li><a href="" onClick={handleProfileToggle} className='navIcons'><IoPersonCircleOutline /></a></li>
                             <li><a href="" className='navIcons'><FaRegHeart /></a></li>
                             {/* <li><a href="" className='navIcons'><ImLoop /></a></li> */}
                             <li><Link to="/cart" className='navIcons '>
