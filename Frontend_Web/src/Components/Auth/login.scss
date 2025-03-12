@@ -25,8 +25,9 @@
         padding: 4rem;
         gap: 2rem;
         border-radius: .5rem;
+        z-index: 99999999999;
 
-        h3{
+        h3 {
             font-size: 1.5rem;
             font-weight: 500;
             color: var(--a-text-color);
@@ -75,23 +76,24 @@
             }
         }
 
-        p{
+        p {
             font-size: .8rem;
             color: var(--a-text-color);
             display: flex;
             gap: .3rem;
 
-            a{
+            a {
                 color: var(--bgLightEnglishBlueColor);
 
-            &:hover{
-                text-decoration: underline;
-                text-underline-offset: 2px;
-            }
+                &:hover {
+                    text-decoration: underline;
+                    text-underline-offset: 2px;
+                }
             }
         }
     }
 }
-.hideProfile{
+
+.hideProfile {
     display: none;
 }
