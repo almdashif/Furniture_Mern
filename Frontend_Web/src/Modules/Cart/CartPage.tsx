@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react'
+import React, { Component, useContext, useEffect, useState } from 'react'
 import { MdFullscreen } from "react-icons/md";
 import { IoChevronForwardOutline } from "react-icons/io5";
 import { FiMinus } from "react-icons/fi";
@@ -12,19 +12,22 @@ import { MdDeleteOutline } from "react-icons/md";
 
 import '../Cart/cart.scss'
 import { useNavigate } from 'react-router-dom';
+import { GlobalContext } from '../../App.jsx';
 
 
 
 
 const CartPage = () => {
 
-      const navigate = useNavigate()
-  
-      const navigateCheckout = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-          e.preventDefault();
-         navigate('/Checkout');
-      }
-  
+  const navigate = useNavigate()
+
+  const { state, dispatch } = useContext(GlobalContext)
+
+  const navigateCheckout = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault();
+    navigate('/Checkout');
+  }
+
 
 
   useEffect(() => {
@@ -48,16 +51,16 @@ const CartPage = () => {
 
             <div className="divider margin-divider"></div>
             <div className="productsList">
-              {Array.from({ length: 3 }).map((val, i) => {
+              {state.cart.map((val, i) => {
                 return (
                   <div className="product">
                     <div className="productDetails">
                       <div className="productImg">
-                        <img src="https://img.freepik.com/free-psd/slipper-chair-isolated-transparent-background_191095-13677.jpg?t=st=1740894955~exp=1740898555~hmac=51d9ef249a11662e76fd8be1f59bc9d4f1861d00772ef9a44859c9706df9ddb0&w=1480" alt="productImg" />
+                        <img src={val.productImage ? val.productImage : "https://img.freepik.com/free-psd/slipper-chair-isolated-transparent-background_191095-13677.jpg?t=st=1740894955~exp=1740898555~hmac=51d9ef249a11662e76fd8be1f59bc9d4f1861d00772ef9a44859c9706df9ddb0&w=1480"} alt="productImg" />
                       </div>
                       <div className="productName">
-                        <p>Aliquam Blandit</p>
-                        <p className="productItemPrice">$320.00</p>
+                        <p>{val.name}</p>
+                        <p className="productItemPrice">${val.currentprice}</p>
                       </div>
                     </div>
 
@@ -65,13 +68,13 @@ const CartPage = () => {
                       <a href="#">
                         <FiMinus />
                       </a>
-                      <span>1</span>
+                      <span>{val.cartQuantity}</span>
                       <a href="#">
                         <GoPlus />
                       </a>
                     </div>
                     <a className="subtotalContainer">
-                      <span className="productItemPrice">$320.00</span>
+                      <span className="productItemPrice">${val.currentprice}</span>
                       <a href=""><MdDeleteOutline /></a>
                     </a>
                   </div>

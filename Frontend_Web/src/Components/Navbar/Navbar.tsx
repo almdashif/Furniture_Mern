@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useContext } from 'react'
 import '../Navbar/navbar.scss'
 import { IoSearchOutline, IoPersonCircleOutline } from "react-icons/io5";
 import { CiHeart } from "react-icons/ci";
@@ -7,9 +7,13 @@ import { BsDoorOpen } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link, useNavigate } from 'react-router-dom';
 import { FaAngleDown, FaRegHeart } from "react-icons/fa6";
+import { GlobalContext } from '../../App.jsx';
 
 const Navbar = ({ open, setOpen, isProfileOpen, setIsProfileOpen }) => {
     const navigate = useNavigate()
+
+
+    const {state,dispatch} = useContext(GlobalContext)
 
     const navigateCart = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         e.preventDefault();
@@ -78,12 +82,12 @@ const Navbar = ({ open, setOpen, isProfileOpen, setIsProfileOpen }) => {
                             <li><a href="" onClick={handleProfileToggle} className='navIcons'><IoPersonCircleOutline /></a></li>
                             <li><a href="" className='navIcons'><FaRegHeart /></a></li>
                             {/* <li><a href="" className='navIcons'><ImLoop /></a></li> */}
-                            <li><Link to="/cart" className='navIcons '>
+                           {state.cart.length > 0 && <li><Link to="/cart" className='navIcons '>
                                 <FiShoppingBag />
                                 <div className="cartCount">
-                                    <span>0</span>
+                                    <span>{state.cart.length}</span>
                                 </div>
-                            </Link></li>
+                            </Link></li>}
                             <li><a href="" onClick={handleToggle} className='navIcons smallDev'><RxHamburgerMenu /></a></li>
                         </ul>
 

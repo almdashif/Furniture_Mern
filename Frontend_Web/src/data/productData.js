@@ -9,6 +9,7 @@ export const productData = [
         brandImg: 'https://startersites.io/blocksy/furniture/wp-content/uploads/2024/06/brand-goldline.svg',
         productDetails: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque repellat ratione doloribus Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda sapiente libero iure sit vitae quae, autem quas, commodi dolorem, id deleniti ducimus quaerat error minus sint maiores aut impedit inventore. id deleniti quam facere, magnam tenetur temporibus animi a tempora sit, voluptates distinctio, fugit at placeat velit accusamus!",
         category: "Storage",
+        cartQuantity:0,
         productDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur autem, numquam, nam optio iste, rerum quisquam eius amet cum explicabo necessitatibus? . Dolor quae eum sed minima dolorem vel, repudiandae ipsa. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium voluptatibus, assumenda itaque dolores necessitatibus rem libero mollitia reprehenderit repudiandae, deserunt vel voluptatum odit. Vel voluptatem totam cum labore voluptate! Illo. . Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus tempore perspiciatis numquam, velit nemo laudantium non impedit ipsam quam consequuntur est exercitationem repudiandae ab officia animi sit aperiam officiis itaque!",
         information: [
             {
@@ -46,6 +47,7 @@ export const productData = [
         brandImg: 'https://startersites.io/blocksy/furniture/wp-content/uploads/2024/06/brand-goldline.svg',
         productDetails: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque repellat ratione doloribus Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda sapiente libero iure sit vitae quae, autem quas, commodi dolorem, id deleniti ducimus quaerat error minus sint maiores aut impedit inventore. id deleniti quam facere, magnam tenetur temporibus animi a tempora sit, voluptates distinctio, fugit at placeat velit accusamus!",
         category: "Storage",
+        cartQuantity:0,
         productDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur autem, numquam, nam optio iste, rerum quisquam eius amet cum explicabo necessitatibus? . Dolor quae eum sed minima dolorem vel, repudiandae ipsa. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium voluptatibus, assumenda itaque dolores necessitatibus rem libero mollitia reprehenderit repudiandae, deserunt vel voluptatum odit. Vel voluptatem totam cum labore voluptate! Illo. . Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus tempore perspiciatis numquam, velit nemo laudantium non impedit ipsam quam consequuntur est exercitationem repudiandae ab officia animi sit aperiam officiis itaque!",
         information: [
             {
@@ -83,6 +85,7 @@ export const productData = [
         brandImg: 'https://startersites.io/blocksy/furniture/wp-content/uploads/2024/06/brand-goldline.svg',
         productDetails: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque repellat ratione doloribus Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda sapiente libero iure sit vitae quae, autem quas, commodi dolorem, id deleniti ducimus quaerat error minus sint maiores aut impedit inventore. id deleniti quam facere, magnam tenetur temporibus animi a tempora sit, voluptates distinctio, fugit at placeat velit accusamus!",
         category: "Storage",
+        cartQuantity:0,
         productDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur autem, numquam, nam optio iste, rerum quisquam eius amet cum explicabo necessitatibus? . Dolor quae eum sed minima dolorem vel, repudiandae ipsa. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium voluptatibus, assumenda itaque dolores necessitatibus rem libero mollitia reprehenderit repudiandae, deserunt vel voluptatum odit. Vel voluptatem totam cum labore voluptate! Illo. . Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus tempore perspiciatis numquam, velit nemo laudantium non impedit ipsam quam consequuntur est exercitationem repudiandae ab officia animi sit aperiam officiis itaque!",
         information: [
             {
@@ -120,6 +123,7 @@ export const productData = [
         brandImg: 'https://startersites.io/blocksy/furniture/wp-content/uploads/2024/06/brand-goldline.svg',
         productDetails: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque repellat ratione doloribus Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda sapiente libero iure sit vitae quae, autem quas, commodi dolorem, id deleniti ducimus quaerat error minus sint maiores aut impedit inventore. id deleniti quam facere, magnam tenetur temporibus animi a tempora sit, voluptates distinctio, fugit at placeat velit accusamus!",
         category: "Storage",
+        cartQuantity:0,
         productDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur autem, numquam, nam optio iste, rerum quisquam eius amet cum explicabo necessitatibus? . Dolor quae eum sed minima dolorem vel, repudiandae ipsa. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium voluptatibus, assumenda itaque dolores necessitatibus rem libero mollitia reprehenderit repudiandae, deserunt vel voluptatum odit. Vel voluptatem totam cum labore voluptate! Illo. . Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus tempore perspiciatis numquam, velit nemo laudantium non impedit ipsam quam consequuntur est exercitationem repudiandae ab officia animi sit aperiam officiis itaque!",
         information: [
             {
@@ -157,6 +161,7 @@ export const productData = [
         brandImg: 'https://startersites.io/blocksy/furniture/wp-content/uploads/2024/06/brand-goldline.svg',
         productDetails: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque repellat ratione doloribus Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda sapiente libero iure sit vitae quae, autem quas, commodi dolorem, id deleniti ducimus quaerat error minus sint maiores aut impedit inventore. id deleniti quam facere, magnam tenetur temporibus animi a tempora sit, voluptates distinctio, fugit at placeat velit accusamus!",
         category: "Storage",
+        cartQuantity:0,
         productDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur autem, numquam, nam optio iste, rerum quisquam eius amet cum explicabo necessitatibus? . Dolor quae eum sed minima dolorem vel, repudiandae ipsa. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium voluptatibus, assumenda itaque dolores necessitatibus rem libero mollitia reprehenderit repudiandae, deserunt vel voluptatum odit. Vel voluptatem totam cum labore voluptate! Illo. . Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus tempore perspiciatis numquam, velit nemo laudantium non impedit ipsam quam consequuntur est exercitationem repudiandae ab officia animi sit aperiam officiis itaque!",
         information: [
             {
@@ -194,6 +199,7 @@ export const productData = [
         brandImg: 'https://startersites.io/blocksy/furniture/wp-content/uploads/2024/06/brand-goldline.svg',
         productDetails: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque repellat ratione doloribus Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda sapiente libero iure sit vitae quae, autem quas, commodi dolorem, id deleniti ducimus quaerat error minus sint maiores aut impedit inventore. id deleniti quam facere, magnam tenetur temporibus animi a tempora sit, voluptates distinctio, fugit at placeat velit accusamus!",
         category: "Storage",
+        cartQuantity:0,
         productDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur autem, numquam, nam optio iste, rerum quisquam eius amet cum explicabo necessitatibus? . Dolor quae eum sed minima dolorem vel, repudiandae ipsa. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium voluptatibus, assumenda itaque dolores necessitatibus rem libero mollitia reprehenderit repudiandae, deserunt vel voluptatum odit. Vel voluptatem totam cum labore voluptate! Illo. . Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus tempore perspiciatis numquam, velit nemo laudantium non impedit ipsam quam consequuntur est exercitationem repudiandae ab officia animi sit aperiam officiis itaque!",
         information: [
             {
@@ -231,6 +237,7 @@ export const productData = [
         brandImg: 'https://startersites.io/blocksy/furniture/wp-content/uploads/2024/06/brand-goldline.svg',
         productDetails: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque repellat ratione doloribus Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda sapiente libero iure sit vitae quae, autem quas, commodi dolorem, id deleniti ducimus quaerat error minus sint maiores aut impedit inventore. id deleniti quam facere, magnam tenetur temporibus animi a tempora sit, voluptates distinctio, fugit at placeat velit accusamus!",
         category: "Storage",
+        cartQuantity:0,
         productDescription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur autem, numquam, nam optio iste, rerum quisquam eius amet cum explicabo necessitatibus? . Dolor quae eum sed minima dolorem vel, repudiandae ipsa. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium voluptatibus, assumenda itaque dolores necessitatibus rem libero mollitia reprehenderit repudiandae, deserunt vel voluptatum odit. Vel voluptatem totam cum labore voluptate! Illo. . Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus tempore perspiciatis numquam, velit nemo laudantium non impedit ipsam quam consequuntur est exercitationem repudiandae ab officia animi sit aperiam officiis itaque!",
         information: [
             {

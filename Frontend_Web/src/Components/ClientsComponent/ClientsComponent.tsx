@@ -45,13 +45,13 @@ export class ClientsComponent extends Component<{}, ClientsComponentState> {
                 <div className="mainContainer">
                     {this.state.demoObject.map((val, i) => {
                         return (
-                            <img src={val.imgLink} alt="" />
+                            <img src={val.imgLink} key={i} alt="" />
 
                         )
                     })}
                     {this.state.demoObject.map((val, i) => {
                         return (
-                            <img src={val.imgLink} alt="" />
+                            <img src={val.imgLink} key={i} alt="" />
 
                         )
                     })}
