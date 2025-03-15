@@ -45,6 +45,11 @@ const Drawer = ({ open, setOpen }) => {
         navigate(`/shop`);
     }
 
+    const navigationTo = (path:string) => (e: React.MouseEvent) => {
+        toggleDrawer(e);
+        navigate(`${path}`);
+      };
+
     return (
         <div>
 
@@ -62,7 +67,7 @@ const Drawer = ({ open, setOpen }) => {
 
                     <div className="pagesContainer">
                         <ul>
-                            <li><a href="">Home</a></li>
+                            <li><a onClick={navigationTo('/')}>Home</a></li>
                             <li><a href="" onClick={toggleShopTab}><span>Shop <RiArrowDownSLine className={`${openShopTab ? 'rotate' : ""}`} /></span>
                                 <ul className={`${openShopTab ? 'openShopTab' : ""}`}>
                                     <li><a href="" onClick={navigateToShop}>Variable Product</a></li>

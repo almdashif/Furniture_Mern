@@ -15,10 +15,24 @@ import { GlobalContext } from '../../App.jsx';
 const Checkout = () => {
 
 
+  
+  const { state, dispatch } = useContext(GlobalContext)
+  const [total, setTotal] = useState(0)
+
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0 })
   }, [])
-  const { state, dispatch } = useContext(GlobalContext)
+
+
+    useEffect(() => {
+      let total = state.cart.reduce((totalPrice: number, item: any) => {
+        return totalPrice + item.currentprice * item.cartQuantity;
+      }, 0)
+      setTotal(Number(total))
+  
+      console.log({total})
+  
+    }, [state.cart])
 
 
   const updateCartProductQuantity = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, data: any, type: number) => {
@@ -154,17 +168,20 @@ const Checkout = () => {
 
             <div className="subTotal">
               <p>Subtotal</p>
-              <span>$320.00</span>
+              <span>${total}</span>
             </div>
             <div className="divider"></div>
             <div className="total">
               <p>Total</p>
-              <span>$320.00</span>
+              <span>${total}</span>
             </div>
 
             <div className="freeShippingContainer">
-              <p>Add $1,680.00 more to get free shipping!</p>
-              <progress value={30} max={100} color='pink' className='progressBar' />
+            {total <= 2000 ? <p>Add ${2000 - total} more to get free shipping!</p>
+             :
+               <p>Hooray! you availed free shipping 🎉.</p>
+             }
+              <progress value={total} max={2000} color='pink' className='progressBar' />
             </div>
 
             <div className="paymentOptions">

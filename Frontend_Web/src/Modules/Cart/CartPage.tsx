@@ -158,7 +158,7 @@ const CartPage = () => {
             <div className="freeShippingContainer">
              {total <= 2000 ? <p>Add ${2000 - total} more to get free shipping!</p>
              :
-               <p>Hooray! you availed free shipping.</p>
+               <p>Hooray! you availed free shipping 🎉.</p>
              }
               <progress value={total} max={2000} color='pink' className='progressBar' />
             </div>
