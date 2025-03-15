@@ -21,6 +21,16 @@
             background-color: var(--lightBorderColor);
         }
 
+        .pageHeading {
+            margin: 0 0 2rem 0;
+            width: 100%;
+
+            h4 {
+                font-size: 1.5rem;
+                color: var(--a-text-color);
+                font-weight: 600;
+            }
+        }
 
 
 
@@ -47,10 +57,21 @@
                 .product {
                     width: 50%;
                     text-align: left;
+
                 }
 
                 .quantity {
                     text-align: center;
+
+                    @include mixins.respond(small) {
+                        display: none;
+                    }
+                }
+
+                .subtotal{
+                    @include mixins.respond(small) {
+                        display: none;
+                       }
                 }
 
                 h5 {
@@ -66,7 +87,7 @@
                 margin: 1.5rem 0;
                 display: flex;
                 flex-direction: column;
-                gap: 1.5rem;
+                gap: 2rem;
 
                 .product {
                     display: flex;
@@ -81,7 +102,7 @@
                         align-items: center;
                         justify-content: flex-start;
                         gap: 1rem;
-                       
+
 
                         .productImg {
                             width: 3rem;
@@ -90,6 +111,12 @@
                             img {
                                 width: 100%;
                             }
+
+                            @include mixins.respond(small) {
+                                width: 5rem;
+                                height: 5rem;
+                            }
+
                         }
 
                         .productName {
@@ -100,14 +127,16 @@
                             gap: .5rem;
 
                             p {
-                                font-size: .7rem;
-                                font-weight: 500;
+                                font-size: .9rem;
+                                font-weight: 400;
                                 color: var(--a-text-color);
                             }
 
                             .productItemPrice {
                                 color: var(--light-blackColor);
                                 font-weight: 400;
+
+                                font-size: .8rem;
                             }
 
                         }
@@ -172,8 +201,8 @@
                 @include mixins.respond(medium) {
                     width: 100%;
                 }
-    
-    
+
+
                 @include mixins.respond(small) {
                     width: 100%;
                 }
@@ -184,12 +213,12 @@
                     font-size: .8rem;
 
                     @include mixins.respond(medium) {
-                        flex:1;
+                        flex: 1;
                     }
-        
-        
+
+
                     @include mixins.respond(small) {
-                        flex:1;
+                        flex: 1;
                     }
                 }
 
@@ -280,27 +309,31 @@
                     font-weight: 500;
                     color: var(--a-text-color);
                 }
+
                 .progressBar {
                     width: 100%;
                     height: 8px;
                     border-radius: 5px;
                     appearance: none;
-                  }
-                  
-                  .progressBar::-webkit-progress-bar {
-                    background-color: var(--background-grayColor); /* Background */
+                }
+
+                .progressBar::-webkit-progress-bar {
+                    background-color: var(--background-grayColor);
+                    /* Background */
                     border-radius: 5px;
-                  }
-                  
-                  .progressBar::-webkit-progress-value {
-                    background-color: var(--bgEnglishBlueColor); /* Progress color */
+                }
+
+                .progressBar::-webkit-progress-value {
+                    background-color: var(--bgEnglishBlueColor);
+                    /* Progress color */
                     border-radius: 5px;
-                  }
-                  
-                  .progressBar::-moz-progress-bar {
-                    background-color: var(--bgEnglishBlueColor); /* Firefox support */
+                }
+
+                .progressBar::-moz-progress-bar {
+                    background-color: var(--bgEnglishBlueColor);
+                    /* Firefox support */
                     border-radius: 5px;
-                  }
+                }
             }
 
             .checkoutBtn {

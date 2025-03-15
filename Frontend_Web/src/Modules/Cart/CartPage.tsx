@@ -22,6 +22,7 @@ const CartPage = () => {
   const navigate = useNavigate()
 
   const { state, dispatch } = useContext(GlobalContext)
+  const [total, setTotal] = useState(0)
 
   const navigateCheckout = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
@@ -31,8 +32,19 @@ const CartPage = () => {
 
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0 })
+    window.scrollTo({ top: 0, left: 0 });
+
   }, [])
+
+  useEffect(() => {
+    let total = state.cart.reduce((totalPrice: number, item: any) => {
+      return totalPrice + item.currentprice * item.cartQuantity;
+    }, 0)
+    setTotal(Number(total))
+
+    console.log({total})
+
+  }, [state.cart])
 
 
   const updateCartProductQuantity = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, data: any, type: number) => {
@@ -76,17 +88,20 @@ const CartPage = () => {
   }
 
 
-
   return (
     <>
       <section id="CartPage">
         <div className="mainContainer">
 
+          <div className="pageHeading">
+            <h4>Cart</h4>
+          </div>
+
           <div className="leftContainer">
             <div className="headingContainer">
               <h5 className='product'>Product</h5>
               <h5 className='quantity'>Quantity</h5>
-              <h5>Subtotal</h5>
+              <h5 className='subtotal'>Subtotal</h5>
             </div>
 
             <div className="divider margin-divider"></div>
@@ -113,8 +128,8 @@ const CartPage = () => {
                         <GoPlus />
                       </a>
                     </div>
-                    <a className="subtotalContainer"  onClick={e => updateCartProductQuantity(e, val, 2)}>
-                      <span className="productItemPrice">${val.currentprice}</span>
+                    <a className="subtotalContainer" onClick={e => updateCartProductQuantity(e, val, 2)}>
+                      <span className="productItemPrice">${val.cartQuantity * val.currentprice}</span>
                       <a href=""><MdDeleteOutline /></a>
                     </a>
                   </div>
@@ -132,17 +147,20 @@ const CartPage = () => {
             <h5>Cart Totals</h5>
             <div className="subTotal">
               <p>Subtotal</p>
-              <span>$320</span>
+              <span>${total}</span>
             </div>
             <div className="divider"></div>
             <div className="total">
               <p>Total</p>
-              <span>$320</span>
+              <span>${total}</span>
             </div>
 
             <div className="freeShippingContainer">
-              <p>Add $1,680.00 more to get free shipping!</p>
-              <progress value={30} max={100} color='pink' className='progressBar' />
+             {total <= 2000 ? <p>Add ${2000 - total} more to get free shipping!</p>
+             :
+               <p>Hooray! you availed free shipping.</p>
+             }
+              <progress value={total} max={2000} color='pink' className='progressBar' />
             </div>
             <a href="#" onClick={navigateCheckout} className="checkoutBtn">
               Proceed to checkout

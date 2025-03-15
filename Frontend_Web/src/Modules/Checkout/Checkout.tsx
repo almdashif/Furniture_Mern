@@ -18,9 +18,48 @@ const Checkout = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0 })
   }, [])
-const {state,dispatch} = useContext(GlobalContext)
+  const { state, dispatch } = useContext(GlobalContext)
 
 
+  const updateCartProductQuantity = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, data: any, type: number) => {
+    e.preventDefault();
+
+    if (type === 0) {
+      const filteredProduct = state.cart.find(item => item.id === data.id)
+      if (filteredProduct.cartQuantity === 1) {
+        dispatch({
+          type: "cart",
+          payload: state.cart.filter((item: any) => item.id !== data.id),
+        });
+      } else {
+        dispatch({
+          type: "cart",
+          payload: state.cart.map((item: any) =>
+            item.id === data.id
+              ? { ...item, cartQuantity: item.cartQuantity - 1 }
+              : item
+          ),
+        });
+      }
+
+    }
+    else if (type == 1) {
+      dispatch({
+        type: "cart",
+        payload: state.cart.map((item: any) =>
+          item.id === data.id
+            ? { ...item, cartQuantity: item.cartQuantity + type }
+            : item
+        ),
+      });
+    }
+    else {
+      dispatch({
+        type: "cart",
+        payload: state.cart.filter((item: any) => item.id !== data.id),
+      });
+    }
+  }
 
   return (
     <>
@@ -62,7 +101,7 @@ const {state,dispatch} = useContext(GlobalContext)
                 <label htmlFor="pincode">Pincode <span>*</span></label>
                 <input type="text" id="pincode" name="pincode" />
               </div>
-              <p  className='addInfo'>Additional Information</p>
+              <p className='addInfo'>Additional Information</p>
               <div className="formGroup">
                 <label htmlFor="notes">Order notes(optional)</label>
                 <textarea placeholder='Notes about your order, e.g. special notes for delivery.' id="notes" name="notes" />
@@ -81,21 +120,21 @@ const {state,dispatch} = useContext(GlobalContext)
             <div className="divider"></div>
 
             <div className="productsList">
-              {state.cart.map((val, i) => {
+              {state.cart.map((val: any, i: number) => {
                 return (
-                  <div className="product">
+                  <div key={i} className="product">
                     <div className="productDetails">
                       <div className="productImg">
-                      <img src={val.productImage ? val.productImage : "https://img.freepik.com/free-psd/slipper-chair-isolated-transparent-background_191095-13677.jpg?t=st=1740894955~exp=1740898555~hmac=51d9ef249a11662e76fd8be1f59bc9d4f1861d00772ef9a44859c9706df9ddb0&w=1480"} alt="productImg" />
+                        <img src={val.productImage ? val.productImage : "https://img.freepik.com/free-psd/slipper-chair-isolated-transparent-background_191095-13677.jpg?t=st=1740894955~exp=1740898555~hmac=51d9ef249a11662e76fd8be1f59bc9d4f1861d00772ef9a44859c9706df9ddb0&w=1480"} alt="productImg" />
                       </div>
                       <div className="productName">
                         <p>{val.name}</p>
                         <div className="quantityContainer">
-                          <a href="#">
+                          <a href="#" onClick={e => updateCartProductQuantity(e, val, 0)}>
                             <FiMinus />
                           </a>
-                          <span>1</span>
-                          <a href="#">
+                          <span>{val.cartQuantity}</span>
+                          <a href="#" onClick={e => updateCartProductQuantity(e, val, 1)}>
                             <GoPlus />
                           </a>
                         </div>

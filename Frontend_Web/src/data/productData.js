@@ -2,7 +2,7 @@ export const productData = [
     {
         id: 1,
         name: "demo product 1",
-        currentprice: 200,
+        currentprice: 198,
         isSale:false,
         oldPrice: 320,
         productImage: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/product-30.webp",
@@ -40,7 +40,7 @@ export const productData = [
     {
         id: 2,
         name: "demo product 2",
-        currentprice: 200,
+        currentprice: 230,
         isSale:false,
         oldPrice: 320,
         productImage: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/product-35-300x300.webp",
@@ -78,9 +78,9 @@ export const productData = [
     {
         id: 3,
         name: "demo product 3",
-        currentprice: 200,
+        currentprice: 399,
         isSale:true,
-        oldPrice: 320,
+        oldPrice: 500,
         productImage: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/product-37-300x300.webp",
         brandImg: 'https://startersites.io/blocksy/furniture/wp-content/uploads/2024/06/brand-goldline.svg',
         productDetails: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque repellat ratione doloribus Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda sapiente libero iure sit vitae quae, autem quas, commodi dolorem, id deleniti ducimus quaerat error minus sint maiores aut impedit inventore. id deleniti quam facere, magnam tenetur temporibus animi a tempora sit, voluptates distinctio, fugit at placeat velit accusamus!",
@@ -116,7 +116,7 @@ export const productData = [
     {
         id: 4,
         name: "demo product 4",
-        currentprice: 200,
+        currentprice: 100,
         isSale:false,
         oldPrice: 320,
         productImage: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/product-10-300x300.webp",
@@ -154,9 +154,9 @@ export const productData = [
     {
         id: 5,
         name: "demo product 5",
-        currentprice: 200,
+        currentprice: 456,
         isSale:true,
-        oldPrice: 320,
+        oldPrice: 999,
         productImage: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/product-3-300x300.webp",
         brandImg: 'https://startersites.io/blocksy/furniture/wp-content/uploads/2024/06/brand-goldline.svg',
         productDetails: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque repellat ratione doloribus Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda sapiente libero iure sit vitae quae, autem quas, commodi dolorem, id deleniti ducimus quaerat error minus sint maiores aut impedit inventore. id deleniti quam facere, magnam tenetur temporibus animi a tempora sit, voluptates distinctio, fugit at placeat velit accusamus!",
