@@ -35,6 +35,46 @@ const CartPage = () => {
   }, [])
 
 
+  const updateCartProductQuantity = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, data: any, type: number) => {
+    e.preventDefault();
+
+    if (type === 0) {
+      const filteredProduct = state.cart.find(item => item.id === data.id)
+      if (filteredProduct.cartQuantity === 1) {
+        dispatch({
+          type: "cart",
+          payload: state.cart.filter((item: any) => item.id !== data.id),
+        });
+      } else {
+        dispatch({
+          type: "cart",
+          payload: state.cart.map((item: any) =>
+            item.id === data.id
+              ? { ...item, cartQuantity: item.cartQuantity - 1 }
+              : item
+          ),
+        });
+      }
+
+    }
+    else if (type == 1) {
+      dispatch({
+        type: "cart",
+        payload: state.cart.map((item: any) =>
+          item.id === data.id
+            ? { ...item, cartQuantity: item.cartQuantity + type }
+            : item
+        ),
+      });
+    }
+    else {
+      dispatch({
+        type: "cart",
+        payload: state.cart.filter((item: any) => item.id !== data.id),
+      });
+    }
+  }
+
 
 
   return (
@@ -51,9 +91,9 @@ const CartPage = () => {
 
             <div className="divider margin-divider"></div>
             <div className="productsList">
-              {state.cart.map((val, i) => {
+              {state.cart.map((val: any, i: number) => {
                 return (
-                  <div className="product">
+                  <div key={i} className="product">
                     <div className="productDetails">
                       <div className="productImg">
                         <img src={val.productImage ? val.productImage : "https://img.freepik.com/free-psd/slipper-chair-isolated-transparent-background_191095-13677.jpg?t=st=1740894955~exp=1740898555~hmac=51d9ef249a11662e76fd8be1f59bc9d4f1861d00772ef9a44859c9706df9ddb0&w=1480"} alt="productImg" />
@@ -65,15 +105,15 @@ const CartPage = () => {
                     </div>
 
                     <div className="quantityContainer">
-                      <a href="#">
+                      <a href="#" onClick={e => updateCartProductQuantity(e, val, 0)}>
                         <FiMinus />
                       </a>
                       <span>{val.cartQuantity}</span>
-                      <a href="#">
+                      <a href="#" onClick={e => updateCartProductQuantity(e, val, 1)}>
                         <GoPlus />
                       </a>
                     </div>
-                    <a className="subtotalContainer">
+                    <a className="subtotalContainer"  onClick={e => updateCartProductQuantity(e, val, 2)}>
                       <span className="productItemPrice">${val.currentprice}</span>
                       <a href=""><MdDeleteOutline /></a>
                     </a>

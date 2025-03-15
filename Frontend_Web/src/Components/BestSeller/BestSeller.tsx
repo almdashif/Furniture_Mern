@@ -21,11 +21,28 @@ const BestSeller = () => {
 
 
     const addToCartFn = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, data: any) => {
-
         e.preventDefault();
-        console.log(state.cart, 'add to cart')
-        dispatch({ type: 'cart', payload: { ...data, cartQuantity: data.cartQuantity + 1 } })
-    }
+    console.log({data},state.cart,'state.cart')
+    
+        const existingProduct = state.cart.find((item: any) => item.id == data.id);
+    
+        if (existingProduct) {
+            dispatch({
+                type: "cart",
+                payload: state.cart.map((item: any) =>
+                    item.id === data.id
+                        ? { ...item, cartQuantity: item.cartQuantity + 1 }
+                        : item
+                ),
+            });
+        } else {
+            dispatch({
+                type: "cart",
+                payload: [...state.cart, { ...data, cartQuantity: 1 }],
+            });
+        }
+    };
+    
 
 
     return (
