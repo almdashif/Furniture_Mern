@@ -27,12 +27,77 @@
         align-items: center;
         gap: 2rem;
 
-      
+
 
         .leftContainer ul {
             display: flex;
             flex-wrap: wrap;
             gap: 1.5rem;
+
+            .moreContainer {
+
+                &.displayNone {
+                    display: none !important; // Completely hides the element
+                }
+
+                
+                position: relative;
+
+                a {
+                    font-size: .9rem;
+                    font-weight: 300;
+                    color: var(--a-text-color);
+
+                }
+
+                &:hover{
+
+                   .moreListContainer {
+                        display: flex !important;
+                    }
+                }
+               
+
+                .moreListContainer {
+                    background-color: var(--topBarColor);
+                    display: none;
+                    flex-direction: column;
+                    position: absolute;
+                    gap: 0;
+
+                    
+
+                    li {
+
+                        padding: 1rem 3rem 1rem 1.5rem;
+
+                        &:nth-child(1) {
+                            border-bottom: 1px dotted var(--light-blackColor);
+                        }
+
+                        a {
+                            font-size: .9rem;
+                            font-weight: 300;
+                            display: flex;
+                            gap: .8rem;
+                            color: var(--whiteColor) !important;
+                            cursor: pointer;
+
+                            span {
+                                color: var(--whiteColor);
+                            }
+
+                            svg {
+                                color: var(--whiteColor);
+                            }
+                        }
+                    }
+                }
+
+
+            }
+       
+     
 
             li a {
                 display: inline-flex;

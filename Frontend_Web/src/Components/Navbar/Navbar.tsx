@@ -13,7 +13,7 @@ const Navbar = ({ open, setOpen, isProfileOpen, setIsProfileOpen }) => {
     const navigate = useNavigate()
 
 
-    const {state,dispatch} = useContext(GlobalContext)
+    const { state, dispatch } = useContext(GlobalContext)
 
     const navigateCart = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         e.preventDefault();
@@ -44,7 +44,7 @@ const Navbar = ({ open, setOpen, isProfileOpen, setIsProfileOpen }) => {
         <section id="Navbar">
             <div className="navContainer">
                 <div className="mainSearchContainer">
-                    <div className="contactContainer">
+                    <div onClick={() => navigate('/')} className="contactContainer">
                         <a className="logoContainer">
                             {/* <img src="../../../src/assets/images/furnitureLogo.jpg" alt="logo" style={{ width: '100%', height: '100%' }} /> */}
                             <BsDoorOpen />
@@ -63,6 +63,7 @@ const Navbar = ({ open, setOpen, isProfileOpen, setIsProfileOpen }) => {
                             <li><Link to="/">Home</Link></li>
                             <li><Link to={'/shop'}>Shop <FaAngleDown /></Link>
                                 <div className="subMenu">
+                                    <div style={{ height: '1rem', backgroundColor: "#fff", overflow: 'hidden', }}></div>
                                     <ul>
                                         <li><Link to={'/1'}>Sofas</Link></li>
                                         <li><Link to={'/2'}>Chairs</Link></li>
@@ -82,7 +83,7 @@ const Navbar = ({ open, setOpen, isProfileOpen, setIsProfileOpen }) => {
                             <li><a href="" onClick={handleProfileToggle} className='navIcons'><IoPersonCircleOutline /></a></li>
                             <li><a href="" className='navIcons'><FaRegHeart /></a></li>
                             {/* <li><a href="" className='navIcons'><ImLoop /></a></li> */}
-                           {state.cart.length > 0 && <li><Link to="/cart" className='navIcons '>
+                            {state.cart.length > 0 && <li><Link to="/cart" className='navIcons '>
                                 <FiShoppingBag />
                                 <div className="cartCount">
                                     <span>{state.cart.length}</span>

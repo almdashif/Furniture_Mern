@@ -40,11 +40,6 @@ const Drawer = ({ open, setOpen }) => {
 
     };
 
-    const navigateToShop = (e: React.MouseEvent) => {
-        toggleDrawer(e);
-        navigate(`/shop`);
-    }
-
     const navigationTo = (path:string) => (e: React.MouseEvent) => {
         toggleDrawer(e);
         navigate(`${path}`);
@@ -68,13 +63,13 @@ const Drawer = ({ open, setOpen }) => {
                     <div className="pagesContainer">
                         <ul>
                             <li><a onClick={navigationTo('/')}>Home</a></li>
-                            <li><a href="" onClick={toggleShopTab}><span>Shop <RiArrowDownSLine className={`${openShopTab ? 'rotate' : ""}`} /></span>
+                            <li><a><span><a onClick={navigationTo('/shop')}>Shop </a><RiArrowDownSLine onClick={toggleShopTab} className={`${openShopTab ? 'rotate' : ""}`} /></span>
                                 <ul className={`${openShopTab ? 'openShopTab' : ""}`}>
-                                    <li><a href="" onClick={navigateToShop}>Variable Product</a></li>
-                                    <li><a href="">Product Gallery</a></li>
-                                    <li><a href="">Advanced Reviews</a></li>
-                                    <li><a href="">Custom Tab</a></li>
-                                    <li><a href="">Related Products - slider</a></li>
+                                    <li><a onClick={navigationTo('/1')}>Variable Product</a></li>
+                                    <li><a onClick={navigationTo('/2')}>Product Gallery</a></li>
+                                    <li><a onClick={navigationTo('/3')}>Advanced Reviews</a></li>
+                                    <li><a onClick={navigationTo('/4')}>Custom Tab</a></li>
+                                    <li><a onClick={navigationTo('/5')}>Related Products - slider</a></li>
                                 </ul>
                             </a></li>
                             <li><a href="">About Us</a></li>

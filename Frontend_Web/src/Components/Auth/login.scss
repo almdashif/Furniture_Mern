@@ -44,6 +44,13 @@
             .inputContainer {
                 display: flex;
                 flex-direction: column;
+                position: relative;
+
+                .emailLabel{
+                    font-size: .9rem;
+                    padding: 0 0 .5rem .2rem;
+                    color: var(--a-text-color);
+                }
 
 
                 input[type="text"],
@@ -59,7 +66,21 @@
                     }
 
                     &:focus {
-                        border: 1px solid var(--a-text-color);
+                        border: 1px solid var(--bgEnglishBlueColor);
+                    }
+                }
+
+                .togglePasswordContainer{
+                    position: absolute;
+                    right: 0;
+                    top: 40%;
+                    transform: translateY(55%);
+                    padding: 0 1rem .5rem 0;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    color: var(--light-blackColor);
+                    &:hover{
+                        color: var(--a-Bghover-text-color);
                     }
                 }
             }
@@ -70,9 +91,21 @@
                 padding: .8rem;
                 border-radius: 2rem;
                 color: var(--whiteColor);
-                font-size: 1rem;
+                font-size: .9rem;
                 text-transform: lowercase;
                 margin-top: 2rem;
+            }
+
+            .error{
+                font-size: .8rem;
+                color: var(--redColor);
+                padding: .3rem 0 0 .5rem;
+            }
+            .inputTitle{
+                font-size: .9rem;
+                font-weight: 400;
+                padding: .5rem 0 .5rem .5rem ;
+                color: var(--light-blackColor);
             }
         }
 
@@ -92,6 +125,7 @@
             }
         }
     }
+
 }
 
 .hideProfile {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../FilterComponent/filter.scss'
 import { MdOutlineDoorSliding, MdOutlineBed, MdOutlineTableBar } from "react-icons/md";
 import { LuSofa } from "react-icons/lu";
@@ -7,8 +7,45 @@ import { GiWoodenChair } from "react-icons/gi";
 import { PiArmchair } from "react-icons/pi";
 import { SlGlobeAlt } from "react-icons/sl";
 import { LuPhoneCall } from "react-icons/lu";
+import { RiArrowDropDownLine } from "react-icons/ri";
+const menuItems = [
+    { name: "Chairs", icon: <GiWoodenChair /> },
+    { name: "Storage", icon: <MdOutlineDoorSliding /> },
+    { name: "Armchairs", icon: <PiArmchair /> },
+    { name: "Sofas", icon: <LuSofa /> },
+    { name: "Beds", icon: <MdOutlineBed /> },
+    { name: "Tables", icon: <MdOutlineTableBar /> },
+    { name: "Decor", icon: <SlGlobeAlt /> },
+];
+
+
+
 
 const Filter = () => {
+
+
+    const [visibleItems, setVisibleItems] = useState(menuItems);
+    const [dropdownItems, setDropdownItems] = useState([]);
+
+
+    const updateMenuItems = () => {
+        if (window.innerWidth < 1300) {
+            setVisibleItems(menuItems.slice(0, 5));
+            setDropdownItems(menuItems.slice(5));
+         
+        } else {
+            setVisibleItems(menuItems);
+            setDropdownItems([]);
+        }
+    };
+
+    useEffect(() => {
+        updateMenuItems();
+        window.addEventListener("resize", updateMenuItems);
+        return () => window.removeEventListener("resize", updateMenuItems);
+    }, []);
+
+
     return (
         <section id="filter">
 
@@ -18,13 +55,35 @@ const Filter = () => {
             <div className="mainContainer">
                 <div className="leftContainer">
                     <ul>
-                        <li><a href="#"><GiWoodenChair /><span>Chairs</span></a></li>
-                        <li><a href="#"><MdOutlineDoorSliding /><span>Storage</span></a></li>
-                        <li><a href="#"><PiArmchair /><span>Armchairs</span></a></li>
-                        <li><a href="#"><LuSofa /><span>Sofas</span></a></li>
-                        <li><a href="#"><MdOutlineBed /><span>Beds</span></a></li>
-                        <li><a href="#"><MdOutlineTableBar /><span>Tables</span></a></li>
-                        <li><a href="#"><SlGlobeAlt /><span>Decor</span></a></li>
+                        {visibleItems.map((item, index) => (
+                            <li key={index}>
+                                <a href="#">{item.icon} <span>{item.name}</span></a>
+                            </li>
+                        ))}
+
+                        {dropdownItems &&
+
+                            <li className={`${dropdownItems.length > 0 ? '' : 'displayNone'} moreContainer`}>
+                                <a href="#">More <span><RiArrowDropDownLine /></span></a>
+                                <ul className='moreListContainer'>
+                                <div style={{ height: '1rem', backgroundColor: "#fff", overflow: 'hidden', }}></div>
+
+                                    {dropdownItems.map((val, i) => (
+                                        <li key={i}>
+                                            <a href="#">{val.icon} <span>{val.name}</span></a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </li>
+                        }
+
+                        {/* {dropdownItems.map((item, index) => (
+                            <li key={index} style={{backgroundColor:'red'}}>
+                                <a href="#">More <span><RiArrowDropDownLine /></span></a>
+                            </li>
+                        ))} */}
+
+
                     </ul>
                 </div>
                 <div className="rightContainer">
