@@ -8,8 +8,9 @@ import { PiArmchair } from "react-icons/pi";
 import { SlGlobeAlt } from "react-icons/sl";
 import { LuPhoneCall } from "react-icons/lu";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { useNavigate } from 'react-router-dom';
 const menuItems = [
-    { name: "Chairs", icon: <GiWoodenChair /> },
+    { name: "Chairs", icon: <GiWoodenChair /> ,},
     { name: "Storage", icon: <MdOutlineDoorSliding /> },
     { name: "Armchairs", icon: <PiArmchair /> },
     { name: "Sofas", icon: <LuSofa /> },
@@ -27,12 +28,12 @@ const Filter = () => {
     const [visibleItems, setVisibleItems] = useState(menuItems);
     const [dropdownItems, setDropdownItems] = useState([]);
 
-
+    const navigate = useNavigate()
     const updateMenuItems = () => {
         if (window.innerWidth < 1300) {
             setVisibleItems(menuItems.slice(0, 5));
             setDropdownItems(menuItems.slice(5));
-         
+
         } else {
             setVisibleItems(menuItems);
             setDropdownItems([]);
@@ -44,6 +45,11 @@ const Filter = () => {
         window.addEventListener("resize", updateMenuItems);
         return () => window.removeEventListener("resize", updateMenuItems);
     }, []);
+
+    const navigateTo = (path, params = {}) => {
+        const queryString = new URLSearchParams(params).toString();
+        navigate(`${path}${queryString ? `?${queryString}` : ""}`);
+    };
 
 
     return (
@@ -57,20 +63,20 @@ const Filter = () => {
                     <ul>
                         {visibleItems.map((item, index) => (
                             <li key={index}>
-                                <a href="#">{item.icon} <span>{item.name}</span></a>
+                                <a  onClick={() => navigateTo("/shop/filter", { category: item.name?.toLowerCase() })}>{item.icon} <span>{item.name}</span></a>
                             </li>
                         ))}
 
                         {dropdownItems &&
 
                             <li className={`${dropdownItems.length > 0 ? '' : 'displayNone'} moreContainer`}>
-                                <a href="#">More <span><RiArrowDropDownLine /></span></a>
+                                <a >More <span><RiArrowDropDownLine /></span></a>
                                 <ul className='moreListContainer'>
-                                <div style={{ height: '1rem', backgroundColor: "#fff", overflow: 'hidden', }}></div>
+                                    <div style={{ height: '1rem', backgroundColor: "#fff", overflow: 'hidden', }}></div>
 
                                     {dropdownItems.map((val, i) => (
                                         <li key={i}>
-                                            <a href="#">{val.icon} <span>{val.name}</span></a>
+                                            <a >{val.icon} <span>{val.name}</span></a>
                                         </li>
                                     ))}
                                 </ul>
@@ -79,7 +85,7 @@ const Filter = () => {
 
                         {/* {dropdownItems.map((item, index) => (
                             <li key={index} style={{backgroundColor:'red'}}>
-                                <a href="#">More <span><RiArrowDropDownLine /></span></a>
+                                <a >More <span><RiArrowDropDownLine /></span></a>
                             </li>
                         ))} */}
 
@@ -89,14 +95,14 @@ const Filter = () => {
                 <div className="rightContainer">
                     <ul>
                         <li>
-                            <a href="#"><CiLocationOn /></a>
+                            <a ><CiLocationOn /></a>
                             <div className="richText">
                                 <h5>Address:</h5>
                                 <p>Street Name: NY 36859</p>
                             </div>
                         </li>
                         <li>
-                            <a href="#"><LuPhoneCall /></a>
+                            <a ><LuPhoneCall /></a>
                             <div className="richText">
                                 <h5>Phone:</h5>
                                 <p>9999-999-999</p>

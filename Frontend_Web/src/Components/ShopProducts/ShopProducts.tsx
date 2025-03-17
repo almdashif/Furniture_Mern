@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../ShopProducts/shopProducts.scss'
 import { CiLocationOn, CiHeart } from "react-icons/ci";
 import { ImLoop } from "react-icons/im";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { productData } from '../../data/productData.js';
-import { IoMdCart } from "react-icons/io";
+import { IoMdCart, IoMdClose } from "react-icons/io";
 import { CiFilter } from "react-icons/ci";
 import { BiSortAlt2 } from "react-icons/bi";
 import { CiCircleRemove } from "react-icons/ci";
@@ -14,15 +14,81 @@ import Slider from 'rc-slider/lib/Slider';
 // import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import DetailsComponent from '../DetailsComponent/DetailsComponent.tsx';
+
+
 const ShopProducts = () => {
     const [minPrice, setMinPrice] = useState(100);
     const [maxPrice, setMaxPrice] = useState(1000);
+    const [shopFiles, setShopFiles] = useState<{ name: string; productCount: number; img: string; }[]>([])
+    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+    const [selectedColors, setSelectedColors] = useState<string[]>([]);
+    const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
+    const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+    const [filteredProducts, setFilteredProducts] = useState(productData);
+
     const minLimit = 0;
     const maxLimit = 1500;
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const category = searchParams.get("category");
 
-    const handleClick = (index) => {
-        // navigate(`/${index}`);
+    const menuItems = [
+        { name: "Armchairs", productCount: 8, img: 'https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/armchairs-category-hero-image.webp', },
+        { name: "Chairs", productCount: 11, img: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/chairs-category-hero-image.webp" },
+        { name: "Storage", productCount: 5, img: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/storage-category-hero-image.webp" },
+        { name: "Sofas", productCount: 8, img: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/sofas-category-hero-image.webp" },
+        { name: "Decor", productCount: 7, img: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/decor-category-hero-image.webp" },
+        { name: "Tables", productCount: 24, img: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/tables-category-hero-image.webp" },
+        { name: "Beds", productCount: 7, img: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/beds-category-hero-image.webp" },
+
+    ];
+
+    const brands = [
+        { name: "Asgardia", img: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/06/brand-asgardia.svg" },
+        { name: "BrandB", img: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/06/brand-asgardia.svg" },
+        { name: "BrandC", img: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/06/brand-asgardia.svg" }
+    ];
+
+    const colors = [
+        { name: "Beige", hex: "#F5F5DC", count: 2 },
+        { name: "Blue", hex: "#0000FF", count: 4 },
+        { name: "Black", hex: "#000000", count: 3 }
+    ];
+    const categories = [
+        { name: "Storage", available: 2, id: '1' },
+        { name: "Beds", available: 1, id: '2' },
+        { name: "Tables", available: 4, id: '3' },
+        { name: "Lamps", available: 3, id: '4' },
+        { name: "Cabinets", available: 2, id: '5' }
+    ];
+
+
+
+    useEffect(() => {
+        const filterImage = menuItems.filter(item => item.name.toLowerCase() == category);
+        setShopFiles(filterImage)
+
+    }, [category]);
+
+    useEffect(() => {
+        const filtered = productData.filter(product => {
+            return (
+                (selectedCategories.length === 0 || selectedCategories.includes(product.category)) &&
+                (selectedColors.length === 0 || selectedColors.includes(product.color)) &&
+                (selectedMaterials.length === 0 || selectedMaterials.includes(product.material)) &&
+                (selectedBrands.length === 0 || selectedBrands.includes(product.brand)) &&
+                product.currentprice >= minPrice &&
+                product.currentprice <= maxPrice
+            );
+        });
+
+        setFilteredProducts(filtered);
+    }, [selectedCategories, selectedColors, selectedMaterials, selectedBrands, minPrice, maxPrice]);
+
+
+    const handleClick = (index: number) => {
+        navigate(`/${index}`);
     };
 
     const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,26 +101,74 @@ const ShopProducts = () => {
         if (value >= minPrice + 50) setMaxPrice(value); // Ensures max > min
     };
 
+    const Breadcrumb = ({ category }) => {
+        const navigate = useNavigate();
+
+        return (
+            <p>
+                <span onClick={() => navigate("/")} >
+                    Home
+                </span>
+                <div>{">"}</div>
+                <span onClick={() => navigate("/shop")} >
+                    Shop
+                </span>
+                <div>{">"}</div>
+                {category}
+            </p>
+        );
+    };
+
+    const navigateTo = (path, params = {}) => {
+        const queryString = new URLSearchParams(params).toString();
+        navigate(`${path}${queryString ? `?${queryString}` : ""}`);
+    };
+
+    const toggleCategory = (category: string) => {
+        setSelectedCategories(prev =>
+            prev.includes(category) ? prev.filter(c => c !== category) : [...prev, category]
+        );
+    };
+
+    const toggleMaterial = (material: string) => {
+        setSelectedMaterials(prev =>
+            prev.includes(material) ? prev.filter(m => m !== material) : [...prev, material]
+        );
+    };
+
+    const toggleBrand = (brand: string) => {
+        setSelectedBrands(prev =>
+            prev.includes(brand) ? prev.filter(b => b !== brand) : [...prev, brand]
+        );
+    };
+
+    const toggleColor = (color: string) => {
+        setSelectedColors(prev =>
+            prev.includes(color) ? prev.filter(c => c !== color) : [...prev, color]
+        );
+    };
+
+
     return (
         <>
             <section id='ShopProduct'>
                 <div className="mainContainer">
                     <div className="headingContainer" >
-                        <h5>Shop</h5>
-                        <p>{`Home > Shop > Sofas `}</p>
-                        <img src="https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/sofas-category-hero-image.webp" alt="" />
+                        <h5>{shopFiles ? shopFiles[0]?.name : 'Shop'}</h5>
+                        <Breadcrumb category={category} />
+                        <img src={shopFiles[0]?.img ? shopFiles[0]?.img : "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/shop-hero-image.webp"} alt="" />
                     </div>
 
                     <div className="filterContainer">
-                        {Array.from({ length: 6 }).map((el, index) => {
+                        {menuItems.slice(0, 6).map((val, index) => {
                             return (
-                                <div className="filter">
+                                <div onClick={() => navigateTo("/shop/filter", { category: val.name?.toLowerCase() })} key={index} className="filter">
                                     <div className="imgContainer">
-                                        <img src="https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/armchairs-category-hero-image.webp" alt="" />
+                                        <img src={val.img} alt="" />
                                     </div>
                                     <div className="textContainer">
-                                        <h6>Sofas</h6>
-                                        <p>10 Products</p>
+                                        <h6>{val.name}</h6>
+                                        <p>{val.productCount} Products</p>
                                     </div>
                                 </div>
                             )
@@ -64,6 +178,10 @@ const ShopProducts = () => {
 
                     <div className="subMainContainer">
                         <div className="leftContainer">
+                            <div className="filterHeading">
+                                <p>Available Filters</p>
+                                <IoMdClose />
+                            </div>
 
                             <div className="filterPriceContainer">
                                 <p>Filter by price</p>
@@ -88,15 +206,15 @@ const ShopProducts = () => {
                             <div className="filterByCategory">
                                 <p>Filter by category</p>
                                 <div className="categoryParentContainer">
-                                    {Array.from({ length: 5 }).map((el, index) => {
+                                    {categories.map((val, index) => {
                                         return (
-                                            <div className='categorySubParentContainer'>
+                                            <div key={index} className='categorySubParentContainer'>
                                                 <div className="categoryContainer">
-                                                    <input type="checkbox" name="category" className='category' id="category" />
-                                                    <p>Bed</p>
+                                                    <input type="checkbox" onChange={() => toggleCategory(val.name)} name="category" className='category' id="category" />
+                                                    <p>{val.name}</p>
                                                 </div>
                                                 <div className="count">
-                                                    <p>2</p>
+                                                    <p>{val.available}</p>
                                                 </div>
                                             </div>
                                         )
@@ -107,23 +225,30 @@ const ShopProducts = () => {
                             <div className="filterByColor">
                                 <p>Filter by color</p>
                                 <div className="colorContainerParent">
-                                    {Array.from({ length: 3 }).map((el, index) => {
-                                        return (
-                                            <div className='colorContainerSubParent'>
-                                                <div className="colorContainer">
-                                                    <div className="color" key={index}>
-                                                        <div className="colorCircle"></div>
-                                                    </div>
-                                                    <p>Beige</p>
+                                    {colors.map((color, index) => (
+                                        <div
+                                            key={index}
+                                            className={`colorContainerSubParent ${selectedColors.includes(color.name) ? "selected" : ""}`}
+                                            onClick={() => toggleColor(color.name)}
+                                            style={{ cursor: "pointer" }}
+                                        >
+                                            <div className="colorContainer">
+                                                <div className="color">
+                                                    <div
+                                                        className="colorCircle"
+                                                        style={{ backgroundColor: color.hex, border: selectedColors.includes(color.name) ? "2px solid black" : "none" }}
+                                                    ></div>
                                                 </div>
-                                                <div className="count">
-                                                    <p>2</p>
-                                                </div>
+                                                <p>{color.name}</p>
                                             </div>
-                                        )
-                                    })}
+                                            <div className="count">
+                                                <p>{color.count}</p>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
+
 
                             <div className="filterByMaterial">
                                 <p>Filter by material</p>
@@ -132,7 +257,7 @@ const ShopProducts = () => {
                                         return (
                                             <div className='materialSubParentContainer'>
                                                 <div className="materialContainer">
-                                                    <input type="checkbox" name="material" className='material' id="material" />
+                                                    <input type="checkbox" onChange={() => toggleMaterial('Fabric')} name="material" className='material' id="material" />
                                                     <p>Fabric</p>
                                                 </div>
                                                 <div className="count">
@@ -147,15 +272,19 @@ const ShopProducts = () => {
                             <div className="filterByBrand">
                                 <p>Filter by brand</p>
                                 <div className="materialContainer">
-                                    {Array.from({ length: 5 }).map((el, index) => {
-                                        return (
-                                            <div className="materialContainer">
-                                                <img src="https://startersites.io/blocksy/furniture/wp-content/uploads/2024/06/brand-asgardia.svg" alt="" />
-                                            </div>
-                                        )
-                                    })}
+                                    {brands.map((brand, index) => (
+                                        <div
+                                            key={index}
+                                            className={`materialContainer ${selectedBrands.includes(brand.name) ? "selected" : ""}`}
+                                            onClick={() => toggleBrand(brand.name)}
+                                            style={{ cursor: "pointer", border: selectedBrands.includes(brand.name) ? "2px solid black" : "none" }}
+                                        >
+                                            <img src={brand.img} alt={brand.name} />
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
+
 
                             <div className="bestSellingBrands">
                                 <p>Best selling products</p>
@@ -176,7 +305,7 @@ const ShopProducts = () => {
 
                         </div>
                         <div className="rightContainer">
-                            <div className="filterContainer">
+                            <div className="subFilterContainer">
                                 <div className="topContainer">
                                     <div className="leftFilter">
                                         <p>Showing all 4 results</p>
@@ -208,7 +337,7 @@ const ShopProducts = () => {
                                 </div>
                             </div>
                             <div className="itemsContainer">
-                                {productData.map((el, index) => {
+                                {filteredProducts.map((el, index) => {
                                     return (
                                         <a onClick={() => handleClick(el.id)} className="item" key={el.id}>
 

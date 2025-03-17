@@ -14,7 +14,7 @@ function Navigation() {
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<Homepage />} />
         <Route path="/:id" element={<SinglePage />} />
-        <Route path="/shop" element={<ShopPage />} />
+        <Route path="/shop/*" element={<ShopPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<Checkout />} />
       </Route>
