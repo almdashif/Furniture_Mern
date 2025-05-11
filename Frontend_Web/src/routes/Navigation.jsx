@@ -12,9 +12,9 @@ function Navigation() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route path="/home" element={<Homepage />} />
+        <Route path="/" element={<Homepage />} />
         <Route path="/:id" element={<SinglePage />} />
-        <Route path="/" element={<ShopPage />} />
+        <Route path="/shop/*" element={<ShopPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<Checkout />} />
       </Route>

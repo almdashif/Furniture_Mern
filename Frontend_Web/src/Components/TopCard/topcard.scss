@@ -15,7 +15,7 @@
     .mainContainer {
         width: 100%;
         max-width: 1300px;
-        padding: .5rem 1rem;
+        padding: .7rem 1rem;
         margin: 0 auto;
         background-color: var(--topBarColor);
         display: flex;
@@ -32,7 +32,7 @@
 
             li a {
                 color: var(--ash-WhiteColor);
-                font-size: .6rem;
+                font-size: .7rem;
 
                 @include mixins.respond(small) {
                     font-size: .55rem;
@@ -50,12 +50,12 @@
             gap: 1rem;
 
             @include mixins.respond(small) {
-                gap: .5rem;
+                gap: .6rem;
             }
 
             li a {
                 color: var(--ash-WhiteColor);
-                font-size: .6rem;
+                font-size: .7rem;
             }
 
             li a:hover {

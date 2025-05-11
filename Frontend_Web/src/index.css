@@ -10,6 +10,7 @@
   --ash-WhiteColor: #96a1a0;
   --light-blackColor: #535353;
   --whiteColor: #ffffff;
+  --blackColor: #141414;
   --topBarColor: #152520;
   --borderColor: #cbcbcb;
   --bgLightGreenColor: #eef4f5;
@@ -21,13 +22,15 @@
   --bgLightColor: #fbfcfc;
   --redColor: #d32323;
   --goldColor: #eacf37;
-  --background-grayColor:rgb(195, 195, 195);
-  --background-lightGrayColor:rgb(235, 231, 231);
+  --background-grayColor: rgb(195, 195, 195);
+  --background-lightGrayColor: rgb(235, 231, 231);
 
 
   --bgLightGreen: #9ba89e;
   --bgLightPeach: #d39e76;
   --bgLightGray: #a7a29c;
+
+  --modal-bg: rgba(0, 0, 0, 0.4);
 }
 
 html {

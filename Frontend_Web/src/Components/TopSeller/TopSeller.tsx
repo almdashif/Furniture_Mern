@@ -3,9 +3,19 @@ import '../TopSeller/topSeller.scss'
 import { CiLocationOn, CiHeart } from "react-icons/ci";
 import { ImLoop } from "react-icons/im";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { productData } from '../../data/productData.js';
+import { useNavigate } from 'react-router-dom';
 
 
 const TopSeller = () => {
+
+    const navigate = useNavigate()
+
+    const handleClick = (index) => {
+        navigate(`/${index}`);
+    };
+
+
     return (
         <section id='TopSeller'>
             <div className="mainContainer">
@@ -17,38 +27,39 @@ const TopSeller = () => {
 
 
                 <div className="itemsContainer">
-                    {Array.from({ length: 4 }).map((_, index) => {
+                    {productData.map((el, index) => {
                         return (
-                            <div className="item" key={index}>
+                            <a onClick={() => handleClick(el.id)} className="item" key={index}>
 
                                 <div className="imageContainer">
-                                    <img src="https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/product-32-300x300.webp" alt="" />
+                                    <img src={el.productImage} alt="" />
                                     <div className="filtersContainer">
                                         <a href=""><CiHeart /></a>
                                         <a href=""><ImLoop /></a>
                                         <a href=""><MdOutlineRemoveRedEye /></a>
                                     </div>
                                     {
-                                        (index % 2 != 0 ) &&
+                                        el.isSale &&
                                         <span >Sale</span>
                                     }
+
 
 
                                 </div>
                                 <div className="detailsContainer">
 
                                     <div className="detailsHeadingContainer">
-                                        <h6>Aliquam Blandit</h6>
-                                        <p>Tables</p>
+                                        <h6>{el.name}</h6>
+                                        <p>{el.category}</p>
                                     </div>
 
 
                                     <div className="detailsBtnsContainer">
-                                        <a href="#">$ {index * 320.00 + 1}</a>
+                                        <a href="#">$ {el.currentprice}</a>
                                         <a href="#">Add to cart</a>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         )
                     })}
 

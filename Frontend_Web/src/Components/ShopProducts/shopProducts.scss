@@ -2,8 +2,7 @@
 
 #ShopProduct {
     background-color: var(--bgLightColor);
-    padding: 1rem;
-    margin-top: 2rem;
+    padding: 1.5rem;
 
     .mainContainer {
         width: 100%;
@@ -11,7 +10,7 @@
         margin: 0 auto;
         display: flex;
         flex-direction: column;
-
+        position: relative;
         padding: 2rem;
 
         @include mixins.respond(small) {
@@ -31,10 +30,11 @@
 
 
             h5 {
-                font-size: 1.8rem;
+                font-size: 2rem;
                 text-align: center;
                 color: var(--whiteColor);
                 padding-bottom: 1rem;
+                font-weight: 500;
 
                 @include mixins.respond(small) {
                     padding-bottom: .5rem;
@@ -43,11 +43,24 @@
             }
 
             p {
-                font-size: 1rem;
+                font-size: .9rem;
                 text-align: center;
-                color: var(--whiteColor);
+                color: var(--lightBorderColor);
                 max-width: 800px;
                 padding-bottom: 1rem;
+                text-transform: uppercase;
+                display: flex;
+                gap: .6rem;
+
+                @include mixins.respond(small) {
+                    font-size: .7rem;
+                }
+            }
+
+            span {
+                font-size: .9rem;
+                color: var(--ash-WhiteColo);
+                cursor: pointer;
 
                 @include mixins.respond(small) {
                     font-size: .7rem;
@@ -56,33 +69,46 @@
 
             img {
                 width: 100%;
+                height: 100%;
                 object-position: center;
                 object-fit: cover;
-                // height: auto;
+                filter: brightness(50%);
                 position: absolute;
                 z-index: -1;
+                border-radius: 1rem;
+                transform: translateX(0);
             }
         }
 
         .filterContainer {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0 1rem 0;
+
+            @include mixins.respond(small) {
+                display: none;
+            }
+
+            // @include mixins.respond(medium) {
+            //     display: none;
+            //  }
+
 
             .filter {
                 display: flex;
                 gap: .8rem;
                 cursor: pointer;
+                align-items: center;
 
                 .imgContainer {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    border-radius: 50%;
+                    border-radius: 50px;
                     overflow: hidden;
-                    width: 3rem;
-                    height: 3rem;
+                    width: 3.5rem;
+                    height: 3.5rem;
 
                     img {
                         width: 100%;
@@ -94,7 +120,7 @@
 
                 .textContainer {
                     h6 {
-                        font-size: .9rem;
+                        font-size: 1rem;
                         color: var(--a-text-color);
                         font-weight: 500;
                     }
@@ -113,7 +139,10 @@
             align-items: flex-start;
             flex: 1;
             gap: 2rem;
-            margin-top: 1rem;
+            margin-top: 2rem;
+
+
+
 
             .leftContainer {
                 display: flex;
@@ -121,6 +150,57 @@
                 width: 250px;
                 flex-direction: column;
                 gap: 1.8rem;
+                transition: all .3s ease;
+
+
+
+                @include mixins.respond(small) {
+                    width: -250px;
+                }
+
+
+                .filterHeading {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    position: sticky;
+                    top: 0;
+                    right: 0;
+                    z-index: 9999999;
+                    background-color: #fff;
+                    padding: 1rem 0 .5rem 0;
+
+                    @include mixins.respond(large) {
+                        display: none;
+                    }
+
+                    @include mixins.respond(xl) {
+                        display: none;
+                    }
+
+                    p {
+                        font-size: .9rem;
+                        color: var(--a-text-color);
+                        font-weight: 500;
+                    }
+
+                    a {
+
+
+                        svg {
+                            font-size: 1.2rem;
+                            color: var(--a-text-color);
+                            cursor: pointer;
+                            transition: all .3s ease;
+                            border-radius: .2rem;
+
+                            &:hover {
+                                transform: rotate(90deg);
+
+                            }
+                        }
+                    }
+                }
 
                 .filterPriceContainer {
 
@@ -145,6 +225,96 @@
                     .slider {
                         padding: 1rem 0;
                     }
+
+
+                }
+
+                .filterByCategory {
+
+                    p {
+                        font-size: .9rem;
+                        color: var(--a-text-color);
+                        font-weight: 500;
+                        padding-bottom: .5rem;
+                    }
+
+                    .categoryParentContainer {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .5rem;
+
+                        .categorySubParentContainer {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+
+
+                            .categoryContainer {
+                                display: flex;
+                                align-items: center;
+                                gap: .5rem;
+
+                                .category {
+                                    appearance: none;
+                                    width: 1rem;
+                                    height: 1rem;
+                                    border: 1px solid var(--borderColor);
+                                    border-radius: 4px;
+                                    background-color: var(--whiteColor);
+                                    cursor: pointer;
+                                    transition: all 0.3s ease;
+
+                                    &:checked {
+                                        background-color: var(--bgEnglishBlueColor);
+                                        border: none;
+                                        position: relative;
+
+                                        &::after {
+                                            content: '✔';
+                                            font-size: .5rem;
+                                            color: var(--whiteColor);
+                                            font-weight: bold;
+                                            position: absolute;
+                                            top: 50%;
+                                            left: 50%;
+                                            transform: translate(-50%, -50%);
+                                        }
+                                    }
+
+                                    &:hover {
+                                        border-color: var(--bgEnglishBlueColor);
+                                    }
+                                }
+
+
+
+                                p {
+                                    font-size: .8rem;
+                                    color: var(--a-text-color);
+                                    font-weight: 400;
+                                    padding: 0;
+                                }
+                            }
+
+
+                            .count {
+                                border: 1px solid var(--borderColor);
+                                display: inline-flex;
+                                border-radius: 50%;
+                                padding: 0 .3rem;
+                                cursor: pointer;
+
+                                p {
+                                    padding: 0;
+                                    margin: 0;
+                                    font-size: .6rem;
+                                    color: var(--a-lightText-color);
+                                    font-weight: 300;
+                                }
+                            }
+                        }
+                    }
+
 
 
                 }
@@ -402,34 +572,131 @@
                 }
 
 
-
             }
+
+            .showFilterDrawer {
+                background-color: rgb(255, 255, 255);
+                position: fixed;
+                top: 0;
+                z-index: 9999999;
+                right: 0;
+                width: 350px;
+                padding: 0 2rem;
+                overflow-y: auto;
+                max-height: 100vh;
+                transform: translateX(0);
+            }
+
+            .hideFilterOnSmallScreen {
+                background-color: rgb(255, 255, 255);
+                position: fixed;
+                top: 0;
+                z-index: 9999999;
+                right: 0;
+                padding: 0 2rem;
+                overflow-y: auto;
+                max-height: 100vh;
+                transform: translateX(100%);
+            }
+
+            @include mixins.respond(large) {
+
+                .showFilterDrawer,
+                .hideFilterOnSmallScreen {
+                    position: relative;
+                    transform: translateX(0) !important;
+                    width: 100%;
+                    max-width: 250px;
+                    padding: 0;
+                    height: auto;
+                    overflow: visible;
+                    z-index: auto;
+                }
+            }
+
+            @include mixins.respond(xl) {
+
+                .showFilterDrawer,
+                .hideFilterOnSmallScreen {
+                    position: relative;
+                    transform: translateX(0) !important;
+                    width: 100%;
+                    max-width: 250px;
+                    padding: 0;
+                    height: auto;
+                    overflow: visible;
+                    z-index: auto;
+                }
+            }
+
 
             .rightContainer {
 
                 display: flex;
                 flex: 3;
                 flex-direction: column;
-          
 
-                .filterContainer {
+
+                .subFilterContainer {
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
                     margin: 0;
                     padding: 0;
+                    gap: 1.5rem;
+
+
+
                     .topContainer {
                         display: flex;
                         gap: .5rem;
                         justify-content: space-between;
 
                         .leftFilter {
+                            display: flex;
+                            align-items: center;
+                            gap: 1rem;
+
+                            .leftFilterSubContainer {
+                                display: flex;
+                                align-items: center;
+                                gap: .5rem;
+                                border: 1px solid var(--borderColor);
+                                padding: .2rem .6rem;
+                                border-radius: .2rem;
+                                cursor: pointer;
+
+                                display: none;
+
+                                @include mixins.respond(small) {
+                                    display: flex;
+                                }
+
+
+                                @include mixins.respond(medium) {
+                                    display: flex;
+                                }
+
+                                svg {
+                                    font-size: .9rem;
+                                    color: var(--a-text-color);
+                                    transition: all .3s ease;
+                                }
+
+                                p {
+                                    font-size: .75rem;
+                                    color: var(--a-text-color);
+                                    text-transform: uppercase;
+
+                                }
+                            }
 
                             p {
                                 font-size: .8rem;
                                 color: var(--a-text-color);
                                 text-transform: uppercase;
                             }
+
                         }
 
                         .rightFilter {

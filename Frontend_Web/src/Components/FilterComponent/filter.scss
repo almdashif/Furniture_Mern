@@ -1,10 +1,7 @@
 @use './../../CommonStyles/responsiveCss.scss' as mixins;
 
 #filter {
-    padding: .6rem 1rem;
-    // position: sticky;
-    // top: 0;
-    // left: 0;
+    padding: 1rem 2rem;
     background-color: var(--whiteColor);
     z-index: 999;
 
@@ -12,7 +9,12 @@
         padding: 0;
         display: none;
     }
+
     @include mixins.respond(medium) {
+        display: none;
+    }
+
+    @include mixins.respond(large) {
         display: none;
     }
 
@@ -25,31 +27,97 @@
         align-items: center;
         gap: 2rem;
 
-        @include mixins.respond(small) {
-            display: none;
-        }
+
 
         .leftContainer ul {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 1.5rem;
+
+            .moreContainer {
+
+                &.displayNone {
+                    display: none !important; // Completely hides the element
+                }
+
+                
+                position: relative;
+
+                a {
+                    font-size: .9rem;
+                    font-weight: 300;
+                    color: var(--a-text-color);
+
+                }
+
+                &:hover{
+
+                   .moreListContainer {
+                        display: flex !important;
+                    }
+                }
+               
+
+                .moreListContainer {
+                    background-color: var(--topBarColor);
+                    display: none;
+                    flex-direction: column;
+                    position: absolute;
+                    gap: 0;
+
+                    
+
+                    li {
+
+                        padding: 1rem 3rem 1rem 1.5rem;
+
+                        &:nth-child(1) {
+                            border-bottom: 1px dotted var(--light-blackColor);
+                        }
+
+                        a {
+                            font-size: .9rem;
+                            font-weight: 300;
+                            display: flex;
+                            gap: .8rem;
+                            color: var(--whiteColor) !important;
+                            cursor: pointer;
+
+                            span {
+                                color: var(--whiteColor);
+                            }
+
+                            svg {
+                                color: var(--whiteColor);
+                            }
+                        }
+                    }
+                }
+
+
+            }
+       
+     
 
             li a {
                 display: inline-flex;
                 align-items: center;
-                gap: .5rem;
+                gap: .3rem;
                 font-weight: 400;
 
                 svg {
-                    width: 1rem;
-                    height: 1rem;
+                    width: 1.4rem;
+                    height: 1.4rem;
+                    font-weight: 400;
                     display: flex;
                     justify-content: center;
+                    color: var(--a-text-color);
                 }
 
                 span {
                     font-size: .9rem;
-                    font-weight: 400;
+                    font-weight: 300;
+                    color: var(--a-text-color);
                 }
             }
         }
@@ -63,7 +131,7 @@
             li {
                 display: flex;
                 align-items: center;
-                gap: .5rem;
+                gap: 1rem;
 
                 a {
                     background-color: var(--bgLightColor);
@@ -71,19 +139,31 @@
                     padding: .5rem;
                     border-radius: 50%;
                     display: inline-flex;
+
+                    svg {
+                        width: 1rem;
+                        height: 1rem;
+                        display: flex;
+                        justify-content: center;
+                        color: var(--blackColor);
+                    }
                 }
 
-                svg {
-                    width: .8rem;
-                    height: .8rem;
-                    display: flex;
-                    justify-content: center;
-                }
 
-                .richText h5,
-                p {
-                    font-size: .7rem;
-                    font-weight: 400;;
+
+                .richText {
+
+                    h5 {
+                        font-size: .8rem;
+                        font-weight: 400;
+                        color: var(--blackColor);
+                    }
+
+                    p {
+                        font-size: .8rem;
+                        font-weight: 400;
+                        color: var(--light-blackColor);
+                    }
                 }
             }
         }

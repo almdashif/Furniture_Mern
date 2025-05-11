@@ -10,10 +10,10 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        gap: 1rem;
+        gap: 2rem;
         flex-wrap: wrap;
         position: relative;
-        padding: 1rem 0;
+        padding: 1rem;
 
         .divider {
             width: 100%;
@@ -21,12 +21,22 @@
             background-color: var(--lightBorderColor);
         }
 
+        .pageHeading {
+            margin: 0 0 2rem 0;
+            width: 100%;
+
+            h4 {
+                font-size: 1.5rem;
+                color: var(--a-text-color);
+                font-weight: 600;
+            }
+        }
 
 
 
         .leftContainer {
             position: relative;
-            width: calc(100% - 420px);
+            width: calc(100% - 450px);
 
             @include mixins.respond(medium) {
                 width: 100%;
@@ -47,10 +57,21 @@
                 .product {
                     width: 50%;
                     text-align: left;
+
                 }
 
                 .quantity {
                     text-align: center;
+
+                    @include mixins.respond(small) {
+                        display: none;
+                    }
+                }
+
+                .subtotal{
+                    @include mixins.respond(small) {
+                        display: none;
+                       }
                 }
 
                 h5 {
@@ -66,7 +87,7 @@
                 margin: 1.5rem 0;
                 display: flex;
                 flex-direction: column;
-                gap: 1rem;
+                gap: 2rem;
 
                 .product {
                     display: flex;
@@ -82,13 +103,20 @@
                         justify-content: flex-start;
                         gap: 1rem;
 
+
                         .productImg {
-                            width: 2.5rem;
-                            height: 2.5rem;
+                            width: 3rem;
+                            height: 3rem;
 
                             img {
                                 width: 100%;
                             }
+
+                            @include mixins.respond(small) {
+                                width: 5rem;
+                                height: 5rem;
+                            }
+
                         }
 
                         .productName {
@@ -99,13 +127,17 @@
                             gap: .5rem;
 
                             p {
-                                font-size: .7rem;
-                                font-weight: 500;
+                                font-size: .9rem;
+                                font-weight: 400;
                                 color: var(--a-text-color);
+                                text-transform: capitalize;
                             }
 
                             .productItemPrice {
                                 color: var(--light-blackColor);
+                                font-weight: 400;
+
+                                font-size: .8rem;
                             }
 
                         }
@@ -114,8 +146,8 @@
                     .quantityContainer {
                         width: 15%;
                         width: max-content;
-                        padding: .5rem 1rem;
-                        font-size: .7rem;
+                        padding: .4rem 1rem;
+                        font-size: .6rem;
                         border: 1px solid var(--borderColor);
                         border-radius: 2rem;
                         color: var(--a-text-color);
@@ -127,7 +159,7 @@
                         gap: 1rem;
 
                         a {
-                            font-size: .7rem;
+                            font-size: .8rem;
                             color: var(--a-text-color);
                         }
 
@@ -141,7 +173,7 @@
 
                         span {
                             font-size: .8rem;
-                            font-weight: 500;
+                            font-weight: 400;
                             color: var(--a-text-color);
                         }
 
@@ -150,6 +182,8 @@
                         }
 
                         a {
+                            font-size: 1rem;
+                            color: var(--a-text-color);
                             display: inline-flex;
                         }
                     }
@@ -170,8 +204,8 @@
                 @include mixins.respond(medium) {
                     width: 100%;
                 }
-    
-    
+
+
                 @include mixins.respond(small) {
                     width: 100%;
                 }
@@ -182,12 +216,12 @@
                     font-size: .8rem;
 
                     @include mixins.respond(medium) {
-                        flex:1;
+                        flex: 1;
                     }
-        
-        
+
+
                     @include mixins.respond(small) {
-                        flex:1;
+                        flex: 1;
                     }
                 }
 
@@ -213,13 +247,19 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            width: 350px;
+            width: 400px;
             border: 1px solid var(--lightBorderColor);
-            padding: 1.5rem 1.2rem;
+            padding: 2rem 3rem;
             border-radius: .5rem;
+            margin-top: 2rem;
 
             @include mixins.respond(small) {
                 width: 100%;
+                margin-top: 0;
+            }
+            @include mixins.respond(medium) {
+                width: 100%;
+                margin-top: 0;
             }
 
             h5 {
@@ -278,27 +318,31 @@
                     font-weight: 500;
                     color: var(--a-text-color);
                 }
+
                 .progressBar {
                     width: 100%;
                     height: 8px;
                     border-radius: 5px;
                     appearance: none;
-                  }
-                  
-                  .progressBar::-webkit-progress-bar {
-                    background-color: var(--background-grayColor); /* Background */
+                }
+
+                .progressBar::-webkit-progress-bar {
+                    background-color: var(--background-grayColor);
+                    /* Background */
                     border-radius: 5px;
-                  }
-                  
-                  .progressBar::-webkit-progress-value {
-                    background-color: var(--bgEnglishBlueColor); /* Progress color */
+                }
+
+                .progressBar::-webkit-progress-value {
+                    background-color: var(--bgEnglishBlueColor);
+                    /* Progress color */
                     border-radius: 5px;
-                  }
-                  
-                  .progressBar::-moz-progress-bar {
-                    background-color: var(--bgEnglishBlueColor); /* Firefox support */
+                }
+
+                .progressBar::-moz-progress-bar {
+                    background-color: var(--bgEnglishBlueColor);
+                    /* Firefox support */
                     border-radius: 5px;
-                  }
+                }
             }
 
             .checkoutBtn {
