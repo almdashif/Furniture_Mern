@@ -24,9 +24,9 @@ const Navbar = ({ open, setOpen, isProfileOpen, setIsProfileOpen }) => {
         e.preventDefault();
         setOpen(!open)
         if (!open) {
-            document.body.style.overflow = "hidden"; // Disable background scroll
+            document.body.style.overflow = "hidden";
         } else {
-            document.body.style.overflow = "auto"; // Enable background scroll
+            document.body.style.overflow = "auto";
         }
     }
 
@@ -34,9 +34,9 @@ const Navbar = ({ open, setOpen, isProfileOpen, setIsProfileOpen }) => {
         e.preventDefault();
         setIsProfileOpen(!isProfileOpen)
         if (!isProfileOpen) {
-            document.body.style.overflow = "hidden"; // Disable background scroll
+            document.body.style.overflow = "hidden";
         } else {
-            document.body.style.overflow = "auto"; // Enable background scroll
+            document.body.style.overflow = "auto";
         }
     }
 

@@ -14,7 +14,9 @@ import Slider from 'rc-slider/lib/Slider';
 // import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import DetailsComponent from '../DetailsComponent/DetailsComponent.tsx';
-
+import { RxHamburgerMenu } from "react-icons/rx";
+import { getDeviceWidth } from '../../utils/getDeviceWidth.ts';
+import { useDeviceSize } from '../../hooks/useDeviceSize.ts';
 
 const ShopProducts = () => {
     const [minPrice, setMinPrice] = useState(100);
@@ -25,6 +27,10 @@ const ShopProducts = () => {
     const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
     const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
     const [filteredProducts, setFilteredProducts] = useState(productData);
+    const [showFilterDrawer, setShowFilterDrawer] = useState(false);
+
+    const { width, height } = useDeviceSize();
+
 
     const minLimit = 0;
     const maxLimit = 1500;
@@ -119,7 +125,7 @@ const ShopProducts = () => {
         );
     };
 
-    const navigateTo = (path, params = {}) => {
+    const navigateTo = (path: string, params = {}) => {
         const queryString = new URLSearchParams(params).toString();
         navigate(`${path}${queryString ? `?${queryString}` : ""}`);
     };
@@ -147,6 +153,11 @@ const ShopProducts = () => {
             prev.includes(color) ? prev.filter(c => c !== color) : [...prev, color]
         );
     };
+
+    const toggleFilterDrawer = (e: React.MouseEvent) => {
+        e.preventDefault();
+        setShowFilterDrawer(prev => !prev)
+    }
 
 
     return (
@@ -177,10 +188,13 @@ const ShopProducts = () => {
 
 
                     <div className="subMainContainer">
-                        <div className="leftContainer">
+                        
+                        <div className={`leftContainer ${showFilterDrawer ? "showFilterDrawer" : "hideFilterOnSmallScreen"}`}>
+
                             <div className="filterHeading">
                                 <p>Available Filters</p>
-                                <IoMdClose />
+                                <a onClick={toggleFilterDrawer}><IoMdClose /></a>
+
                             </div>
 
                             <div className="filterPriceContainer">
@@ -249,7 +263,6 @@ const ShopProducts = () => {
                                 </div>
                             </div>
 
-
                             <div className="filterByMaterial">
                                 <p>Filter by material</p>
                                 <div className="materialParentContainer">
@@ -285,7 +298,6 @@ const ShopProducts = () => {
                                 </div>
                             </div>
 
-
                             <div className="bestSellingBrands">
                                 <p>Best selling products</p>
                                 <div className="bestSellingBrandsContainer">
@@ -303,11 +315,16 @@ const ShopProducts = () => {
                                 </div>
                             </div>
 
+
                         </div>
                         <div className="rightContainer">
                             <div className="subFilterContainer">
                                 <div className="topContainer">
                                     <div className="leftFilter">
+                                        <div onClick={toggleFilterDrawer} className="leftFilterSubContainer">
+                                            <RxHamburgerMenu />
+                                            <p>Filter</p>
+                                        </div>
                                         <p>Showing all 4 results</p>
                                     </div>
                                     <div className="rightFilter">

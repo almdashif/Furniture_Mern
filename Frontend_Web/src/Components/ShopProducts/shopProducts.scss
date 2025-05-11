@@ -76,7 +76,7 @@
                 position: absolute;
                 z-index: -1;
                 border-radius: 1rem;
-
+                transform: translateX(0);
             }
         }
 
@@ -141,10 +141,6 @@
             gap: 2rem;
             margin-top: 2rem;
 
-            // @include mixins.respond(small) {
-            //     display: none;
-            //  }
-
 
 
 
@@ -156,30 +152,12 @@
                 gap: 1.8rem;
                 transition: all .3s ease;
 
-                @include mixins.respond(medium) {
-                    background-color: rgb(255, 255, 255);
-                    position: fixed;
-                    top: 0;
-                    z-index: 9999999;
-                    right: 0;
-                    width: 500px;
-                    padding: 0 2rem;
-                    overflow-y: auto;
-                    max-height: 100vh;
-                    // display: none;
-                }
+
 
                 @include mixins.respond(small) {
-                    background-color: rgb(255, 255, 255);
-                    position: fixed;
-                    top: 0;
-                    z-index: 9999999;
-                    right: 0;
-                    width: 380px;
-                    padding: 0 2rem;
-                    overflow-y: auto;
-                    max-height: 100vh;
+                    width: -250px;
                 }
+
 
                 .filterHeading {
                     display: flex;
@@ -206,16 +184,20 @@
                         font-weight: 500;
                     }
 
-                    svg {
-                        font-size: 1.2rem;
-                        color: var(--a-text-color);
-                        cursor: pointer;
-                        transition: all .3s ease;
-                        border-radius: .2rem;
+                    a {
 
-                        &:hover {
-                            transform: rotate(90deg);
-                         
+
+                        svg {
+                            font-size: 1.2rem;
+                            color: var(--a-text-color);
+                            cursor: pointer;
+                            transition: all .3s ease;
+                            border-radius: .2rem;
+
+                            &:hover {
+                                transform: rotate(90deg);
+
+                            }
                         }
                     }
                 }
@@ -590,8 +572,63 @@
                 }
 
 
-
             }
+
+            .showFilterDrawer {
+                background-color: rgb(255, 255, 255);
+                position: fixed;
+                top: 0;
+                z-index: 9999999;
+                right: 0;
+                width: 350px;
+                padding: 0 2rem;
+                overflow-y: auto;
+                max-height: 100vh;
+                transform: translateX(0);
+            }
+
+            .hideFilterOnSmallScreen {
+                background-color: rgb(255, 255, 255);
+                position: fixed;
+                top: 0;
+                z-index: 9999999;
+                right: 0;
+                padding: 0 2rem;
+                overflow-y: auto;
+                max-height: 100vh;
+                transform: translateX(100%);
+            }
+
+            @include mixins.respond(large) {
+
+                .showFilterDrawer,
+                .hideFilterOnSmallScreen {
+                    position: relative;
+                    transform: translateX(0) !important;
+                    width: 100%;
+                    max-width: 250px;
+                    padding: 0;
+                    height: auto;
+                    overflow: visible;
+                    z-index: auto;
+                }
+            }
+
+            @include mixins.respond(xl) {
+
+                .showFilterDrawer,
+                .hideFilterOnSmallScreen {
+                    position: relative;
+                    transform: translateX(0) !important;
+                    width: 100%;
+                    max-width: 250px;
+                    padding: 0;
+                    height: auto;
+                    overflow: visible;
+                    z-index: auto;
+                }
+            }
+
 
             .rightContainer {
 
@@ -606,6 +643,7 @@
                     justify-content: space-between;
                     margin: 0;
                     padding: 0;
+                    gap: 1.5rem;
 
 
 
@@ -615,12 +653,50 @@
                         justify-content: space-between;
 
                         .leftFilter {
+                            display: flex;
+                            align-items: center;
+                            gap: 1rem;
+
+                            .leftFilterSubContainer {
+                                display: flex;
+                                align-items: center;
+                                gap: .5rem;
+                                border: 1px solid var(--borderColor);
+                                padding: .2rem .6rem;
+                                border-radius: .2rem;
+                                cursor: pointer;
+
+                                display: none;
+
+                                @include mixins.respond(small) {
+                                    display: flex;
+                                }
+
+
+                                @include mixins.respond(medium) {
+                                    display: flex;
+                                }
+
+                                svg {
+                                    font-size: .9rem;
+                                    color: var(--a-text-color);
+                                    transition: all .3s ease;
+                                }
+
+                                p {
+                                    font-size: .75rem;
+                                    color: var(--a-text-color);
+                                    text-transform: uppercase;
+
+                                }
+                            }
 
                             p {
                                 font-size: .8rem;
                                 color: var(--a-text-color);
                                 text-transform: uppercase;
                             }
+
                         }
 
                         .rightFilter {
