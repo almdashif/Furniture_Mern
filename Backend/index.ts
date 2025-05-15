@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import mongoose from 'mongoose';
 import app from './app.ts';
-import db from './src/config/db.js'
+import { db } from './src/config/db.js'
 
 const start = async () => {
   try {
@@ -19,7 +19,7 @@ const start = async () => {
 
   } catch (err) {
     console.error(err);
-    process.exit();
+   throw err;
   }
 };
 

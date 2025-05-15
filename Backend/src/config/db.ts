@@ -16,6 +16,8 @@ export const db = async () => {
         console.log('MongoDB connected');
     } catch (e) {
         console.error(e.message || e, 'error occurred');
-        process.exit();
+        // Handle the error without exiting the process
+        // For example, you can throw the error to be handled by the caller
+        throw e;
     }
 };
