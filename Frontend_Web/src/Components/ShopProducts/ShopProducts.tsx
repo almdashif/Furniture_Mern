@@ -40,7 +40,11 @@ const ShopProducts = () => {
     const category = searchParams.get("category");
 
     const menuItems = [
-        { name: "Armchairs", productCount: 8, img: 'https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/armchairs-category-hero-image.webp', },
+        {
+            name: "Armchairs",
+            productCount: 8,
+            img: 'https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/armchairs-category-hero-image.webp',
+        },
         { name: "Chairs", productCount: 11, img: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/chairs-category-hero-image.webp" },
         { name: "Storage", productCount: 5, img: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/storage-category-hero-image.webp" },
         { name: "Sofas", productCount: 8, img: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/sofas-category-hero-image.webp" },
@@ -61,14 +65,23 @@ const ShopProducts = () => {
         { name: "Blue", hex: "#0000FF", count: 4 },
         { name: "Black", hex: "#000000", count: 3 }
     ];
+    const filterFn = async (keys: string, item: string):Promise<number> => {
+        console.log({ keys, item })
+        let filteredData = productData.filter(val => val[keys] == item)
+        return filteredData.length || 0
+    }
+    let a = filterFn('category', 'Storage')
     const categories = [
-        { name: "Storage", available: 2, id: '1' },
+        { name: "Storage", available: 1, id: '1' },
         { name: "Beds", available: 1, id: '2' },
         { name: "Tables", available: 4, id: '3' },
         { name: "Lamps", available: 3, id: '4' },
         { name: "Cabinets", available: 2, id: '5' }
     ];
 
+    useEffect(() => {
+        filterFn('category', 'Storage')
+    })
 
 
     useEffect(() => {
@@ -188,7 +201,7 @@ const ShopProducts = () => {
 
 
                     <div className="subMainContainer">
-                        
+
                         <div className={`leftContainer ${showFilterDrawer ? "showFilterDrawer" : "hideFilterOnSmallScreen"}`}>
 
                             <div className="filterHeading">

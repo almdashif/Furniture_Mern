@@ -1,0 +1,64 @@
+#pageNotFound {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 2rem 2rem;
+
+    .mainContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+
+        .headerContainer {
+            position: relative;
+
+            // .imgContainer {
+            //     width: 8rem;
+            //     height: 8rem;
+
+            //     img {
+            //         width: 100%;
+            //         height: 100%;
+            //         object-fit: cover;
+            //     }
+            // }
+
+            h2 {
+                color: var(--lightBorderColor);
+                font-size: 8rem;
+
+                // position: absolute;
+                // top: -5%;
+                // left: 50%;
+                // transform: translate(-50%, 0);
+                // z-index: -1;
+            }
+        }
+
+        h5 {
+            color: var(--a-text-color);
+            font-size: 1.4rem;
+            text-align: center;
+
+        }
+
+        p {
+            color: var(--a-lightText-color);
+            font-size: .9rem;
+            text-align: center;
+            margin: 1rem 0;
+            font-weight: 400;
+        }
+
+        a {
+            background-color: var(--bgEnglishBlueColor);
+            color: var(--whiteColor);
+            font-size: .8rem;
+            padding: .6rem 3rem;
+            border-radius: 4rem;
+            margin-top: 2rem;
+        }
+    }
+}
