@@ -15,6 +15,7 @@ import FaqPage from '../Modules/FAQ/FaqPage.tsx';
 function Navigation() {
   return (
     <Routes>
+        <Route path="*" element={<NotFoundPage />} />
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<Homepage />} />
         <Route path="/:id" element={<SinglePage />} />
@@ -24,7 +25,7 @@ function Navigation() {
         <Route path='/about' element={<AboutUsPage />} />
         <Route path='/contact' element={<ContactUsPage />} />
         <Route path="/faq" element={<FaqPage />} />
-        <Route path="*" element={<NotFoundPage />} />
+      
       </Route>
     </Routes>
   );
