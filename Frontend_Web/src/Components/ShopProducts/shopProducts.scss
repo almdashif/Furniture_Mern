@@ -151,7 +151,7 @@
                 flex-direction: column;
                 gap: 1.8rem;
                 transition: all .3s ease;
-
+     
 
 
                 @include mixins.respond(small) {
@@ -167,7 +167,6 @@
                     top: 0;
                     right: 0;
                     z-index: 9999999;
-                    background-color: #fff;
                     padding: 1rem 0 .5rem 0;
 
                     @include mixins.respond(large) {
@@ -588,7 +587,6 @@
             }
 
             .hideFilterOnSmallScreen {
-                background-color: rgb(255, 255, 255);
                 position: fixed;
                 top: 0;
                 z-index: 9999999;
