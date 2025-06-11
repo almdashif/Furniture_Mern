@@ -1,0 +1,16 @@
+version = 1
+
+[[analyzers]]
+name = "javascript"
+enabled = true
+source = "Frontend_Web"
+
+[[analyzers]]
+name = "javascript"
+enabled = true
+source = "Backend"
+
+[[analyzers]]
+name = "javascript"
+enabled = true
+source = "Frontend_Mobile"
