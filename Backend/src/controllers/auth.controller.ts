@@ -2,8 +2,11 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import user from '../Modals/user.js';
+import { Request, Response } from 'express';
+import dotenv from 'dotenv';
+dotenv.config();
 
-export const signUp = async (req, res) => {
+export const signUp = async (req: Request, res: Response): Promise<void> => {
     const { name, email, password, role = 'user' } = req.body;
 
     try {
@@ -25,7 +28,7 @@ export const signUp = async (req, res) => {
     }
 };
 
-export const login = async (req, res) => {
+export const login = async (req: Request, res: Response): Promise<void> => {
     const { email, password } = req.body;
 
     try {
@@ -43,7 +46,7 @@ export const login = async (req, res) => {
         }
 
         // Generate a new token
-        const token = jwt.sign({ id: foundUser._id, role: foundUser.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ id: foundUser._id, role: foundUser.role }, process.env?.JWT_SECRET, { expiresIn: '1h' });
 
         // Save the new token in the database
         foundUser.currentToken = token;
@@ -59,25 +62,25 @@ export const login = async (req, res) => {
     }
 };
 
-export const logout = async (req, res) => {
+export const logout = async (req: Request, res: Response): Promise<void> => {
     try {
         // Assuming the token is passed in the Authorization header
-        const token = req.headers['authorization']?.split(' ')[1]; // Get token from header
+        const token = req?.headers['authorization']?.split(' ')[1]; // Get token from header
         if (!token) {
             return res.status(400).json({ message: 'Token is required' });
         }
 
         // Verify the token
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const user = await user.findById(decoded.id);
+        const User = await user.findById(decoded.id);
 
-        if (!user) {
+        if (!User) {
             return res.status(404).json({ message: 'User not found.' });
         }
 
         // Invalidate token by setting it to null
-        user.currentToken = null;
-        await user.save();
+        User.currentToken = null;
+        await User.save();
 
         res.status(200).json({ message: 'Logged out successfully.' });
     } catch (error) {
