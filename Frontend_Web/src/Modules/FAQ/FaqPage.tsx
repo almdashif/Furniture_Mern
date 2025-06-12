@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import './faq.scss'
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import './faq.scss';
 
 const faqData = [
   { question: 'What is the return policy?', answer: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.' },

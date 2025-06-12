@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import '../DetailsComponent/detailsComponent.scss'
+import { Component } from 'react';
+import '../DetailsComponent/detailsComponent.scss';
 
-import { MdLocalShipping } from "react-icons/md";
-import { FaRegCreditCard } from "react-icons/fa";
 import { CiGift } from "react-icons/ci";
+import { FaRegCreditCard } from "react-icons/fa";
 import { IoChatbubblesOutline } from "react-icons/io5";
+import { MdLocalShipping } from "react-icons/md";
 
 export class DetailsComponent extends Component {
     render() {

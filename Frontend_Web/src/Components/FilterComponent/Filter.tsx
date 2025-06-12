@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import '../FilterComponent/filter.scss'
-import { MdOutlineDoorSliding, MdOutlineBed, MdOutlineTableBar } from "react-icons/md";
-import { LuSofa } from "react-icons/lu";
+import { useEffect, useState } from 'react';
 import { CiLocationOn } from "react-icons/ci";
 import { GiWoodenChair } from "react-icons/gi";
+import { LuPhoneCall, LuSofa } from "react-icons/lu";
+import { MdOutlineBed, MdOutlineDoorSliding, MdOutlineTableBar } from "react-icons/md";
 import { PiArmchair } from "react-icons/pi";
-import { SlGlobeAlt } from "react-icons/sl";
-import { LuPhoneCall } from "react-icons/lu";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { SlGlobeAlt } from "react-icons/sl";
 import { useNavigate } from 'react-router-dom';
+import '../FilterComponent/filter.scss';
 const menuItems = [
     { name: "Chairs", icon: <GiWoodenChair /> ,},
     { name: "Storage", icon: <MdOutlineDoorSliding /> },

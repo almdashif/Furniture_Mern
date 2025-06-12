@@ -1,7 +1,7 @@
-import React, { createContext, useContext, useReducer } from 'react'
-import Navigation from './routes/Navigation.jsx'
-import { BrowserRouter as Router, } from 'react-router-dom'
-import { initialState, reducer } from './Context/context.ts'
+import { createContext, useReducer } from 'react';
+import { BrowserRouter as Router, } from 'react-router-dom';
+import { initialState, reducer } from './Context/context.ts';
+import Navigation from './routes/Navigation.jsx';
 
 export const GlobalContext = createContext(initialState);
 

@@ -1,7 +1,6 @@
-import React from 'react'
-import '../ContactUs/contactUs.scss'
-import { useLocation, useNavigate } from 'react-router-dom';
 import "rc-slider/assets/index.css";
+import { useLocation, useNavigate } from 'react-router-dom';
+import '../ContactUs/contactUs.scss';
 
 const ContactUsPage = () => {
 

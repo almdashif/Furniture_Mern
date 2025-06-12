@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
-import '../ClientsComponent/clientsComponent.scss'
-import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { Component } from 'react';
+import '../ClientsComponent/clientsComponent.scss';
 interface ClientsComponentState {
     demoObject: { imgLink: string }[]
 }

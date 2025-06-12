@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
-import '../BestSeller/bestSeller.scss'
-import { CiLocationOn, CiHeart } from "react-icons/ci";
+import React, { useContext } from 'react';
+import { CiHeart } from "react-icons/ci";
 import { ImLoop } from "react-icons/im";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
-import { productData } from '../../data/productData.js';
 import { GlobalContext } from '../../App.jsx';
+import { productData } from '../../data/productData.js';
+import '../BestSeller/bestSeller.scss';
 
 
 
@@ -20,12 +20,22 @@ const BestSeller = () => {
     };
 
 
-    const addToCartFn = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, data: any) => {
+    interface Product {
+        id: number;
+        name: string;
+        category: string;
+        productImage: string;
+        currentprice: number;
+        isSale?: boolean;
+        [key: string]: any;
+    }
+
+    const addToCartFn = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, data: Product) => {
         e.preventDefault();
-    console.log({data},state.cart,'state.cart')
-    
-        const existingProduct = state.cart.find((item: any) => item.id == data.id);
-    
+        console.log({ data }, state.cart, 'state.cart')
+
+        const existingProduct = state.cart.find((item: any) => item.id === data.id);
+
         if (existingProduct) {
             dispatch({
                 type: "cart",
@@ -42,7 +52,7 @@ const BestSeller = () => {
             });
         }
     };
-    
+
 
 
     return (

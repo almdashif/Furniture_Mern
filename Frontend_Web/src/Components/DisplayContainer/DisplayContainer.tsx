@@ -1,7 +1,5 @@
-import React from 'react'
-import '../DisplayContainer/displayContainer.scss'
-import { IoBedSharp, IoCall, IoSearchOutline, IoPersonCircleOutline } from "react-icons/io5";
-import { FaSquareXTwitter, FaArrowRightLong, FaCodeCompare } from "react-icons/fa6";
+import { FaArrowRightLong } from "react-icons/fa6";
+import '../DisplayContainer/displayContainer.scss';
 const DisplayContainer = () => {
     return (
         <section id='DisplayContainer'>

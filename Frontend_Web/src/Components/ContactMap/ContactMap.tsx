@@ -1,8 +1,8 @@
 // src/components/ContactMap.tsx
-import { FC } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import { FC } from 'react';
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 
 // Fix Leaflet marker icon issue in Vite
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';

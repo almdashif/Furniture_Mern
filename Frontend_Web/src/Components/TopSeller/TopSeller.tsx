@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
-import '../TopSeller/topSeller.scss'
-import { CiLocationOn, CiHeart } from "react-icons/ci";
+import React, { useContext } from 'react';
+import { CiHeart } from "react-icons/ci";
 import { ImLoop } from "react-icons/im";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { productData } from '../../data/productData.js';
 import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../App.jsx';
+import { productData } from '../../data/productData.js';
+import '../TopSeller/topSeller.scss';
 
 
 const TopSeller = () => {
@@ -25,7 +25,7 @@ const TopSeller = () => {
         e.preventDefault();
         console.log({ data }, state.cart, 'state.cart')
 
-        const existingProduct = state.cart.find((item: any) => item.id == data.id);
+        const existingProduct = state.cart.find((item: any) => item.id === data.id);
 
         if (existingProduct) {
             dispatch({

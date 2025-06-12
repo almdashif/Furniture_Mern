@@ -1,22 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import '../ShopProducts/shopProducts.scss'
-import { CiLocationOn, CiHeart } from "react-icons/ci";
+import Slider from 'rc-slider/lib/Slider';
+import React, { useContext, useEffect, useState } from 'react';
+import { CiCircleRemove, CiHeart } from "react-icons/ci";
+import { FaAngleDown } from "react-icons/fa6";
 import { ImLoop } from "react-icons/im";
-import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { IoMdCart, IoMdClose } from "react-icons/io";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { productData } from '../../data/productData.js';
-import { IoMdCart, IoMdClose } from "react-icons/io";
-import { CiFilter } from "react-icons/ci";
-import { BiSortAlt2 } from "react-icons/bi";
-import { CiCircleRemove } from "react-icons/ci";
-import { FaAngleDown } from "react-icons/fa6";
-import Slider from 'rc-slider/lib/Slider';
+import '../ShopProducts/shopProducts.scss';
 // import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import DetailsComponent from '../DetailsComponent/DetailsComponent.tsx';
 import { RxHamburgerMenu } from "react-icons/rx";
-import { getDeviceWidth } from '../../utils/getDeviceWidth.ts';
 import { useDeviceSize } from '../../hooks/useDeviceSize.ts';
+import DetailsComponent from '../DetailsComponent/DetailsComponent.tsx';
+import { GlobalContext } from '../../App.jsx';
 
 const ShopProducts = () => {
     const [minPrice, setMinPrice] = useState(100);
@@ -28,6 +24,9 @@ const ShopProducts = () => {
     const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
     const [filteredProducts, setFilteredProducts] = useState(productData);
     const [showFilterDrawer, setShowFilterDrawer] = useState(false);
+
+    const context = useContext(GlobalContext);
+    const { state, dispatch } = context;
 
     const { width, height } = useDeviceSize();
 
@@ -65,9 +64,9 @@ const ShopProducts = () => {
         { name: "Blue", hex: "#0000FF", count: 4 },
         { name: "Black", hex: "#000000", count: 3 }
     ];
-    const filterFn = async (keys: string, item: string):Promise<number> => {
+    const filterFn = async (keys: string, item: string): Promise<number> => {
         console.log({ keys, item })
-        let filteredData = productData.filter(val => val[keys] == item)
+        let filteredData = productData.filter(val => val[keys] === item)
         return filteredData.length || 0
     }
     let a = filterFn('category', 'Storage')
@@ -85,7 +84,7 @@ const ShopProducts = () => {
 
 
     useEffect(() => {
-        const filterImage = menuItems.filter(item => item.name.toLowerCase() == category);
+        const filterImage = menuItems.filter(item => item.name.toLowerCase() === category);
         setShopFiles(filterImage)
 
     }, [category]);
@@ -172,6 +171,29 @@ const ShopProducts = () => {
         setShowFilterDrawer(prev => !prev)
     }
 
+
+    const addToCartFn = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, data: any) => {
+        e.preventDefault();
+        console.log({ data }, state.cart, 'state.cart')
+
+        const existingProduct = state.cart.find((item: any) => item.id === data.id);
+
+        if (existingProduct) {
+            dispatch({
+                type: "cart",
+                payload: state.cart.map((item: any) =>
+                    item.id === data.id
+                        ? { ...item, cartQuantity: item.cartQuantity + 1 }
+                        : item
+                ),
+            });
+        } else {
+            dispatch({
+                type: "cart",
+                payload: [...state.cart, { ...data, cartQuantity: 1 }],
+            });
+        }
+    };
 
     return (
         <>
@@ -330,6 +352,10 @@ const ShopProducts = () => {
 
 
                         </div>
+
+                        {showFilterDrawer && (
+                            <div className="overlay" onClick={toggleFilterDrawer}></div>
+                        )}
                         <div className="rightContainer">
                             <div className="subFilterContainer">
                                 <div className="topContainer">
@@ -338,7 +364,7 @@ const ShopProducts = () => {
                                             <RxHamburgerMenu />
                                             <p>Filter</p>
                                         </div>
-                                        <p>Showing all 4 results</p>
+                                        <p>Showing all {filteredProducts.length || 0} results</p>
                                     </div>
                                     <div className="rightFilter">
                                         <select name="orderby" className="orderby" aria-label="Shop order">
@@ -369,9 +395,9 @@ const ShopProducts = () => {
                             <div className="itemsContainer">
                                 {filteredProducts.map((el, index) => {
                                     return (
-                                        <a onClick={() => handleClick(el.id)} className="item" key={el.id}>
+                                        <div className="item" key={el.id}>
 
-                                            <div className="imageContainer">
+                                            <div  onClick={() => handleClick(el.id)}  className="imageContainer">
                                                 <img src={el.productImage} alt="" />
                                                 <div className="filtersContainer">
                                                     <a href=""><CiHeart /></a>
@@ -394,12 +420,12 @@ const ShopProducts = () => {
                                                 </div>
                                                 <div className="detailsBtnsContainer">
                                                     <a href="#">$ {el.currentprice}</a>
-                                                    <a href="#">Add to cart</a>
+                                                    <a href="#" onClick={e => addToCartFn(e, el)}>Add to cart</a>
                                                 </div>
 
 
                                             </div>
-                                        </a>
+                                        </div>
                                     )
                                 })}
 

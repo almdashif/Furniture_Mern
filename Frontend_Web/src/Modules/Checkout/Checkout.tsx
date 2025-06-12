@@ -1,13 +1,10 @@
-import React, { Component, useContext, useEffect, useState } from 'react'
-import { MdFullscreen } from "react-icons/md";
-import { IoChevronForwardOutline } from "react-icons/io5";
+import React, { useContext, useEffect, useState } from 'react';
+import { CiBellOn } from "react-icons/ci";
 import { FiMinus } from "react-icons/fi";
 import { GoPlus } from "react-icons/go";
-import { MdDeleteOutline } from "react-icons/md";
-import { CiBellOn } from "react-icons/ci";
 
-import '../Checkout/checkout.scss'
 import { GlobalContext } from '../../App.jsx';
+import '../Checkout/checkout.scss';
 
 
 
@@ -15,40 +12,50 @@ import { GlobalContext } from '../../App.jsx';
 const Checkout = () => {
 
 
-  
+
   const { state, dispatch } = useContext(GlobalContext)
   const [total, setTotal] = useState(0)
+
+  // Define a type for cart items
+  type CartItem = {
+    id: string | number;
+    name: string;
+    productImage?: string;
+    currentprice: number;
+    cartQuantity: number;
+    // add other properties as needed
+  };
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0 })
   }, [])
 
-
-    useEffect(() => {
-      let total = state.cart.reduce((totalPrice: number, item: any) => {
+  useEffect(() => {
+    if (state.cart && Array.isArray(state.cart)) {
+      const total = state.cart.reduce((totalPrice: number, item: CartItem) => {
         return totalPrice + item.currentprice * item.cartQuantity;
       }, 0)
       setTotal(Number(total))
-  
-      console.log({total})
-  
-    }, [state.cart])
+      console.log({ total })
+    }
+  }, [state.cart])
 
 
-  const updateCartProductQuantity = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, data: any, type: number) => {
+  const updateCartProductQuantity = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, data: CartItem, type: number) => {
     e.preventDefault();
 
     if (type === 0) {
       const filteredProduct = state.cart.find(item => item.id === data.id)
+      if (!filteredProduct) return;
       if (filteredProduct.cartQuantity === 1) {
         dispatch({
           type: "cart",
-          payload: state.cart.filter((item: any) => item.id !== data.id),
+          payload: state.cart.filter((item: CartItem) => item.id !== data.id),
         });
       } else {
         dispatch({
           type: "cart",
-          payload: state.cart.map((item: any) =>
+          payload: state.cart.map((item: CartItem) =>
             item.id === data.id
               ? { ...item, cartQuantity: item.cartQuantity - 1 }
               : item
@@ -60,7 +67,7 @@ const Checkout = () => {
     else if (type == 1) {
       dispatch({
         type: "cart",
-        payload: state.cart.map((item: any) =>
+        payload: state.cart.map((item: CartItem) =>
           item.id === data.id
             ? { ...item, cartQuantity: item.cartQuantity + type }
             : item
@@ -70,7 +77,7 @@ const Checkout = () => {
     else {
       dispatch({
         type: "cart",
-        payload: state.cart.filter((item: any) => item.id !== data.id),
+        payload: state.cart.filter((item: CartItem) => item.id !== data.id),
       });
     }
   }
@@ -134,7 +141,7 @@ const Checkout = () => {
             <div className="divider"></div>
 
             <div className="productsList">
-              {state.cart.map((val: any, i: number) => {
+              {state.cart.map((val: CartItem, i: number) => {
                 return (
                   <div key={i} className="product">
                     <div className="productDetails">
@@ -177,10 +184,10 @@ const Checkout = () => {
             </div>
 
             <div className="freeShippingContainer">
-            {total <= 2000 ? <p>Add ${2000 - total} more to get free shipping!</p>
-             :
-               <p>Hooray! you availed free shipping 🎉.</p>
-             }
+              {total <= 2000 ? <p>Add ${2000 - total} more to get free shipping!</p>
+                :
+                <p>Hooray! you availed free shipping 🎉.</p>
+              }
               <progress value={total} max={2000} color='pink' className='progressBar' />
             </div>
 
