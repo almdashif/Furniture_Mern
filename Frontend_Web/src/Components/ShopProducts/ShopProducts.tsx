@@ -1,5 +1,5 @@
 import Slider from 'rc-slider/lib/Slider';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useMemo } from 'react'; 
 import { CiCircleRemove, CiHeart } from "react-icons/ci";
 import { FaAngleDown } from "react-icons/fa6";
 import { ImLoop } from "react-icons/im";
@@ -7,7 +7,6 @@ import { IoMdCart, IoMdClose } from "react-icons/io";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { productData } from '../../data/productData.js';
 import '../ShopProducts/shopProducts.scss';
-// import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useDeviceSize } from '../../hooks/useDeviceSize.ts';
@@ -17,26 +16,26 @@ import { GlobalContext } from '../../App.jsx';
 const ShopProducts = () => {
     const [minPrice, setMinPrice] = useState(100);
     const [maxPrice, setMaxPrice] = useState(1000);
-    const [shopFiles, setShopFiles] = useState<{ name: string; productCount: number; img: string; }[]>([])
+    const [shopFiles, setShopFiles] = useState<{ name: string; productCount: number; img: string; }[]>([]);
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
     const [selectedColors, setSelectedColors] = useState<string[]>([]);
     const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
     const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
     const [filteredProducts, setFilteredProducts] = useState(productData);
     const [showFilterDrawer, setShowFilterDrawer] = useState(false);
+    const [sortOption, setSortOption] = useState("menu_order");
 
     const context = useContext(GlobalContext);
     const { state, dispatch } = context;
 
-    const { width, height } = useDeviceSize();
-
+    const { width, height } = useDeviceSize(); 
 
     const minLimit = 0;
     const maxLimit = 1500;
     const navigate = useNavigate();
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
-    const category = searchParams.get("category");
+    const categoryFromUrl = searchParams.get("category");
 
     const menuItems = [
         {
@@ -50,7 +49,6 @@ const ShopProducts = () => {
         { name: "Decor", productCount: 7, img: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/decor-category-hero-image.webp" },
         { name: "Tables", productCount: 24, img: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/tables-category-hero-image.webp" },
         { name: "Beds", productCount: 7, img: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/beds-category-hero-image.webp" },
-
     ];
 
     const brands = [
@@ -59,67 +57,118 @@ const ShopProducts = () => {
         { name: "BrandC", img: "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/06/brand-asgardia.svg" }
     ];
 
-    const colors = [
-        { name: "Beige", hex: "#F5F5DC", count: 2 },
-        { name: "Blue", hex: "#0000FF", count: 4 },
-        { name: "Black", hex: "#000000", count: 3 }
-    ];
-    const filterFn = async (keys: string, item: string): Promise<number> => {
-        console.log({ keys, item })
-        let filteredData = productData.filter(val => val[keys] === item)
-        return filteredData.length || 0
-    }
-    let a = filterFn('category', 'Storage')
-    const categories = [
-        { name: "Storage", available: 1, id: '1' },
-        { name: "Beds", available: 1, id: '2' },
-        { name: "Tables", available: 4, id: '3' },
-        { name: "Lamps", available: 3, id: '4' },
-        { name: "Cabinets", available: 2, id: '5' }
-    ];
+    // --- Dynamic filter options ---
+    const categories = useMemo(() => {
+        const counts: { [key: string]: number } = {};
+        productData.forEach(product => {
+            counts[product.category] = (counts[product.category] || 0) + 1;
+        });
+        return Object.keys(counts).map(name => ({ name, available: counts[name] }));
+    }, [productData]);
+
+    const colors = useMemo(() => {
+        const counts: { [key: string]: { hex: string, count: number } } = {};
+        productData.forEach(product => {
+            if (product.color) {
+                if (!counts[product.color]) {
+                    counts[product.color] = { hex: product.colorHex || '#CCCCCC', count: 0 };
+                }
+                counts[product.color].count++;
+            }
+        });
+        return Object.keys(counts).map(name => ({ name, hex: counts[name].hex, count: counts[name].count }));
+    }, [productData]);
+
+    const materials = useMemo(() => {
+        const counts: { [key: string]: number } = {};
+        productData.forEach(product => {
+            if (product.material) {
+                counts[product.material] = (counts[product.material] || 0) + 1;
+            }
+        });
+        return Object.keys(counts).map(name => ({ name, available: counts[name] }));
+    }, [productData]);
+ 
+
 
     useEffect(() => {
-        filterFn('category', 'Storage')
-    })
+        const filterImage = menuItems.filter(item => item.name.toLowerCase() === categoryFromUrl);
+        setShopFiles(filterImage);
 
+    
+        if (categoryFromUrl && !selectedCategories.includes(categoryFromUrl)) {
+            setSelectedCategories(prev => [...prev, categoryFromUrl]);
+        }
+
+    }, [categoryFromUrl]);
 
     useEffect(() => {
-        const filterImage = menuItems.filter(item => item.name.toLowerCase() === category);
-        setShopFiles(filterImage)
+        let currentFiltered = productData;
 
-    }, [category]);
-
-    useEffect(() => {
-        const filtered = productData.filter(product => {
-            return (
-                (selectedCategories.length === 0 || selectedCategories.includes(product.category)) &&
-                (selectedColors.length === 0 || selectedColors.includes(product.color)) &&
-                (selectedMaterials.length === 0 || selectedMaterials.includes(product.material)) &&
-                (selectedBrands.length === 0 || selectedBrands.includes(product.brand)) &&
-                product.currentprice >= minPrice &&
-                product.currentprice <= maxPrice
+      
+        if (selectedCategories.length > 0) {
+            currentFiltered = currentFiltered.filter(product =>
+                selectedCategories.includes(product.category)
             );
+        }
+
+ 
+        if (selectedColors.length > 0) {
+            currentFiltered = currentFiltered.filter(product =>
+                selectedColors.includes(product.color)
+            );
+        }
+
+  
+        if (selectedMaterials.length > 0) {
+            currentFiltered = currentFiltered.filter(product =>
+                selectedMaterials.includes(product.material)
+            );
+        }
+
+     
+        if (selectedBrands.length > 0) {
+            currentFiltered = currentFiltered.filter(product =>
+                selectedBrands.includes(product.brand)
+            );
+        }
+
+       
+        currentFiltered = currentFiltered.filter(product =>
+            product.currentprice >= minPrice && product.currentprice <= maxPrice
+        );
+
+   
+        const sortedProducts = [...currentFiltered].sort((a, b) => {
+            switch (sortOption) {
+                case "popularity":
+                    // Assuming productData has a 'popularity' property
+                    return (b.popularity || 0) - (a.popularity || 0);
+                case "rating":
+                  
+                    return (b.rating || 0) - (a.rating || 0);
+                case "date":
+                   
+                    return new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime();
+                case "price":
+                    return a.currentprice - b.currentprice;
+                case "price-desc":
+                    return b.currentprice - a.currentprice;
+                case "menu_order":
+                default:
+                    return 0; 
+            }
         });
 
-        setFilteredProducts(filtered);
-    }, [selectedCategories, selectedColors, selectedMaterials, selectedBrands, minPrice, maxPrice]);
+        setFilteredProducts(sortedProducts);
+    }, [selectedCategories, selectedColors, selectedMaterials, selectedBrands, minPrice, maxPrice, sortOption, productData]);
 
 
-    const handleClick = (index: number) => {
-        navigate(`/${index}`);
+    const handleClick = (id: number) => { 
+        navigate(`/${id}`);
     };
 
-    const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = Number(e.target.value);
-        if (value <= maxPrice - 50) setMinPrice(value); // Ensures min < max
-    };
-
-    const handleMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = Number(e.target.value);
-        if (value >= minPrice + 50) setMaxPrice(value); // Ensures max > min
-    };
-
-    const Breadcrumb = ({ category }) => {
+    const Breadcrumb = ({ category }: { category: string | null }) => {
         const navigate = useNavigate();
 
         return (
@@ -131,8 +180,12 @@ const ShopProducts = () => {
                 <span onClick={() => navigate("/shop")} >
                     Shop
                 </span>
-                <div>{">"}</div>
-                {category}
+                {category && (
+                    <>
+                        <div>{">"}</div>
+                        <span>{category}</span>
+                    </>
+                )}
             </p>
         );
     };
@@ -168,8 +221,45 @@ const ShopProducts = () => {
 
     const toggleFilterDrawer = (e: React.MouseEvent) => {
         e.preventDefault();
-        setShowFilterDrawer(prev => !prev)
-    }
+        setShowFilterDrawer(prev => !prev);
+    };
+
+    const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSortOption(e.target.value);
+    };
+
+    const removeFilter = (type: string, value: string) => {
+        switch (type) {
+            case 'category':
+                setSelectedCategories(prev => prev.filter(item => item !== value));
+                break;
+            case 'color':
+                setSelectedColors(prev => prev.filter(item => item !== value));
+                break;
+            case 'material':
+                setSelectedMaterials(prev => prev.filter(item => item !== value));
+                break;
+            case 'brand':
+                setSelectedBrands(prev => prev.filter(item => item !== value));
+                break;
+            case 'price':
+                setMinPrice(minLimit);
+                setMaxPrice(maxLimit);
+                break;
+            default:
+                break;
+        }
+    };
+
+    const resetAllFilters = () => {
+        setSelectedCategories([]);
+        setSelectedColors([]);
+        setSelectedMaterials([]);
+        setSelectedBrands([]);
+        setMinPrice(minLimit);
+        setMaxPrice(maxLimit);
+        setSortOption("menu_order");
+    };
 
 
     const addToCartFn = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, data: any) => {
@@ -195,13 +285,27 @@ const ShopProducts = () => {
         }
     };
 
+
+    const getActiveFilters = () => {
+        const activeFilters: { type: string, value: string }[] = [];
+        selectedCategories.forEach(cat => activeFilters.push({ type: 'category', value: cat }));
+        selectedColors.forEach(color => activeFilters.push({ type: 'color', value: color }));
+        selectedMaterials.forEach(material => activeFilters.push({ type: 'material', value: material }));
+        selectedBrands.forEach(brand => activeFilters.push({ type: 'brand', value: brand }));
+        if (minPrice !== minLimit || maxPrice !== maxLimit) {
+            activeFilters.push({ type: 'price', value: `$${minPrice} - $${maxPrice}` });
+        }
+        return activeFilters;
+    };
+
+
     return (
         <>
             <section id='ShopProduct'>
                 <div className="mainContainer">
                     <div className="headingContainer" >
-                        <h5>{shopFiles ? shopFiles[0]?.name : 'Shop'}</h5>
-                        <Breadcrumb category={category} />
+                        <h5>{shopFiles.length > 0 ? shopFiles[0]?.name : 'Shop'}</h5>
+                        <Breadcrumb category={categoryFromUrl} />
                         <img src={shopFiles[0]?.img ? shopFiles[0]?.img : "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/shop-hero-image.webp"} alt="" />
                     </div>
 
@@ -221,26 +325,23 @@ const ShopProducts = () => {
                         })}
                     </div>
 
-
                     <div className="subMainContainer">
-
+                        {/* Filter Drawer */}
                         <div className={`leftContainer ${showFilterDrawer ? "showFilterDrawer" : "hideFilterOnSmallScreen"}`}>
 
                             <div className="filterHeading">
                                 <p>Available Filters</p>
                                 <a onClick={toggleFilterDrawer}><IoMdClose /></a>
-
                             </div>
 
                             <div className="filterPriceContainer">
                                 <p>Filter by price</p>
-
                                 <Slider
                                     range
                                     min={0}
                                     max={1500}
                                     value={[minPrice, maxPrice]}
-                                    onChange={(value) => {
+                                    onChange={(value: number[]) => { 
                                         setMinPrice(value[0]);
                                         setMaxPrice(value[1]);
                                     }}
@@ -248,7 +349,6 @@ const ShopProducts = () => {
                                     trackStyle={{ backgroundColor: '#152520', height: '2px' }}
                                     className="slider"
                                 />
-
                                 <label>Price: <span>${minPrice} - ${maxPrice}</span></label>
                             </div>
 
@@ -259,7 +359,14 @@ const ShopProducts = () => {
                                         return (
                                             <div key={index} className='categorySubParentContainer'>
                                                 <div className="categoryContainer">
-                                                    <input type="checkbox" onChange={() => toggleCategory(val.name)} name="category" className='category' id="category" />
+                                                    <input
+                                                        type="checkbox"
+                                                        onChange={() => toggleCategory(val.name)}
+                                                        name="category"
+                                                        className='category'
+                                                        id={`category-${val.name}`} 
+                                                        checked={selectedCategories.includes(val.name)} 
+                                                    />
                                                     <p>{val.name}</p>
                                                 </div>
                                                 <div className="count">
@@ -301,15 +408,22 @@ const ShopProducts = () => {
                             <div className="filterByMaterial">
                                 <p>Filter by material</p>
                                 <div className="materialParentContainer">
-                                    {Array.from({ length: 2 }).map((el, index) => {
+                                    {materials.map((val, index) => {
                                         return (
-                                            <div className='materialSubParentContainer'>
+                                            <div key={index} className='materialSubParentContainer'>
                                                 <div className="materialContainer">
-                                                    <input type="checkbox" onChange={() => toggleMaterial('Fabric')} name="material" className='material' id="material" />
-                                                    <p>Fabric</p>
+                                                    <input
+                                                        type="checkbox"
+                                                        onChange={() => toggleMaterial(val.name)}
+                                                        name="material"
+                                                        className='material'
+                                                        id={`material-${val.name}`}
+                                                        checked={selectedMaterials.includes(val.name)} 
+                                                    />
+                                                    <p>{val.name}</p>
                                                 </div>
                                                 <div className="count">
-                                                    <p>2</p>
+                                                    <p>{val.available}</p>
                                                 </div>
                                             </div>
                                         )
@@ -319,11 +433,11 @@ const ShopProducts = () => {
 
                             <div className="filterByBrand">
                                 <p>Filter by brand</p>
-                                <div className="materialContainer">
+                                <div className="brandContainer">
                                     {brands.map((brand, index) => (
                                         <div
                                             key={index}
-                                            className={`materialContainer ${selectedBrands.includes(brand.name) ? "selected" : ""}`}
+                                            className={`brandItem ${selectedBrands.includes(brand.name) ? "selected" : ""}`}
                                             onClick={() => toggleBrand(brand.name)}
                                             style={{ cursor: "pointer", border: selectedBrands.includes(brand.name) ? "2px solid black" : "none" }}
                                         >
@@ -333,12 +447,13 @@ const ShopProducts = () => {
                                 </div>
                             </div>
 
+
                             <div className="bestSellingBrands">
                                 <p>Best selling products</p>
                                 <div className="bestSellingBrandsContainer">
                                     {Array.from({ length: 6 }).map((el, index) => {
                                         return (
-                                            <div className="bestSellingProducts">
+                                            <div className="bestSellingProducts" key={index}>
                                                 <img src="https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/product-45.webp" alt="" />
                                                 <div className="details">
                                                     <h6>Modern Sofa</h6>
@@ -349,13 +464,13 @@ const ShopProducts = () => {
                                     })}
                                 </div>
                             </div>
-
-
                         </div>
 
+                        {/* Overlay for filter drawer */}
                         {showFilterDrawer && (
                             <div className="overlay" onClick={toggleFilterDrawer}></div>
                         )}
+
                         <div className="rightContainer">
                             <div className="subFilterContainer">
                                 <div className="topContainer">
@@ -367,7 +482,13 @@ const ShopProducts = () => {
                                         <p>Showing all {filteredProducts.length || 0} results</p>
                                     </div>
                                     <div className="rightFilter">
-                                        <select name="orderby" className="orderby" aria-label="Shop order">
+                                        <select
+                                            name="orderby"
+                                            className="orderby"
+                                            aria-label="Shop order"
+                                            onChange={handleSortChange}
+                                            value={sortOption}
+                                        >
                                             <option value="menu_order" >Default sorting</option>
                                             <option value="popularity">Sort by popularity</option>
                                             <option value="rating">Sort by average rating</option>
@@ -381,67 +502,69 @@ const ShopProducts = () => {
                                 <div className="bottomContainer">
                                     <p className='active-filter'>Active Filters</p>
                                     <div className="activeFiltersContainer">
-                                        <div className="activeFilters">
-                                            <CiCircleRemove />
-                                            <p>Reset Filter</p>
-                                        </div>
-                                        <div className="activeFilters">
-                                            <CiCircleRemove />
-                                            <p>Fabric</p>
-                                        </div>
+                                        {getActiveFilters().length > 0 && (
+                                            <div className="activeFilters" onClick={resetAllFilters} style={{ cursor: 'pointer' }}>
+                                                <CiCircleRemove />
+                                                <p>Reset All</p>
+                                            </div>
+                                        )}
+
+                                        {getActiveFilters().map((filter, index) => (
+                                            filter.type !== 'price' ? ( 
+                                                <div key={index} className="activeFilters" onClick={() => removeFilter(filter.type, filter.value)} style={{ cursor: 'pointer' }}>
+                                                    <CiCircleRemove />
+                                                    <p>{filter.value}</p>
+                                                </div>
+                                            ) : (
+                                                <div key={index} className="activeFilters" onClick={() => removeFilter(filter.type, filter.value)} style={{ cursor: 'pointer' }}>
+                                                    <CiCircleRemove />
+                                                    <p>{filter.value}</p>
+                                                </div>
+                                            )
+                                        ))}
                                     </div>
                                 </div>
                             </div>
                             <div className="itemsContainer">
-                                {filteredProducts.map((el, index) => {
-                                    return (
-                                        <div className="item" key={el.id}>
-
-                                            <div  onClick={() => handleClick(el.id)}  className="imageContainer">
-                                                <img src={el.productImage} alt="" />
-                                                <div className="filtersContainer">
-                                                    <a href=""><CiHeart /></a>
-                                                    <a href=""><ImLoop /></a>
-                                                    <a href=""><IoMdCart /></a>
+                                {filteredProducts.length > 0 ? (
+                                    filteredProducts.map((el, index) => {
+                                        return (
+                                            <div className="item" key={el.id}>
+                                                <div onClick={() => handleClick(el.id)} className="imageContainer">
+                                                    <img src={el.productImage} alt={el.name} />
+                                                    <div className="filtersContainer">
+                                                        <a href="#"><CiHeart /></a>
+                                                        <a href="#"><ImLoop /></a>
+                                                        <a href="#" onClick={e => addToCartFn(e, el)}><IoMdCart /></a>
+                                                    </div>
+                                                    {el.isSale && <span>Sale</span>}
                                                 </div>
-                                                {
-                                                    el.isSale &&
-                                                    <span >Sale</span>
-                                                }
-
-
+                                                <div className="detailsContainer">
+                                                    <div className="detailsHeadingContainer">
+                                                        <h6>{el.name}</h6>
+                                                        <p>{el.category}</p>
+                                                    </div>
+                                                    <div className="detailsBtnsContainer">
+                                                        <a href="#">$ {el.currentprice}</a>
+                                                        <a href="#" onClick={e => addToCartFn(e, el)}>Add to cart</a>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="detailsContainer">
-
-                                                <div className="detailsHeadingContainer">
-                                                    <h6>{el.name}</h6>
-                                                    <p>{el.category}</p>
-
-                                                </div>
-                                                <div className="detailsBtnsContainer">
-                                                    <a href="#">$ {el.currentprice}</a>
-                                                    <a href="#" onClick={e => addToCartFn(e, el)}>Add to cart</a>
-                                                </div>
-
-
-                                            </div>
-                                        </div>
-                                    )
-                                })}
-
-
+                                        );
+                                    })
+                                ) : (
+                                    <p className="no-products-found">No products found matching your filters.</p>
+                                )}
                             </div>
                         </div>
+
                     </div>
-
-
-
 
                 </div>
             </section>
             <DetailsComponent />
         </>
-    )
-}
+    );
+};
 
-export default ShopProducts
+export default ShopProducts;
