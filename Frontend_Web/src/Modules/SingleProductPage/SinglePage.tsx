@@ -13,16 +13,11 @@ import { productData } from '../../data/productData.js';
 import '../SingleProductPage/singlePage.scss';
 import { GlobalContext } from '../../App.jsx';
 
-
-
-
-
-
 const SinglePage = () => {
 
   const [viewState, setViewState] = useState(0)
   const [checked, setChecked] = useState(false)
-  const [singleData, setSingleData] = useState([])
+  const [singleData, setSingleData] = useState<any[]>([])
 
   const context = useContext(GlobalContext);
   const { state, dispatch } = context;
@@ -33,22 +28,13 @@ const SinglePage = () => {
 
   useEffect(() => {
     fetchSingleData()
-    // this.setState()
-    // window.position({ top: 0,})
     window.scrollTo({ top: 0, left: 0 })
   }, [])
-
 
   const changeViewState = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, val: number) => {
     e.preventDefault();
     setViewState(val)
   }
-
-
-  // const navigateCart = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-  //   e.preventDefault();
-  //   navigate('/cart');
-  // }
 
   const fetchSingleData = async () => {
     let singleProd = await productData.find(p => p.id === Number(id))
@@ -56,11 +42,9 @@ const SinglePage = () => {
     console.log([singleProd], 'singleProd')
   }
 
-
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(e.target.checked)
   }
-
 
   const addToCartFn = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, data: any) => {
     e.preventDefault();
@@ -83,6 +67,14 @@ const SinglePage = () => {
         payload: [...state.cart, { ...data, cartQuantity: 1 }],
       });
     }
+  };
+
+  const addToWishlistFn = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, data: any) => {
+    e.preventDefault();
+    dispatch({
+      type: "wishlist",
+      payload: [...state.wishlist, data],
+    });
   };
 
 
@@ -128,7 +120,7 @@ const SinglePage = () => {
                   <GoPlus />
                 </a>
               </div>
-              <a href="#" onClick={e => addToCartFn(e, singleData[0])} className='addtoCartBtn'>Add to Cart</a>
+              <a href="#" onClick={e => { e.preventDefault(); e.stopPropagation(); addToCartFn(e, singleData[0]); }} className='addtoCartBtn'>Add to Cart</a>
             </div>
 
 

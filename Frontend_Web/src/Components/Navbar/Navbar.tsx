@@ -8,7 +8,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../App.jsx';
 import '../Navbar/navbar.scss';
 
-const Navbar = ({ open, setOpen, isProfileOpen, setIsProfileOpen }) => {
+interface NavbarProps {
+    open: boolean;
+    setOpen: (open: boolean) => void;
+    isProfileOpen: boolean;
+    setIsProfileOpen: (isProfileOpen: boolean) => void;
+}
+
+const Navbar = ({ open, setOpen, isProfileOpen, setIsProfileOpen }: NavbarProps) => {
     const navigate = useNavigate()
 
 

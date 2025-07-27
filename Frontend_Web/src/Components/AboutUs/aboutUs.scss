@@ -1,0 +1,285 @@
+@use './../../CommonStyles/responsiveCss.scss' as mixins;
+
+#AboutUsPage {
+    background-color: var(--bgLightColor);
+    padding: 1.5rem;
+
+    .mainContainer {
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding: 2rem;
+
+        @include mixins.respond(small) {
+            padding: 0;
+        }
+
+        .headingContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 999;
+            overflow: hidden;
+            border-radius: 1rem;
+            height: 350px;
+
+            h5 {
+                font-size: 2rem;
+                text-align: center;
+                color: var(--whiteColor);
+                padding-bottom: 1rem;
+                font-weight: 500;
+
+                @include mixins.respond(small) {
+                    padding-bottom: .5rem;
+                    font-size: 1.2rem;
+                }
+            }
+
+            p {
+                font-size: .9rem;
+                text-align: center;
+                color: var(--lightBorderColor);
+                max-width: 800px;
+                padding-bottom: 1rem;
+                text-transform: uppercase;
+                display: flex;
+                text-align: center;
+                gap: .6rem;
+
+                @include mixins.respond(small) {
+                    font-size: .7rem;
+                    max-width: 90%;
+                    margin: 0 auto;
+                }
+
+                span {
+                    font-size: .9rem;
+                    color: var(--ash-WhiteColo);
+                    cursor: pointer;
+
+                    @include mixins.respond(small) {
+                        font-size: .7rem;
+                    }
+                }
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-position: center;
+                object-fit: cover;
+                filter: brightness(50%);
+                position: absolute;
+                z-index: -1;
+                border-radius: 1rem;
+                transform: translateX(0);
+            }
+        }
+
+        .heroSection {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 3rem;
+            padding: 4rem 0;
+            margin: 2rem 0;
+
+            @include mixins.respond(medium) {
+                flex-direction: column;
+                gap: 2rem;
+                padding: 2rem 0;
+            }
+
+            .leftContainer {
+                flex: 1;
+
+                .displayContainer {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.5rem;
+
+                    h3 {
+                        font-size: 2.5rem;
+                        color: var(--blackColor);
+                        font-weight: 600;
+                        margin-bottom: 1rem;
+
+                        @include mixins.respond(small) {
+                            font-size: 1.8rem;
+                        }
+                    }
+
+                    p {
+                        font-size: 1.1rem;
+                        color: var(--a-text-color);
+                        line-height: 1.6;
+
+                        @include mixins.respond(small) {
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+
+            .rightContainer {
+                flex: 1;
+
+                img {
+                    width: 100%;
+                    height: 400px;
+                    object-fit: cover;
+                    border-radius: 1rem;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+                    @include mixins.respond(small) {
+                        height: 300px;
+                    }
+                }
+            }
+        }
+
+        .missionSection {
+            display: flex;
+            gap: 2rem;
+            margin: 4rem 0;
+            padding: 3rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 1rem;
+
+            @include mixins.respond(medium) {
+                flex-direction: column;
+                padding: 2rem;
+            }
+
+            .missionContainer,
+            .visionContainer {
+                flex: 1;
+                text-align: center;
+
+                h3 {
+                    font-size: 2rem;
+                    color: var(--blackColor);
+                    font-weight: 600;
+                    margin-bottom: 1rem;
+
+                    @include mixins.respond(small) {
+                        font-size: 1.5rem;
+                    }
+                }
+
+                p {
+                    font-size: 1.1rem;
+                    color: var(--a-text-color);
+                    line-height: 1.6;
+
+                    @include mixins.respond(small) {
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+
+        .valuesSection {
+            margin: 4rem 0;
+            text-align: center;
+
+            h3 {
+                font-size: 2.5rem;
+                color: var(--blackColor);
+                font-weight: 600;
+                margin-bottom: 3rem;
+
+                @include mixins.respond(small) {
+                    font-size: 2rem;
+                    margin-bottom: 2rem;
+                }
+            }
+
+            .valuesContainer {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+
+                .valueItem {
+                    padding: 2rem;
+                    background: white;
+                    border-radius: 1rem;
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.3s ease;
+
+                    &:hover {
+                        transform: translateY(-5px);
+                    }
+
+                    h4 {
+                        font-size: 1.5rem;
+                        color: var(--blackColor);
+                        font-weight: 600;
+                        margin-bottom: 1rem;
+
+                        @include mixins.respond(small) {
+                            font-size: 1.3rem;
+                        }
+                    }
+
+                    p {
+                        font-size: 1rem;
+                        color: var(--a-text-color);
+                        line-height: 1.6;
+
+                        @include mixins.respond(small) {
+                            font-size: 0.9rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        .statsSection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+            padding: 3rem;
+            background: var(--topBarColor);
+            border-radius: 1rem;
+            color: white;
+
+            @include mixins.respond(small) {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+
+            .statItem {
+                text-align: center;
+
+                h2 {
+                    font-size: 3rem;
+                    font-weight: 700;
+                    margin-bottom: 0.5rem;
+                    color: white;
+
+                    @include mixins.respond(small) {
+                        font-size: 2rem;
+                    }
+                }
+
+                p {
+                    font-size: 1.1rem;
+                    color: rgba(255, 255, 255, 0.9);
+
+                    @include mixins.respond(small) {
+                        font-size: 0.9rem;
+                    }
+                }
+            }
+        }
+    }
+}

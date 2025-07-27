@@ -9,6 +9,7 @@ import Homepage from '../Modules/Homepage/Homepage.jsx';
 import Layout from '../Modules/Layout/Layout.tsx';
 import ShopPage from '../Modules/Shop/ShopPage.tsx';
 import SinglePage from '../Modules/SingleProductPage/SinglePage.tsx';
+import WishlistPage from '../Modules/Wishlist/WishlistPage.tsx';
 
 
 function Navigation() {
@@ -24,7 +25,7 @@ function Navigation() {
         <Route path='/about' element={<AboutUsPage />} />
         <Route path='/contact' element={<ContactUsPage />} />
         <Route path="/faq" element={<FaqPage />} />
-      
+        <Route path='/wishlist' element={<WishlistPage />} />
       </Route>
     </Routes>
   );

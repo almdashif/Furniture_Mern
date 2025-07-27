@@ -285,6 +285,14 @@ const ShopProducts = () => {
         }
     };
 
+    const addToWishlistFn = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, data: any) => {
+        e.preventDefault();
+        dispatch({
+            type: "wishlist",
+            payload: [...state.wishlist, data],
+        });
+    };
+
 
     const getActiveFilters = () => {
         const activeFilters: { type: string, value: string }[] = [];
@@ -533,9 +541,9 @@ const ShopProducts = () => {
                                                 <div onClick={() => handleClick(el.id)} className="imageContainer">
                                                     <img src={el.productImage} alt={el.name} />
                                                     <div className="filtersContainer">
-                                                        <a href="#"><CiHeart /></a>
+                                                        <a href="#" onClick={e => { e.preventDefault(); e.stopPropagation(); addToWishlistFn(e, el); }}><CiHeart /></a>
                                                         <a href="#"><ImLoop /></a>
-                                                        <a href="#" onClick={e => addToCartFn(e, el)}><IoMdCart /></a>
+                                                        <a href="#" onClick={e => { e.preventDefault(); e.stopPropagation(); addToCartFn(e, el); }}><IoMdCart /></a>
                                                     </div>
                                                     {el.isSale && <span>Sale</span>}
                                                 </div>
@@ -546,7 +554,7 @@ const ShopProducts = () => {
                                                     </div>
                                                     <div className="detailsBtnsContainer">
                                                         <a href="#">$ {el.currentprice}</a>
-                                                        <a href="#" onClick={e => addToCartFn(e, el)}>Add to cart</a>
+                                                        <a href="#" onClick={e => { e.preventDefault(); e.stopPropagation(); addToCartFn(e, el); }}>Add to cart</a>
                                                     </div>
                                                 </div>
                                             </div>

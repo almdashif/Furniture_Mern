@@ -7,9 +7,6 @@ import { GlobalContext } from '../../App.jsx';
 import { productData } from '../../data/productData.js';
 import '../BestSeller/bestSeller.scss';
 
-
-
-
 const BestSeller = () => {
     const navigate = useNavigate()
     const context = useContext(GlobalContext);
@@ -18,7 +15,6 @@ const BestSeller = () => {
     const handleClick = (index) => {
         navigate(`/${index}`);
     };
-
 
     interface Product {
         id: number;
@@ -52,7 +48,13 @@ const BestSeller = () => {
             });
         }
     };
-
+    const addToWishlistFn = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, data: Product) => {
+        e.preventDefault();
+        dispatch({
+            type: "wishlist",
+            payload: [...state.wishlist, data],
+        });
+    };
 
 
     return (
@@ -73,7 +75,7 @@ const BestSeller = () => {
                                 <div onClick={() => handleClick(el.id)} className="imageContainer">
                                     <img src={el.productImage} alt="" />
                                     <div className="filtersContainer">
-                                        <a href=""><CiHeart /></a>
+                                        <a href="#" onClick={e => { e.preventDefault(); e.stopPropagation(); addToWishlistFn(e, el); }}><CiHeart /></a>
                                         <a href=""><ImLoop /></a>
                                         <a href=""><MdOutlineRemoveRedEye /></a>
                                     </div>
@@ -94,7 +96,7 @@ const BestSeller = () => {
 
                                     <div className="detailsBtnsContainer">
                                         <a href="#">$ {el.currentprice}</a>
-                                        <a href="#" onClick={e => addToCartFn(e, el)}>Add to cart</a>
+                                        <a href="#" onClick={e => { e.preventDefault(); e.stopPropagation(); addToCartFn(e, el); }}>Add to cart</a>
                                     </div>
                                 </div>
                             </div>

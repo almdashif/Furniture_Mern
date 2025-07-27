@@ -7,11 +7,9 @@ import { GlobalContext } from '../../App.jsx';
 import { productData } from '../../data/productData.js';
 import '../TopSeller/topSeller.scss';
 
-
 const TopSeller = () => {
 
     const navigate = useNavigate()
-
 
     const context = useContext(GlobalContext);
     const { state, dispatch } = context;
@@ -19,7 +17,6 @@ const TopSeller = () => {
     const handleClick = (index: number) => {
         navigate(`/${index}`);
     };
-
 
     const addToCartFn = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, data: any) => {
         e.preventDefault();
@@ -43,6 +40,13 @@ const TopSeller = () => {
             });
         }
     };
+    const addToWishlistFn = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, data: any) => {
+        e.preventDefault();
+        dispatch({
+            type: "wishlist",
+            payload: [...state.wishlist, data],
+        });
+    };
 
 
     return (
@@ -62,9 +66,9 @@ const TopSeller = () => {
                                 <div onClick={() => handleClick(el.id)} className="imageContainer">
                                     <img src={el.productImage} alt="" />
                                     <div className="filtersContainer">
-                                        <a href=""><CiHeart /></a>
-                                        <a href=""><ImLoop /></a>
-                                        <a href=""><MdOutlineRemoveRedEye /></a>
+                                        <a href="#" onClick={e => { e.preventDefault(); e.stopPropagation(); addToWishlistFn(e, el); }}><CiHeart /></a>
+                                        <a href="#"><ImLoop /></a>
+                                        <a href="#"><MdOutlineRemoveRedEye /></a>
                                     </div>
                                     {
                                         el.isSale &&
@@ -83,7 +87,7 @@ const TopSeller = () => {
 
                                     <div className="detailsBtnsContainer">
                                         <a href="#">$ {el.currentprice}</a>
-                                        <a href="#" onClick={e => addToCartFn(e, el)}>Add to cart</a>
+                                        <a href="#" onClick={e => { e.preventDefault(); e.stopPropagation(); addToCartFn(e, el); }}>Add to cart</a>
                                     </div>
                                 </div>
                             </div>

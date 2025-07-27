@@ -1,4 +1,4 @@
-import React, { Component, useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { MdFullscreen } from "react-icons/md";
 import { IoChevronForwardOutline } from "react-icons/io5";
 import { FiMinus } from "react-icons/fi";
@@ -14,9 +14,6 @@ import '../Cart/cart.scss'
 import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../App.jsx';
 
-
-
-
 const CartPage = () => {
 
   const navigate = useNavigate()
@@ -28,8 +25,6 @@ const CartPage = () => {
     e.preventDefault();
     navigate('/Checkout');
   }
-
-
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0 });
@@ -45,7 +40,6 @@ const CartPage = () => {
     console.log({total})
 
   }, [state.cart])
-
 
   const updateCartProductQuantity = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, data: any, type: number) => {
     e.preventDefault();
@@ -86,7 +80,6 @@ const CartPage = () => {
       });
     }
   }
-
 
   return (
     <>

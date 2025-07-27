@@ -1,6 +1,7 @@
 import "rc-slider/assets/index.css";
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../ContactUs/contactUs.scss';
+import ContactMap from '../../Components/ContactMap/ContactMap.tsx';
 
 const ContactUsPage = () => {
 
@@ -69,22 +70,25 @@ const ContactUsPage = () => {
               <h4>Contact Information</h4>
               <p>If you have any questions or need assistance, feel free to reach out to us through the following contact details:</p>
               <div className="mapContainer">
-                {/* <ContactMap /> */}
+                <ContactMap />
               </div>
               <div className="detailsContainer">
                 <div className="detailItem">
                   <p>Address</p>
-                  <span>123 Furniture Street, City, Country</span>
+                  <span>123 Furniture Street, New York, NY 10001</span>
                 </div>
                 <div className="detailItem">
                   <p>Phone</p>
-                  <span>+1 234 567 890</span>
+                  <span>+1 (555) 123-4567</span>
                 </div>
                 <div className="detailItem">
                   <p>Email</p>
-                  <span>demo@gmail.com</span>
+                  <span>info@furniturestore.com</span>
                 </div>
-
+                <div className="detailItem">
+                  <p>Hours</p>
+                  <span>Mon-Fri: 9AM-8PM<br />Sat-Sun: 10AM-6PM</span>
+                </div>
               </div>
             </div>
           </div>
