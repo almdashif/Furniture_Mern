@@ -1,16 +1,8 @@
-import React from 'react'
 import { AiFillInstagram } from "react-icons/ai";
+import { FaFacebook, FaYoutube } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
 import { RiWhatsappFill } from "react-icons/ri";
-import { FaFacebook, FaYoutube, FaChair } from "react-icons/fa";
-import { FaSquareXTwitter, FaArrowRightLong, FaCodeCompare } from "react-icons/fa6";
-import { PiArmchairFill } from "react-icons/pi";
-import { IoBedSharp, IoCall, IoSearchOutline, IoPersonCircleOutline } from "react-icons/io5";
-import { CiLocationOn, CiHeart } from "react-icons/ci";
-import { IoIosArrowDown } from "react-icons/io";
-import { FiShoppingBag } from "react-icons/fi";
-import { ImLoop } from "react-icons/im";
-import { MdCompareArrows } from "react-icons/md";
-import '../TopCard/topcard.scss'
+import '../TopCard/topcard.scss';
 
 const TopCard = () => {
     return (

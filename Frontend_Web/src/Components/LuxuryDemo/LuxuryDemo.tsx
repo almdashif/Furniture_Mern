@@ -1,7 +1,5 @@
-import React, { Component } from 'react'
-import '../LuxuryDemo/luxuryDemo.scss'
-import { IoBedSharp, IoCall, IoSearchOutline, IoPersonCircleOutline } from "react-icons/io5";
-import { FaSquareXTwitter, FaArrowRightLong, FaCodeCompare } from "react-icons/fa6";
+import { Component } from 'react';
+import '../LuxuryDemo/luxuryDemo.scss';
 export class LuxuryDemo extends Component {
     render() {
         return (

@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import '../Social/socialComponent.scss'
-import { IoBedSharp, IoCall, IoSearchOutline, IoPersonCircleOutline } from "react-icons/io5";
-import { CiLocationOn, CiHeart } from "react-icons/ci";
+import { Component } from 'react';
+import { CiLocationOn } from "react-icons/ci";
 import { GoClock } from "react-icons/go";
+import { IoCall } from "react-icons/io5";
+import '../Social/socialComponent.scss';
 
 export class SocialComponent extends Component {
     render() {

@@ -1,23 +1,16 @@
 import React, { useState } from "react";
-import "../Drawer/drawer.scss";
-import { IoBedSharp, IoSearchOutline, IoPersonCircleOutline } from "react-icons/io5";
-import { CiHeart } from "react-icons/ci";
-import { FiShoppingBag } from "react-icons/fi";
-import { ImLoop } from "react-icons/im";
-import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
-import { PiArmchairFill } from "react-icons/pi";
 import { AiFillInstagram } from "react-icons/ai";
-import { RiWhatsappFill } from "react-icons/ri";
-import { FaFacebook, FaYoutube, FaChair } from "react-icons/fa";
-import { FaSquareXTwitter, FaArrowRightLong, FaCodeCompare } from "react-icons/fa6";
-import { MdChairAlt } from "react-icons/md";
-import { PiArmchairBold, PiOfficeChair } from "react-icons/pi";
-import { LuRockingChair } from "react-icons/lu";
-import { LuSofa } from "react-icons/lu";
 import { BiBed } from "react-icons/bi";
-import { MdOutlineTableBar } from "react-icons/md";
-import { RiArrowDownSLine } from "react-icons/ri";
+import { FaFacebook, FaYoutube } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
+import { IoBedSharp } from "react-icons/io5";
+import { LuRockingChair, LuSofa } from "react-icons/lu";
+import { MdChairAlt, MdOutlineTableBar } from "react-icons/md";
+import { PiArmchairBold, PiOfficeChair } from "react-icons/pi";
+import { RiArrowDownSLine, RiWhatsappFill } from "react-icons/ri";
+import { RxCross2 } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
+import "../Drawer/drawer.scss";
 
 const Drawer = ({ open, setOpen }) => {
 

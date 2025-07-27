@@ -1,15 +1,21 @@
-import React, { useCallback, useContext } from 'react'
-import '../Navbar/navbar.scss'
-import { IoSearchOutline, IoPersonCircleOutline } from "react-icons/io5";
-import { CiHeart } from "react-icons/ci";
-import { FiShoppingBag } from "react-icons/fi";
+import React, { useContext } from 'react';
 import { BsDoorOpen } from "react-icons/bs";
+import { FaAngleDown, FaRegHeart } from "react-icons/fa6";
+import { FiShoppingBag } from "react-icons/fi";
+import { IoPersonCircleOutline, IoSearchOutline } from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link, useNavigate } from 'react-router-dom';
-import { FaAngleDown, FaRegHeart } from "react-icons/fa6";
 import { GlobalContext } from '../../App.jsx';
+import '../Navbar/navbar.scss';
 
-const Navbar = ({ open, setOpen, isProfileOpen, setIsProfileOpen }) => {
+interface NavbarProps {
+    open: boolean;
+    setOpen: (open: boolean) => void;
+    isProfileOpen: boolean;
+    setIsProfileOpen: (isProfileOpen: boolean) => void;
+}
+
+const Navbar = ({ open, setOpen, isProfileOpen, setIsProfileOpen }: NavbarProps) => {
     const navigate = useNavigate()
 
 

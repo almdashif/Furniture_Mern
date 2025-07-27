@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import './login.scss';
-import { FiEyeOff, FiEye } from "react-icons/fi";
 
 function Login({ open = false, setOpen }: { open: boolean, setOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
 

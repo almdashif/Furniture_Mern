@@ -1,30 +1,26 @@
-import React, { Component, useEffect, useState } from 'react'
-import { MdFullscreen } from "react-icons/md";
-import { IoChevronForwardOutline } from "react-icons/io5";
+import React, { useContext, useEffect, useState } from 'react';
+import { CgMathPlus } from "react-icons/cg";
 import { FiMinus } from "react-icons/fi";
 import { GoPlus } from "react-icons/go";
 import { IoMdHeartEmpty } from "react-icons/io";
-import { MdCompare } from "react-icons/md";
-import { MdPhotoSizeSelectLarge } from "react-icons/md";
-import { CgMathPlus } from "react-icons/cg";
-import { PiStarBold, PiStarFill } from "react-icons/pi";
+import { IoChevronForwardOutline } from "react-icons/io5";
+import { MdCompare, MdFullscreen, MdPhotoSizeSelectLarge } from "react-icons/md";
+import { PiStarBold } from "react-icons/pi";
 
-import '../SingleProductPage/singlePage.scss'
+import { useNavigate, useParams } from 'react-router-dom';
 import DetailsComponent from '../../Components/DetailsComponent/DetailsComponent.tsx';
 import { productData } from '../../data/productData.js';
-import { useNavigate, useParams } from 'react-router-dom';
-
-
-
-
-
+import '../SingleProductPage/singlePage.scss';
+import { GlobalContext } from '../../App.jsx';
 
 const SinglePage = () => {
 
   const [viewState, setViewState] = useState(0)
   const [checked, setChecked] = useState(false)
-  const [singleData, setSingleData] = useState([])
+  const [singleData, setSingleData] = useState<any[]>([])
 
+  const context = useContext(GlobalContext);
+  const { state, dispatch } = context;
 
   const navigate = useNavigate()
 
@@ -32,22 +28,13 @@ const SinglePage = () => {
 
   useEffect(() => {
     fetchSingleData()
-    // this.setState()
-    // window.position({ top: 0,})
     window.scrollTo({ top: 0, left: 0 })
   }, [])
-
 
   const changeViewState = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, val: number) => {
     e.preventDefault();
     setViewState(val)
   }
-
-  
-      const navigateCart = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-          e.preventDefault();
-         navigate('/cart');
-      }
 
   const fetchSingleData = async () => {
     let singleProd = await productData.find(p => p.id === Number(id))
@@ -55,10 +42,41 @@ const SinglePage = () => {
     console.log([singleProd], 'singleProd')
   }
 
-
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(e.target.checked)
   }
+
+  const addToCartFn = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, data: any) => {
+    e.preventDefault();
+    console.log({ data }, state.cart, 'state.cart')
+
+    const existingProduct = state.cart.find((item: any) => item.id === data.id);
+
+    if (existingProduct) {
+      dispatch({
+        type: "cart",
+        payload: state.cart.map((item: any) =>
+          item.id === data.id
+            ? { ...item, cartQuantity: item.cartQuantity + 1 }
+            : item
+        ),
+      });
+    } else {
+      dispatch({
+        type: "cart",
+        payload: [...state.cart, { ...data, cartQuantity: 1 }],
+      });
+    }
+  };
+
+  const addToWishlistFn = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, data: any) => {
+    e.preventDefault();
+    dispatch({
+      type: "wishlist",
+      payload: [...state.wishlist, data],
+    });
+  };
+
 
   // const { id } = this.props.match.params;
   return (
@@ -88,7 +106,7 @@ const SinglePage = () => {
 
             <p className='Offer-price'>${singleData[0]?.currentprice} <span className='actual-price'>${singleData[0]?.oldPrice}</span></p>
 
-            <p className='description'>{singleData[0]?.productDetails + singleData[0]?.productDetails+singleData[0]?.productDetails+singleData[0]?.productDetails + singleData[0]?.productDetails}</p>
+            <p className='description'>{singleData[0]?.productDetails + singleData[0]?.productDetails + singleData[0]?.productDetails + singleData[0]?.productDetails + singleData[0]?.productDetails}</p>
 
             <div className="divider"></div>
 
@@ -102,7 +120,7 @@ const SinglePage = () => {
                   <GoPlus />
                 </a>
               </div>
-              <a href="#" onClick={navigateCart} className='addtoCartBtn'>Add to Cart</a>
+              <a href="#" onClick={e => { e.preventDefault(); e.stopPropagation(); addToCartFn(e, singleData[0]); }} className='addtoCartBtn'>Add to Cart</a>
             </div>
 
 
@@ -136,16 +154,16 @@ const SinglePage = () => {
 
         <div className="moreInfoContainer">
           <div className="topContainer">
-            <h6 className={viewState == 0 ? 'active' : 'inActive'}><a onClick={(e) => changeViewState(e, 0)} href="" >Description</a></h6>
-            <h6 className={viewState == 1 ? 'active' : 'inActive'}><a onClick={(e) => changeViewState(e, 1)} href="">Additional Information</a></h6>
-            <h6 className={viewState == 2 ? 'active' : 'inActive'}><a onClick={(e) => changeViewState(e, 2)} href="">Reviews (0)</a></h6>
+            <h6 className={viewState === 0 ? 'active' : 'inActive'}><a onClick={(e) => changeViewState(e, 0)} href="" >Description</a></h6>
+            <h6 className={viewState === 1 ? 'active' : 'inActive'}><a onClick={(e) => changeViewState(e, 1)} href="">Additional Information</a></h6>
+            <h6 className={viewState === 2 ? 'active' : 'inActive'}><a onClick={(e) => changeViewState(e, 2)} href="">Reviews (0)</a></h6>
           </div>
           <div className="bottomContainer">
 
-            {viewState == 0 ?
+            {viewState === 0 ?
               <p>{singleData[0]?.productDescription}</p>
               :
-              viewState == 1 ?
+              viewState === 1 ?
                 <>
                   <table style={{ width: '100%', }}>
                     {singleData[0]?.information &&
@@ -166,7 +184,7 @@ const SinglePage = () => {
                 <div id='reviewWrapper'>
                   <div className="leftReviewContainer">
                     <div className="reviewContainer">
-                      {singleData[0].reviews.length == 0 ? <>
+                      {singleData[0].reviews.length === 0 ? <>
                         <h4>Reviews</h4>
                         <p>There is no reviews yet.</p>
                       </>

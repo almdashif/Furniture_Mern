@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import './faq.scss'
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import './faq.scss';
 
 const faqData = [
   { question: 'What is the return policy?', answer: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.' },
@@ -10,14 +10,14 @@ const faqData = [
   ];
 
 const FaqPage = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
 
 
-  const Breadcrumb = ({ category }) => {
+  const Breadcrumb = ({ category }: { category: string }) => {
     const navigate = useNavigate();
 
     return (
@@ -34,7 +34,7 @@ const FaqPage = () => {
   };
 
 
-  const toggleFAQ = (index) => {
+  const toggleFAQ = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 

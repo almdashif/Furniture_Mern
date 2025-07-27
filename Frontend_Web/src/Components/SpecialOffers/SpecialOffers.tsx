@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import '../SpecialOffers/specialOffers.scss'
-import { FaSquareXTwitter, FaArrowRightLong, FaCodeCompare } from "react-icons/fa6";
+import { Component } from 'react';
+import { FaArrowRightLong } from "react-icons/fa6";
+import '../SpecialOffers/specialOffers.scss';
 
 interface State {
     "test": String
@@ -33,19 +33,19 @@ export class SpecialOffers extends Component<{}, State> {
                     <div className="itemsContainer">
                         {Array.from({ length: 3 }).map((_, index) => {
                             return (
-                                <div className={`item ${index == 0 ? 'bgLightGreen' : index == 1 ? "bgLightPeach" : "bgLightGray"}`} key={index}>
+                                <div className={`item ${index === 0 ? 'bgLightGreen' : index === 1 ? "bgLightPeach" : "bgLightGray"}`} key={index}>
 
                                     <img
-                                        src={index == 0 ?
+                                        src={index === 0 ?
                                             "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/offers-image-1.webp"
                                             :
-                                            index == 1 ?
+                                            index === 1 ?
                                                 "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/offers-image-3.webp"
                                                 :
                                                 "https://startersites.io/blocksy/furniture/wp-content/uploads/2024/05/offers-image-2.webp"
                                         }
                                         alt=""
-                                        className={index == 0 ? 'bgLightGreen' : index == 1 ? "bgLightPeach" : "bgLightPeach"}
+                                        className={index === 0 ? 'bgLightGreen' : index === 1 ? "bgLightPeach" : "bgLightPeach"}
                                     />
 
                                     <div className="detailsContainer">
