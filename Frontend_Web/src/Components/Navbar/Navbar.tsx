@@ -81,12 +81,13 @@ const Navbar = ({ open, setOpen, isProfileOpen, setIsProfileOpen }: NavbarProps)
                             </li>
                             <li><Link to="/faq">FAQ</Link></li>
                             <li><Link to="/contact">Contact Us</Link></li>
-
+                            <li><Link to="/login">Login</Link></li>
+                            <li><Link to="/register">Register</Link></li>
                         </ul>
                     </div>
                     <div className="rightContainer">
                         <ul>
-                            <li><a href="" onClick={handleProfileToggle} className='navIcons'><IoPersonCircleOutline /></a></li>
+                            <li><Link to="/login" className='navIcons'><IoPersonCircleOutline /></Link></li>
                             <li><a href="" className='navIcons'><FaRegHeart /></a></li>
                             {/* <li><a href="" className='navIcons'><ImLoop /></a></li> */}
                             {state.cart.length > 0 && <li><Link to="/cart" className='navIcons '>

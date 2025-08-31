@@ -1,0 +1,545 @@
+.categoriesPage {
+    .sectionHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+
+        .headerLeft {
+            h2 {
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: #1e293b;
+                margin: 0 0 0.5rem 0;
+            }
+
+            .categoryCount,
+            .couponCount {
+                font-size: 0.875rem;
+                color: #64748b;
+                margin: 0;
+            }
+        }
+
+        .headerRight {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            .filterBtn,
+            .seeAllBtn {
+                padding: 0.5rem 1rem;
+                border: 1px solid #e2e8f0;
+                background-color: #ffffff;
+                color: #64748b;
+                border-radius: 0.5rem;
+                font-size: 0.875rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+
+                &:hover {
+                    background-color: #f8fafc;
+                    border-color: #cbd5e1;
+                }
+
+                .filterIcon {
+                    font-size: 1rem;
+                }
+            }
+
+            .addCategoryBtn,
+            .addCouponBtn {
+                padding: 0.5rem 1rem;
+                background-color: #6366f1;
+                color: #ffffff;
+                border: none;
+                border-radius: 0.5rem;
+                font-size: 0.875rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+
+                &:hover {
+                    background-color: #5855eb;
+                    transform: translateY(-1px);
+                    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+                }
+
+                .plusIcon {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+
+    .categoriesTable,
+    .couponsTable {
+        background-color: #ffffff;
+        border-radius: 0.75rem;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        border: 1px solid #e2e8f0;
+        overflow: hidden;
+        margin-bottom: 3rem;
+
+        .dataTable {
+            width: 100%;
+            border-collapse: collapse;
+
+            th {
+                text-align: left;
+                padding: 1rem;
+                font-size: 0.875rem;
+                font-weight: 600;
+                color: #64748b;
+                background-color: #f8fafc;
+                border-bottom: 1px solid #e2e8f0;
+                position: relative;
+
+                .sortIcon {
+                    margin-left: 0.5rem;
+                    font-size: 0.75rem;
+                    color: #94a3b8;
+                    cursor: pointer;
+                    transition: color 0.2s ease;
+
+                    &:hover {
+                        color: #64748b;
+                    }
+                }
+
+                input[type="checkbox"] {
+                    width: 1rem;
+                    height: 1rem;
+                    cursor: pointer;
+                }
+            }
+
+            td {
+                padding: 1rem;
+                border-bottom: 1px solid #f1f5f9;
+                font-size: 0.875rem;
+                color: #475569;
+                vertical-align: middle;
+
+                input[type="checkbox"] {
+                    width: 1rem;
+                    height: 1rem;
+                    cursor: pointer;
+                }
+
+                .categoryInfo {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.75rem;
+
+                    .categoryImage {
+                        width: 2.5rem;
+                        height: 2.5rem;
+                        border-radius: 0.5rem;
+                        overflow: hidden;
+
+                        .imagePlaceholder {
+                            width: 100%;
+                            height: 100%;
+                            background-color: #e2e8f0;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: #94a3b8;
+                            font-size: 0.75rem;
+                        }
+                    }
+
+                    .categoryName {
+                        font-weight: 500;
+                        color: #1e293b;
+                    }
+                }
+
+                .couponInfo {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.75rem;
+
+                    .couponIcon {
+                        font-size: 1.25rem;
+                        color: #6366f1;
+                    }
+
+                    .couponCode {
+                        font-weight: 500;
+                        color: #1e293b;
+                        font-family: 'Courier New', monospace;
+                    }
+                }
+
+                .description {
+                    color: #64748b;
+                    max-width: 200px;
+                }
+
+                .productCount {
+                    font-weight: 500;
+                    color: #1e293b;
+                    text-align: center;
+                }
+
+                .discountInfo {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.25rem;
+
+                    .discountValue {
+                        font-weight: 600;
+                        color: #1e293b;
+                        font-size: 1rem;
+                    }
+
+                    .discountType {
+                        font-size: 0.75rem;
+                        color: #64748b;
+                        text-transform: uppercase;
+                        letter-spacing: 0.5px;
+                    }
+
+                    .discountDetails {
+                        display: flex;
+                        gap: 1rem;
+                        margin-top: 0.25rem;
+
+                        small {
+                            font-size: 0.75rem;
+                            color: #94a3b8;
+                        }
+                    }
+                }
+
+                .validityInfo {
+                    font-size: 0.75rem;
+                    color: #64748b;
+                    line-height: 1.4;
+                }
+
+                .usageInfo {
+                    .usageCount {
+                        font-weight: 500;
+                        color: #1e293b;
+                        margin-bottom: 0.5rem;
+                    }
+
+                    .usageProgress {
+                        width: 100%;
+                        height: 6px;
+                        background-color: #e2e8f0;
+                        border-radius: 3px;
+                        overflow: hidden;
+
+                        .progressBar {
+                            height: 100%;
+                            background-color: #6366f1;
+                            border-radius: 3px;
+                            transition: width 0.3s ease;
+                        }
+                    }
+                }
+
+                .statusBadge {
+                    display: inline-block;
+                    padding: 0.25rem 0.75rem;
+                    border-radius: 9999px;
+                    font-size: 0.75rem;
+                    font-weight: 500;
+                    text-transform: capitalize;
+
+                    &.green {
+                        background-color: #dcfce7;
+                        color: #166534;
+                    }
+
+                    &.blue {
+                        background-color: #dbeafe;
+                        color: #1e40af;
+                    }
+
+                    &.orange {
+                        background-color: #fed7aa;
+                        color: #c2410c;
+                    }
+
+                    &.red {
+                        background-color: #fee2e2;
+                        color: #991b1b;
+                    }
+
+                    &.gray {
+                        background-color: #f1f5f9;
+                        color: #475569;
+                    }
+                }
+
+                .actionButtons {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+
+                    .actionBtn {
+                        width: 2rem;
+                        height: 2rem;
+                        border: none;
+                        background-color: #f8fafc;
+                        color: #64748b;
+                        border-radius: 0.375rem;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        &:hover {
+                            background-color: #e2e8f0;
+                            color: #475569;
+                        }
+
+                        svg {
+                            font-size: 0.875rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Modal Styles
+    .modalOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        padding: 1rem;
+
+        .modalContent {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+
+            .modalHeader {
+                padding: 1.5rem;
+                border-bottom: 1px solid #e2e8f0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                h3 {
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    color: #1e293b;
+                    margin: 0;
+                }
+
+                .closeBtn {
+                    background: none;
+                    border: none;
+                    font-size: 1.5rem;
+                    color: #94a3b8;
+                    cursor: pointer;
+                    padding: 0.25rem;
+                    border-radius: 0.25rem;
+                    transition: all 0.2s ease;
+
+                    &:hover {
+                        background-color: #f1f5f9;
+                        color: #64748b;
+                    }
+                }
+            }
+
+            .modalBody {
+                padding: 1.5rem;
+
+                .addCategoryForm,
+                .addCouponForm {
+                    .formRow {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 1rem;
+                        margin-bottom: 1rem;
+
+                        @media (max-width: 640px) {
+                            grid-template-columns: 1fr;
+                        }
+                    }
+
+                    .formGroup {
+                        margin-bottom: 1rem;
+
+                        label {
+                            display: block;
+                            font-size: 0.875rem;
+                            font-weight: 500;
+                            color: #374151;
+                            margin-bottom: 0.5rem;
+                        }
+
+                        input,
+                        select,
+                        textarea {
+                            width: 100%;
+                            padding: 0.75rem;
+                            border: 1px solid #d1d5db;
+                            border-radius: 0.5rem;
+                            font-size: 0.875rem;
+                            transition: all 0.2s ease;
+
+                            &:focus {
+                                outline: none;
+                                border-color: #6366f1;
+                                box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+                            }
+
+                            &::placeholder {
+                                color: #9ca3af;
+                            }
+                        }
+
+                        textarea {
+                            resize: vertical;
+                            min-height: 80px;
+                        }
+                    }
+
+                    .formActions {
+                        display: flex;
+                        gap: 1rem;
+                        justify-content: flex-end;
+                        margin-top: 2rem;
+
+                        .cancelBtn,
+                        .saveBtn {
+                            padding: 0.75rem 1.5rem;
+                            border-radius: 0.5rem;
+                            font-size: 0.875rem;
+                            font-weight: 500;
+                            cursor: pointer;
+                            transition: all 0.2s ease;
+                        }
+
+                        .cancelBtn {
+                            background-color: #ffffff;
+                            border: 1px solid #d1d5db;
+                            color: #374151;
+
+                            &:hover {
+                                background-color: #f9fafb;
+                                border-color: #9ca3af;
+                            }
+                        }
+
+                        .saveBtn {
+                            background-color: #6366f1;
+                            border: 1px solid #6366f1;
+                            color: #ffffff;
+
+                            &:hover {
+                                background-color: #5855eb;
+                                transform: translateY(-1px);
+                                box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Responsive Design
+@media (max-width: 1024px) {
+    .categoriesPage {
+        .sectionHeader {
+            flex-direction: column;
+            gap: 1rem;
+            align-items: flex-start;
+
+            .headerRight {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+
+        .categoriesTable,
+        .couponsTable {
+            .dataTable {
+                th,
+                td {
+                    padding: 0.75rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .categoriesPage {
+        .sectionHeader {
+            .headerRight {
+                flex-direction: column;
+                width: 100%;
+                gap: 0.75rem;
+
+                .filterBtn,
+                .seeAllBtn,
+                .addCategoryBtn,
+                .addCouponBtn {
+                    width: 100%;
+                    justify-content: center;
+                }
+            }
+        }
+
+        .categoriesTable,
+        .couponsTable {
+            .dataTable {
+                th,
+                td {
+                    padding: 0.5rem;
+                    font-size: 0.75rem;
+                }
+
+                .categoryInfo,
+                .couponInfo {
+                    .categoryImage {
+                        width: 2rem;
+                        height: 2rem;
+                    }
+                }
+
+                .actionButtons {
+                    flex-direction: column;
+                    gap: 0.25rem;
+
+                    .actionBtn {
+                        width: 1.75rem;
+                        height: 1.75rem;
+                    }
+                }
+            }
+        }
+    }
+}

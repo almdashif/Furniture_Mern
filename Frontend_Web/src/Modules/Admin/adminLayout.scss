@@ -1,0 +1,368 @@
+.adminLayout {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f8fafc;
+
+    // Left Sidebar
+    .adminSidebar {
+        width: 280px;
+        background-color: #ffffff;
+        border-right: 1px solid #e2e8f0;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        height: 100vh;
+        overflow-y: auto;
+
+        .sidebarHeader {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+
+            .logo {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+
+                .logoIcon {
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    color: #6366f1;
+                }
+
+                .logoText {
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    color: #1e293b;
+                }
+            }
+        }
+
+        .sidebarNav {
+            flex: 1;
+            padding: 1rem 0;
+
+            .navList {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+                .navItem {
+                    margin: 0.25rem 0;
+
+                    .navLink {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.75rem;
+                        padding: 0.75rem 1.5rem;
+                        color: #64748b;
+                        text-decoration: none;
+                        transition: all 0.2s ease;
+                        cursor: pointer;
+                        position: relative;
+
+                        &:hover {
+                            background-color: #f1f5f9;
+                            color: #475569;
+                        }
+
+                        &.active {
+                            background-color: #f1f5f9;
+                            color: #6366f1;
+                            border-right: 3px solid #6366f1;
+                        }
+
+                        .navIcon {
+                            font-size: 1.125rem;
+                            flex-shrink: 0;
+                        }
+
+                        .chevron {
+                            margin-left: auto;
+                            font-size: 0.875rem;
+                            transition: transform 0.2s ease;
+                        }
+                    }
+
+                    .subNavList {
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+                        background-color: #f8fafc;
+
+                        .subNavItem {
+                            .subNavLink {
+                                display: block;
+                                padding: 0.5rem 1.5rem 0.5rem 3.5rem;
+                                color: #64748b;
+                                text-decoration: none;
+                                font-size: 0.875rem;
+                                transition: all 0.2s ease;
+
+                                &:hover {
+                                    background-color: #e2e8f0;
+                                    color: #475569;
+                                }
+
+                                &.active {
+                                    background-color: #e2e8f0;
+                                    color: #6366f1;
+                                    font-weight: 500;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .sidebarFooter {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #e2e8f0;
+
+            .logoutBtn {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                width: 100%;
+                padding: 0.75rem;
+                background: none;
+                border: none;
+                color: #ef4444;
+                cursor: pointer;
+                border-radius: 0.5rem;
+                transition: all 0.2s ease;
+
+                &:hover {
+                    background-color: #fef2f2;
+                }
+
+                .logoutIcon {
+                    font-size: 1.125rem;
+                }
+            }
+        }
+    }
+
+    // Main Content Area
+    .adminMain {
+        flex: 1;
+        margin-left: 280px;
+        display: flex;
+        flex-direction: column;
+
+        .adminHeader {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+
+            .headerLeft {
+                .pageTitle {
+                    font-size: 1.875rem;
+                    font-weight: 600;
+                    color: #1e293b;
+                    margin: 0;
+                }
+            }
+
+            .headerRight {
+                .headerActions {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+
+                    .searchBtn,
+                    .notificationBtn {
+                        background: none;
+                        border: none;
+                        padding: 0.5rem;
+                        border-radius: 0.5rem;
+                        color: #64748b;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+
+                        &:hover {
+                            background-color: #f1f5f9;
+                            color: #475569;
+                        }
+
+                        .searchIcon,
+                        .notificationIcon {
+                            font-size: 1.25rem;
+                        }
+                    }
+
+                    .userDropdown {
+                        position: relative;
+
+                        .userBtn {
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                            background: none;
+                            border: none;
+                            padding: 0.5rem;
+                            border-radius: 0.5rem;
+                            color: #64748b;
+                            cursor: pointer;
+                            transition: all 0.2s ease;
+
+                            &:hover {
+                                background-color: #f1f5f9;
+                                color: #475569;
+                            }
+
+                            .userIcon {
+                                font-size: 1.25rem;
+                            }
+
+                            .chevron {
+                                font-size: 0.875rem;
+                            }
+                        }
+
+                        .userDropdownMenu {
+                            position: absolute;
+                            top: 100%;
+                            right: 0;
+                            background-color: #ffffff;
+                            border: 1px solid #e2e8f0;
+                            border-radius: 0.5rem;
+                            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+                            min-width: 160px;
+                            z-index: 20;
+
+                            .dropdownItem {
+                                display: block;
+                                padding: 0.75rem 1rem;
+                                color: #64748b;
+                                text-decoration: none;
+                                border: none;
+                                background: none;
+                                width: 100%;
+                                text-align: left;
+                                cursor: pointer;
+                                transition: all 0.2s ease;
+
+                                &:hover {
+                                    background-color: #f1f5f9;
+                                    color: #475569;
+                                }
+
+                                &:first-child {
+                                    border-radius: 0.5rem 0.5rem 0 0;
+                                }
+
+                                &:last-child {
+                                    border-radius: 0 0 0.5rem 0.5rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .adminContent {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+    }
+}
+
+// Responsive Design
+@media (max-width: 1024px) {
+    .adminLayout {
+        .adminSidebar {
+            width: 240px;
+
+            .sidebarHeader {
+                padding: 1rem;
+
+                .logo {
+                    .logoText {
+                        font-size: 1.125rem;
+                    }
+                }
+            }
+
+            .sidebarNav {
+                .navList {
+                    .navItem {
+                        .navLink {
+                            padding: 0.625rem 1rem;
+
+                            .navIcon {
+                                font-size: 1rem;
+                            }
+                        }
+
+                        .subNavList {
+                            .subNavItem {
+                                .subNavLink {
+                                    padding: 0.5rem 1rem 0.5rem 2.5rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .adminMain {
+            margin-left: 240px;
+
+            .adminHeader {
+                padding: 1rem 1.5rem;
+
+                .headerLeft {
+                    .pageTitle {
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+
+            .adminContent {
+                padding: 1.5rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .adminLayout {
+        .adminSidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 30;
+
+            &.open {
+                transform: translateX(0);
+            }
+        }
+
+        .adminMain {
+            margin-left: 0;
+
+            .adminHeader {
+                padding: 1rem;
+
+                .headerLeft {
+                    .pageTitle {
+                        font-size: 1.25rem;
+                    }
+                }
+            }
+
+            .adminContent {
+                padding: 1rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,273 @@
+.loginPage {
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--whiteColor);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+
+    .loginPageContainer {
+        width: 100%;
+        max-width: 1200px;
+        min-height: 600px;
+        background-color: var(--whiteColor);
+        border-radius: 1rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        overflow: hidden;
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+            min-height: auto;
+        }
+    }
+
+    .loginContent {
+        padding: 3rem 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+
+        @media (max-width: 768px) {
+            padding: 2rem 1.5rem;
+        }
+
+        .loginHeader {
+            text-align: center;
+            margin-bottom: 1rem;
+
+            h1 {
+                font-size: 2.5rem;
+                font-weight: 600;
+                color: var(--a-text-color);
+                margin-bottom: 0.5rem;
+                letter-spacing: 1px;
+
+                @media (max-width: 768px) {
+                    font-size: 2rem;
+                }
+            }
+
+            p {
+                font-size: 1rem;
+                color: var(--a-Bgtext-color);
+                font-weight: 400;
+            }
+        }
+
+        .loginFormContainer {
+            h3 {
+                font-size: 1.5rem;
+                font-weight: 500;
+                color: var(--a-text-color);
+                letter-spacing: 1px;
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                width: 100%;
+
+                .inputContainer {
+                    display: flex;
+                    flex-direction: column;
+                    position: relative;
+
+                    .inputTitle {
+                        font-size: 0.9rem;
+                        font-weight: 400;
+                        padding: 0.5rem 0 0.5rem 0.5rem;
+                        color: var(--light-blackColor);
+                    }
+
+                    .passwordInputWrapper {
+                        position: relative;
+                    }
+
+                    input[type="text"],
+                    input[type="password"] {
+                        padding: 0.8rem 1rem;
+                        border-radius: 2rem;
+                        border: 1px solid var(--borderColor);
+                        color: var(--a-text-color);
+                        width: 100%;
+                        font-size: 0.9rem;
+
+                        &::placeholder {
+                            font-size: 0.8rem;
+                            color: var(--a-Bgtext-color);
+                        }
+
+                        &:focus {
+                            outline: none;
+                            border: 1px solid var(--bgEnglishBlueColor);
+                            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+                        }
+                    }
+
+                    .togglePasswordContainer {
+                        position: absolute;
+                        right: 1rem;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        font-size: 1rem;
+                        cursor: pointer;
+                        color: var(--light-blackColor);
+                        z-index: 2;
+
+                        &:hover {
+                            color: var(--a-Bghover-text-color);
+                        }
+
+                        .eyeIcon {
+                            transition: color 0.2s ease;
+                        }
+                    }
+
+                    .error {
+                        font-size: 0.8rem;
+                        color: var(--redColor);
+                        padding: 0.3rem 0 0 0.5rem;
+                        min-height: 1.2rem;
+                    }
+                }
+
+                .loginBtn {
+                    background-color: var(--bgLightEnglishBlueColor);
+                    cursor: pointer;
+                    padding: 0.8rem;
+                    border-radius: 2rem;
+                    color: var(--whiteColor);
+                    font-size: 0.9rem;
+                    text-transform: lowercase;
+                    margin-top: 1rem;
+                    border: none;
+                    font-weight: 500;
+                    transition: all 0.2s ease;
+
+                    &:hover {
+                        background-color: var(--bgEnglishBlueColor);
+                        transform: translateY(-1px);
+                        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+                    }
+
+                    &:active {
+                        transform: translateY(0);
+                    }
+                }
+            }
+
+            .loginFooter {
+                margin-top: 2rem;
+                text-align: center;
+
+                p {
+                    font-size: 0.9rem;
+                    color: var(--a-text-color);
+                    margin-bottom: 1rem;
+
+                    a {
+                        color: var(--bgLightEnglishBlueColor);
+                        text-decoration: none;
+                        font-weight: 500;
+
+                        &:hover {
+                            text-decoration: underline;
+                            text-underline-offset: 2px;
+                        }
+                    }
+                }
+
+                .forgotPassword {
+                    color: var(--a-Bgtext-color);
+                    text-decoration: none;
+                    font-size: 0.85rem;
+                    transition: color 0.2s ease;
+
+                    &:hover {
+                        color: var(--bgLightEnglishBlueColor);
+                    }
+                }
+            }
+        }
+    }
+
+    .loginImage {
+        background: linear-gradient(135deg, var(--bgLightEnglishBlueColor) 0%, var(--bgEnglishBlueColor) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+
+        @media (max-width: 768px) {
+            display: none;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .imageOverlay {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            position: relative;
+
+            h2 {
+                font-size: 2.5rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                letter-spacing: 2px;
+            }
+
+            p {
+                font-size: 1.1rem;
+                opacity: 0.9;
+                line-height: 1.6;
+            }
+        }
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 1024px) {
+    .loginPage {
+        padding: 1rem;
+
+        .loginPageContainer {
+            max-width: 900px;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .loginPage {
+        padding: 0.5rem;
+
+        .loginPageContainer {
+            border-radius: 0.5rem;
+        }
+
+        .loginContent {
+            padding: 1.5rem 1rem;
+
+            .loginHeader h1 {
+                font-size: 1.8rem;
+            }
+        }
+    }
+}
