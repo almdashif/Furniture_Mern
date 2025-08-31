@@ -1,16 +1,6 @@
-
-import { Router } from 'express';
-import authRoutes from './auth';
-import productRoutes from './product';
-import orderRoutes from './order';
-import paymentRoutes from './payment';
-import adminRoutes from './admin';
-
+import { Router, Request, Response } from 'express';
+import user from './user.routes';
 const router = Router();
-router.use('/auth', authRoutes);
-router.use('/products', productRoutes);
-router.use('/orders', orderRoutes);
-router.use('/payment', paymentRoutes);
-router.use('/admin', adminRoutes);
 
+router.use('/users', user);
 export default router;
